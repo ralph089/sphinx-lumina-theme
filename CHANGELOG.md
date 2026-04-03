@@ -2,6 +2,15 @@
 
 <!-- releases -->
 
+## v1.8.9 (2026-04-03)
+
+### Bug Fixes
+
+- Align tabs and mermaid with design system
+  ([#14](https://github.com/r4sky0/sphinx-lumina-theme/pull/14),
+  [`adbabb0`](https://github.com/r4sky0/sphinx-lumina-theme/commit/adbabb03a76ca543e327816bb328bce3d9c6aa98))
+
+
 ## v1.8.8 (2026-04-03)
 
 ### Bug Fixes
