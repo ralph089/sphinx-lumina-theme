@@ -2,6 +2,25 @@
 
 <!-- releases -->
 
+## v1.8.10 (2026-04-03)
+
+### Bug Fixes
+
+- Improve README and version replacement script
+  ([#16](https://github.com/r4sky0/sphinx-lumina-theme/pull/16),
+  [`5113486`](https://github.com/r4sky0/sphinx-lumina-theme/commit/51134861e5790087dcec49facab45c64ba661da5))
+
+<details>
+<summary>Maintenance</summary>
+
+#### Documentation
+
+- Add banner screenshot to README ([#15](https://github.com/r4sky0/sphinx-lumina-theme/pull/15),
+  [`855f271`](https://github.com/r4sky0/sphinx-lumina-theme/commit/855f27168b70a6d9847c0909950e714530161dbb))
+
+</details>
+
+
 ## v1.8.9 (2026-04-03)
 
 ### Bug Fixes
