@@ -2456,6 +2456,14 @@ The hero only renders when `hero_title` is set. All other hero fields are option
 Any Markdown body below the frontmatter renders in a wide single-column layout under the hero. Use it for a feature overview, a getting-started callout, or whatever fits your project:
 
 ```markdown
+---
+template: landing.html
+hero_title: My Project
+hero_subtitle: Simple, powerful, open source.
+hero_primary_text: Get started
+hero_primary_url: getting-started/installation
+---
+
 ## Why My Project?
 
 A short paragraph explaining the value proposition.
