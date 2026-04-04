@@ -30,6 +30,12 @@ A modern Sphinx theme that treats documentation as a first-class product experie
 Requires **Python 3.12+** and **Sphinx 8.0+**.
 
 ```bash
+pip install sphinx-lumina-theme
+```
+
+or with uv:
+
+```bash
 uv add sphinx-lumina-theme
 ```
 
@@ -45,7 +51,7 @@ Build your docs:
 uv run sphinx-build docs docs/_build/html
 ```
 
-That's it. For pip, MyST Markdown setup, and configuration options, see the [Getting Started](https://r4sky0.github.io/sphinx-lumina-theme/getting-started.html) guide.
+That's it. For MyST Markdown setup and configuration options, see the [Getting Started](https://r4sky0.github.io/sphinx-lumina-theme/getting-started.html) guide.
 
 ## Configuration
 
