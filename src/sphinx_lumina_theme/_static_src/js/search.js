@@ -2,6 +2,16 @@ import DOMPurify from "dompurify";
 
 const EXCERPT_CONFIG = { ALLOWED_TAGS: ["mark"], ALLOWED_ATTR: [] };
 
+function sectionFromUrl(url) {
+  const segments = url.split("?")[0].split("#")[0]
+    .replace(/\.html$/, "")
+    .split("/")
+    .filter(Boolean);
+  if (segments.length < 2) return null;
+  const slug = segments[segments.length - 2];
+  return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export default function searchModal() {
   return {
     open: false,
@@ -133,6 +143,7 @@ export default function searchModal() {
           title: r.meta?.title || "Untitled",
           url: r.url,
           excerpt: DOMPurify.sanitize(r.excerpt, EXCERPT_CONFIG),
+          section: sectionFromUrl(r.url),
         }));
       } else {
         this.results = [

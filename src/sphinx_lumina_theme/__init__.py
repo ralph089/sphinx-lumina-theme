@@ -58,7 +58,23 @@ def _run_pagefind(app, exception):
     logger.info("Running Pagefind indexing...")
     try:
         subprocess.run(
-            [npx, "pagefind", "--site", app.outdir, "--output-subdir", "_pagefind"],
+            [
+                npx,
+                "pagefind",
+                "--site",
+                app.outdir,
+                "--output-subdir",
+                "_pagefind",
+                # Sphinx injects ¶ anchor links into headings — exclude them so they
+                # don't corrupt page titles and result excerpts in the search index.
+                "--exclude-selectors",
+                "a.headerlink",
+                # HTTP domain signature lines contain bare method verbs (GET, POST …)
+                # which cause false positives via stemming (e.g. "Getting" → "get").
+                # The endpoint descriptions (inside dd) are still fully indexed.
+                "--exclude-selectors",
+                "dl.http dt.sig",
+            ],
             check=True,
             capture_output=True,
             text=True,
