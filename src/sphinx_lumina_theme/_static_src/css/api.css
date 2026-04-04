@@ -230,7 +230,11 @@ div.deprecated > p {
    ─────────────────────────────────────────────────────────────── */
 
 dl.http {
-  margin: 1.25rem 0;
+  margin: 1.5rem 0;
+}
+
+dl.http + dl.http {
+  margin-top: 1.75rem;
 }
 
 /* Signature card — 3px left border colored by method */
@@ -274,7 +278,13 @@ dl.http.options > dt.sig {
 
 /* Method name — first descname is the HTTP verb (GET, POST, etc.) */
 dl.http dt.sig .sig-name.descname:first-child {
+  font-weight: 700;
   letter-spacing: 0.04em;
+}
+
+/* Path — lighter weight to create hierarchy against the method verb */
+dl.http dt.sig .sig-name.descname:first-child ~ .sig-name {
+  font-weight: 500;
 }
 
 dl.http.get dt.sig .sig-name.descname:first-child { color: var(--lumina-adm-note); }
@@ -288,13 +298,9 @@ dl.http.options dt.sig .sig-name.descname:first-child { color: var(--lumina-adm-
 /* ── HTTP definition body ── */
 dl.http > dd {
   margin: 0;
-  padding: 0.75rem 0 0.25rem 1.25rem;
+  padding: 0.75rem 0 0.5rem 1.25rem;
   margin-left: 0.5rem;
   border-left: 2px solid var(--lumina-border);
-}
-
-dl.http > dd > p:last-child {
-  margin-bottom: 0.5rem;
 }
 
 /* Method-specific body borders */
@@ -363,6 +369,11 @@ dl.http.options > dd { border-left-color: color-mix(in srgb, var(--lumina-adm-im
   color: var(--lumina-accent);
   background: var(--lumina-accent-light);
   border-color: color-mix(in srgb, var(--lumina-accent) 20%, transparent);
+}
+
+.lumina-curl-copy:focus-visible {
+  opacity: 1;
+  outline-offset: -2px;
 }
 
 .lumina-curl-copy.is-copied {

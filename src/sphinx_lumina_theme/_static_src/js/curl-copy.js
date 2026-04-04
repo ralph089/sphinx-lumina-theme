@@ -16,17 +16,9 @@ export default function curlCopy() {
   const endpoints = document.querySelectorAll("dl.http");
   if (endpoints.length === 0) return;
 
-  // Inject server URL badge before the first endpoint in each section
+  // Inject server URL badge once before the first endpoint on each page
   if (baseUrl) {
-    const seen = new Set();
-    endpoints.forEach((dl) => {
-      const section = dl.closest("section") || dl.parentNode;
-      if (!seen.has(section)) {
-        seen.add(section);
-        const first = section.querySelector("dl.http");
-        if (first) injectServerBadge(first, baseUrl);
-      }
-    });
+    injectServerBadge(endpoints[0], baseUrl);
   }
 
   endpoints.forEach((dl) => {
