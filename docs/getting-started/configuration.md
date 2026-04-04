@@ -89,6 +89,10 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
   - string
   - `"true"`
   - Show or hide the "Built with Lumina" attribution link in the sidebar footer.
+* - `show_back_to_top`
+  - string
+  - `"true"`
+  - Show or hide the back-to-top button that appears when scrolling up.
 ```
 
 ### Search
