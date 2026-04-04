@@ -1,6 +1,6 @@
 # Badges & Buttons
 
-Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the `sphinx_design` extension — see [Extensions](../extensions.md) for setup.
+Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the `sphinx_design` extension — see [sphinx-design](../extensions/sphinx-design.md) for setup.
 
 ## Badges
 
@@ -54,7 +54,7 @@ Badges work naturally inline with text: The API is stable and supports Python 3.
 
 Clickable button links for calls to action.
 
-[Get Started](../getting-started)
+[Get Started](/getting-started/installation)
 
 [View on GitHub](https://github.com)
 
@@ -71,7 +71,7 @@ Button Text
 
 Buttons with outline styling for secondary actions.
 
-[Get Started](../getting-started)
+[Get Started](/getting-started/installation)
 
 [View Source](https://github.com)
 
@@ -89,7 +89,7 @@ Button Text
 
 Link buttons to internal documentation pages using `button-ref`.
 
-[Read the Guide](../getting-started.md)
+[Read the Guide](../getting-started/installation.md)
 
 The MyST syntax:
 
@@ -119,6 +119,6 @@ Document API stability inline: The configuration API is stable, the plugin syste
 
 Use primary buttons for the main action and outline buttons for alternatives:
 
-[Get Started](../getting-started.md)
+[Get Started](../getting-started/installation.md)
 
-[View Configuration](../customization.md)
+[View Configuration](../getting-started/configuration.md)

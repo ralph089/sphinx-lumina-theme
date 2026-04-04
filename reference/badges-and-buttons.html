@@ -185,29 +185,52 @@
     
     <div class="hidden h-[calc(100vh-3.5rem)] flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
         <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../customization.html">Customization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/configuration.html">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/search.html">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/dark-mode.html">Dark Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/myst-markdown.html">MyST Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/navigation.html">Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-styling.html">Custom Styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/myst-parser.html">MyST Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-design.html">sphinx-design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-copybutton.html">sphinx-copybutton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/mermaid.html">Mermaid Diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/openapi.html">OpenAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-llm.html">sphinx-llm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/mathjax.html">MathJax</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admonitions.html">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-blocks.html">Code Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists-and-tables.html">Lists &amp; Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cards-and-grids.html">Cards &amp; Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images-and-figures.html">Images &amp; Figures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Badges &amp; Buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footnotes-and-references.html">Footnotes &amp; References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-documentation.html">API Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http-api.html">HTTP API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/architecture.html">Architecture</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="typography.html">Typography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admonitions.html">Admonitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-blocks.html">Code Blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists-and-tables.html">Lists &amp; Tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cards-and-grids.html">Cards &amp; Grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images-and-figures.html">Images &amp; Figures</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Badges &amp; Buttons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="math.html">Math</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="footnotes-and-references.html">Footnotes &amp; References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-documentation.html">API Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http-api.html">HTTP API Documentation</a></li>
 </ul>
 
         </nav>
@@ -225,7 +248,7 @@
                     <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                 </svg>
             Lumina</a>
-            <span class="lumina-sidebar-footer-version">v1.10.0</span>
+            <span class="lumina-sidebar-footer-version">v1.11.0</span>
         </div>
     </div>
     
@@ -263,29 +286,52 @@
                 
                 
                 <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-                    <ul>
+                    <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../customization.html">Customization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/configuration.html">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/index.html">Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guides/search.html">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/dark-mode.html">Dark Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/myst-markdown.html">MyST Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/navigation.html">Navigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/custom-styling.html">Custom Styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guides/development-workflow.html">Development Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extensions/index.html">Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/myst-parser.html">MyST Parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-design.html">sphinx-design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-copybutton.html">sphinx-copybutton</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/mermaid.html">Mermaid Diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/openapi.html">OpenAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/sphinx-llm.html">sphinx-llm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extensions/mathjax.html">MathJax</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="admonitions.html">Admonitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code-blocks.html">Code Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lists-and-tables.html">Lists &amp; Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cards-and-grids.html">Cards &amp; Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="images-and-figures.html">Images &amp; Figures</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Badges &amp; Buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="footnotes-and-references.html">Footnotes &amp; References</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-documentation.html">API Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http-api.html">HTTP API Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/architecture.html">Architecture</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="typography.html">Typography</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admonitions.html">Admonitions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code-blocks.html">Code Blocks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lists-and-tables.html">Lists &amp; Tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cards-and-grids.html">Cards &amp; Grids</a></li>
-<li class="toctree-l1"><a class="reference internal" href="images-and-figures.html">Images &amp; Figures</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Badges &amp; Buttons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="math.html">Math</a></li>
-<li class="toctree-l1"><a class="reference internal" href="diagrams.html">Diagrams</a></li>
-<li class="toctree-l1"><a class="reference internal" href="footnotes-and-references.html">Footnotes &amp; References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-documentation.html">API Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="http-api.html">HTTP API Documentation</a></li>
 </ul>
 
                 </nav>
@@ -293,7 +339,7 @@
                     <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                        target="_blank"
                        rel="noopener">Lumina</a>
-                    <span class="lumina-sidebar-footer-version">v1.10.0</span>
+                    <span class="lumina-sidebar-footer-version">v1.11.0</span>
                 </div>
             </div>
         </div>
@@ -308,6 +354,17 @@
      aria-label="Breadcrumb">
     <a href="../index.html"
        class="whitespace-nowrap hover:text-[var(--lumina-accent)] no-underline transition-colors">Sphinx Lumina Theme  documentation</a>
+    
+        
+            <svg class="h-3.5 w-3.5 flex-shrink-0"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <a href="index.html"
+               class="whitespace-nowrap hover:text-[var(--lumina-accent)] no-underline transition-colors">Reference</a>
+        
     
     <svg class="h-3.5 w-3.5 flex-shrink-0"
          fill="none"
@@ -354,7 +411,7 @@
             <article class="lumina-article" x-data="headerLinks()">
                 <section class="tex2jax_ignore mathjax_ignore" id="badges-buttons">
 <h1>Badges &amp; Buttons<a class="headerlink" href="#badges-buttons" title="Link to this heading">¶</a></h1>
-<p>Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the <code class="docutils literal notranslate"><span class="pre">sphinx_design</span></code> extension — see <a class="reference internal" href="../extensions.html"><span class="doc">Extensions</span></a> for setup.</p>
+<p>Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the <code class="docutils literal notranslate"><span class="pre">sphinx_design</span></code> extension — see <a class="reference internal" href="../extensions/sphinx-design.html"><span class="doc">sphinx-design</span></a> for setup.</p>
 <section id="badges">
 <h2>Badges<a class="headerlink" href="#badges" title="Link to this heading">¶</a></h2>
 <p>Inline badges for status labels, version tags, and categories.</p>
@@ -400,7 +457,7 @@
 <section id="buttons">
 <h2>Buttons<a class="headerlink" href="#buttons" title="Link to this heading">¶</a></h2>
 <p>Clickable button links for calls to action.</p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="../getting-started"><span>Get Started</span></a></p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="/getting-started/installation"><span>Get Started</span></a></p>
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-secondary reference external" href="https://github.com"><span>View on GitHub</span></a></p>
 <p>The MyST syntax:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{button-link} target-url
@@ -413,7 +470,7 @@ Button Text
 <section id="outline-buttons">
 <h2>Outline Buttons<a class="headerlink" href="#outline-buttons" title="Link to this heading">¶</a></h2>
 <p>Buttons with outline styling for secondary actions.</p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference external" href="../getting-started"><span>Get Started</span></a></p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference external" href="/getting-started/installation"><span>Get Started</span></a></p>
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-secondary reference external" href="https://github.com"><span>View Source</span></a></p>
 <p>The MyST syntax:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{button-link} target-url
@@ -427,7 +484,7 @@ Button Text
 <section id="button-with-reference">
 <h2>Button with Reference<a class="headerlink" href="#button-with-reference" title="Link to this heading">¶</a></h2>
 <p>Link buttons to internal documentation pages using <code class="docutils literal notranslate"><span class="pre">button-ref</span></code>.</p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference internal" href="../getting-started.html"><span class="doc">Read the Guide</span></a></p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference internal" href="../getting-started/installation.html"><span class="doc">Read the Guide</span></a></p>
 <p>The MyST syntax:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{button-ref} page-path
 :color: primary
@@ -476,8 +533,8 @@ Button Text
 <section id="call-to-action-patterns">
 <h3>Call-to-Action Patterns<a class="headerlink" href="#call-to-action-patterns" title="Link to this heading">¶</a></h3>
 <p>Use primary buttons for the main action and outline buttons for alternatives:</p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference internal" href="../getting-started.html"><span class="doc">Get Started</span></a></p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-secondary reference internal" href="../customization.html"><span class="doc">View Configuration</span></a></p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference internal" href="../getting-started/installation.html"><span class="doc">Get Started</span></a></p>
+<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-secondary reference internal" href="../getting-started/configuration.html"><span class="doc">View Configuration</span></a></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul class="simple">

@@ -1,5 +1,13 @@
 # Releases
 
+## v1.11.0 (2026-04-04)
+
+### Features
+
+- Reorganize documentation into hub-and-spoke architecture
+  ([#22](https://github.com/r4sky0/sphinx-lumina-theme/pull/22),
+  [`81ce49e`](https://github.com/r4sky0/sphinx-lumina-theme/commit/81ce49e49b95143d0ce75fc1abc896cc6c69ff30))
+
 ## v1.10.0 (2026-04-04)
 
 ### Features

@@ -3,6 +3,212 @@
 # Sphinx Lumina Theme
 
 
+# index.html.md
+
+# Contributing
+
+How to set up a development environment and contribute to the Sphinx Lumina Theme.
+
+## Prerequisites
+
+You need the following tools installed:
+
+- **Python 3.10+** and [uv](https://docs.astral.sh/uv/) for Python dependency management
+- **Node.js 18+** and [pnpm](https://pnpm.io/) for JavaScript dependency management
+
+## Development Setup
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/r4sky0/sphinx-lumina-theme.git
+cd sphinx-lumina-theme
+pnpm install        # JS dependencies
+uv sync --dev       # Python dependencies
+```
+
+Build the theme’s CSS and JavaScript:
+
+```bash
+pnpm run build
+```
+
+Build the documentation (which dogfoods the theme):
+
+```bash
+uv run sphinx-build docs docs/_build/html
+```
+
+Open `docs/_build/html/index.html` to see the result.
+
+## Running Tests
+
+```bash
+uv run pytest                       # All tests
+uv run pytest tests/test_build.py   # Single file
+uv run pytest -k test_name          # Single test by name
+```
+
+Tests use pytest with BeautifulSoup for HTML assertions. The `build_output` fixture builds `tests/sample_docs/` with Sphinx and verifies the rendered HTML structure.
+
+## Making Changes
+
+1. Create a branch from `main`
+2. Edit source files — see [Architecture](architecture.md) for where things live
+3. If you changed CSS or JS in `_static_src/`, run `pnpm run build`
+4. Build docs to verify: `uv run sphinx-build docs docs/_build/html`
+5. Run tests: `uv run pytest`
+6. Commit with a descriptive message
+
+## Pull Requests
+
+- Keep PRs focused on a single change
+- Include a clear description of what changed and why
+- Ensure all tests pass before requesting review
+
+Learn how the theme is structured — build pipeline, templates, Alpine.js components, and testing.
+
+
+# index.html.md
+
+# Extensions
+
+Lumina works with any Sphinx extension. These are the ones we recommend and style specifically.
+
+Write documentation in Markdown with full Sphinx directive support.
+
+Cards, grids, tabs, badges, buttons, and dropdowns.
+
+Copy-to-clipboard button on every code block.
+
+Flowcharts, sequence diagrams, class diagrams, and more.
+
+Auto-generated HTTP API docs from OpenAPI specs.
+
+LLM-friendly docs following the llms.txt convention.
+
+LaTeX math rendering with MathJax.
+
+## Other Compatible Extensions
+
+Lumina inherits from Sphinx’s `basic` theme, so it works with any extension that targets standard Sphinx output:
+
+| Extension                  | Purpose                                           |
+|----------------------------|---------------------------------------------------|
+| `sphinx.ext.autodoc`       | Generate API docs from Python docstrings.         |
+| `sphinx.ext.intersphinx`   | Cross-reference objects in other Sphinx projects. |
+| `sphinx.ext.viewcode`      | Add links to highlighted source code.             |
+| `sphinx.ext.napoleon`      | Support for Google and NumPy docstring styles.    |
+| `sphinx.ext.todo`          | Collect and display TODO items.                   |
+| `sphinx_autodoc_typehints` | Render type hints in API documentation.           |
+
+## Recommended `conf.py`
+
+A well-rounded configuration that includes all the recommended extensions:
+
+```python
+extensions = [
+    # Content
+    "myst_parser",
+    "sphinx_design",
+    "sphinx_copybutton",
+    "sphinxcontrib.mermaid",
+    "sphinxcontrib.openapi",
+
+    # LLM-friendly output
+    "sphinx_llm.txt",
+
+    # API documentation (if applicable)
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+]
+
+# MyST configuration
+myst_enable_extensions = [
+    "colon_fence",
+    "dollarmath",
+    "amsmath",
+    "tasklist",
+    "deflist",
+    "fieldlist",
+    "substitution",
+]
+
+# Copy button: strip shell prompts
+copybutton_prompt_text = r">>> |\.\.\. |\$ |> "
+copybutton_prompt_is_regexp = True
+
+# Intersphinx: link to Python and Sphinx docs
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
+}
+```
+
+
+# index.html.md
+
+# Getting Started
+
+Get Lumina running in your Sphinx project in under five minutes.
+
+Install the theme, configure one line, and build your first page.
+
+Theme options, accent colors, and a complete configuration reference.
+
+
+# index.html.md
+
+# Guides
+
+Go deeper with Lumina — search, styling, navigation, and development workflows.
+
+Configure Pagefind or Sphinx built-in search.
+
+Color mode settings and CSS custom properties.
+
+Write docs in Markdown with full Sphinx directive support.
+
+Header links, social icons, sidebar depth, and breadcrumbs.
+
+CSS custom properties, fonts, syntax highlighting, and templates.
+
+Live reload with sphinx-autobuild and the asset watcher.
+
+
+# index.html.md
+
+# Reference
+
+Visual showcase and syntax reference for every content type Lumina styles.
+
+Headings, inline formatting, block quotes, definition lists, and links.
+
+Note, tip, warning, danger, and seven more callout types with custom titles and nesting.
+
+Syntax highlighting, line numbers, emphasis, captions, diffs, and tabs.
+
+Ordered, unordered, task lists, Markdown tables, and list tables.
+
+Card layouts, responsive grids, and common layout patterns.
+
+Responsive images, figures with captions, alignment, and file format guidance.
+
+Inline status badges and clickable button links.
+
+Inline and display equations, labeled references, matrices, and symbol tables.
+
+Mermaid flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.
+
+Cross-references, glossaries, intersphinx, version directives, and downloads.
+
+Python API docs with functions, classes, autodoc, and cross-referencing.
+
+OpenAPI auto-generated docs and manual HTTP method directives.
+
+
 # admonitions.html.md
 
 # Admonitions
@@ -300,11 +506,79 @@ Create a `.md` or `.rst` file and use the `automodule`, `autoclass`, or `autofun
 | `:exclude-members:`   | Comma-separated list of members to skip.                        |
 
 
+# architecture.html.md
+
+# Architecture
+
+How the Sphinx Lumina Theme is structured internally.
+
+## Theme Structure
+
+```default
+src/sphinx_lumina_theme/
+├── __init__.py              # Sphinx setup() hook, registers theme
+├── _static_src/             # SOURCE assets (edit these)
+│   ├── css/                 # base.css imports admonitions/code/typography
+│   └── js/                  # app.js is entry point, loads Alpine components
+└── theme/                   # SPHINX THEME (templates + compiled assets)
+    ├── layout.html          # Master template, extends basic/layout.html
+    ├── theme.toml           # Theme config, options, inheritance
+    ├── components/          # Jinja2 partials (header, sidebar, toc, etc.)
+    └── static/              # Compiled CSS/JS + fonts (DO NOT edit directly)
+```
+
+#### WARNING
+Never edit files in `theme/static/` directly. They are compiled outputs from `_static_src/`. Run `pnpm run build` after changing any CSS or JS source files.
+
+## Asset Build Pipeline
+
+Source files in `_static_src/` are compiled into `theme/static/`:
+
+JS
+: esbuild bundles `_static_src/js/app.js` → `theme/static/lumina.js` (IIFE format)
+
+CSS
+: Tailwind CLI processes `_static_src/css/base.css` → `theme/static/lumina.css`
+
+The build script is `scripts/build-assets.js`. Tailwind scans HTML templates and JS files for class usage.
+
+```bash
+pnpm run build          # Production build (minified, no sourcemaps)
+pnpm run dev            # Watch mode (unminified, sourcemaps)
+```
+
+## Interactivity Pattern
+
+Alpine.js components are registered via `Alpine.data()` in separate modules under `_static_src/js/`. Each component is imported and registered in `app.js`, then referenced in templates with `x-data`.
+
+Components: scrollspy, themeToggle, searchModal, sidebar, headerLinks, copyPage.
+
+## Theming
+
+- CSS custom properties (`--lumina-accent`, `--lumina-bg`, `--lumina-text`, etc.) defined in `base.css`
+- Dark mode toggled via `[data-theme="dark"]` attribute on `<html>`
+- User preference persisted in `localStorage` key `lumina-theme`
+- FOUC prevention: inline script in `layout.html` applies theme before paint
+
+## Template Inheritance
+
+The theme extends Sphinx’s built-in `basic` theme. Templates use Jinja2 block inheritance — override blocks, don’t replace the inheritance chain. The `!` prefix in `{% extends "!layout.html" %}` references the parent theme’s template.
+
+## Testing
+
+Tests use pytest with BeautifulSoup for HTML assertions. The `build_output` fixture is session-scoped — it builds `tests/sample_docs/` once with Sphinx and returns the output path. Tests verify rendered HTML structure, not visual appearance.
+
+```bash
+uv run pytest -v                    # Verbose output
+uv run pytest --tb=short            # Shorter tracebacks
+```
+
+
 # badges-and-buttons.html.md
 
 # Badges & Buttons
 
-Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the `sphinx_design` extension — see [Extensions](../extensions.md) for setup.
+Inline badges and clickable buttons from sphinx-design for labeling and calls to action. Requires the `sphinx_design` extension — see [sphinx-design](../extensions/sphinx-design.md) for setup.
 
 ## Badges
 
@@ -358,7 +632,7 @@ Badges work naturally inline with text: The API is stable and supports Python 3.
 
 Clickable button links for calls to action.
 
-[Get Started](../getting-started)
+[Get Started](/getting-started/installation)
 
 [View on GitHub](https://github.com)
 
@@ -375,7 +649,7 @@ Button Text
 
 Buttons with outline styling for secondary actions.
 
-[Get Started](../getting-started)
+[Get Started](/getting-started/installation)
 
 [View Source](https://github.com)
 
@@ -393,7 +667,7 @@ Button Text
 
 Link buttons to internal documentation pages using `button-ref`.
 
-[Read the Guide](../getting-started.md)
+[Read the Guide](../getting-started/installation.md)
 
 The MyST syntax:
 
@@ -423,16 +697,16 @@ Document API stability inline: The configuration API is stable, the plugin syste
 
 Use primary buttons for the main action and outline buttons for alternatives:
 
-[Get Started](../getting-started.md)
+[Get Started](../getting-started/installation.md)
 
-[View Configuration](../customization.md)
+[View Configuration](../getting-started/configuration.md)
 
 
 # cards-and-grids.html.md
 
 # Cards & Grids
 
-Layout components from sphinx-design for visually organizing content into cards and responsive grids. Requires the `sphinx_design` extension — see [Extensions](../extensions.md) for setup.
+Layout components from sphinx-design for visually organizing content into cards and responsive grids. Requires the `sphinx_design` extension — see [sphinx-design](../extensions/sphinx-design.md) for setup.
 
 ## Basic Cards
 
@@ -914,15 +1188,35 @@ All code blocks include a copy-to-clipboard button provided by `sphinx-copybutto
 | Tabbed code        | `tab-set` + `tab-item` | sphinx-design directives     |
 
 
-# customization.html.md
+# configuration.html.md
 
-# Customization
+# Configuration
 
-Everything you can configure in Lumina — theme options, colors, and CSS custom properties.
+Everything you can configure in Lumina — theme options, accent colors, and a complete reference.
+
+## Recommended Configuration
+
+Most projects benefit from a few extensions and settings beyond the defaults. Here’s a practical starting point:
+
+```python
+extensions = [
+    "myst_parser",           # Write docs in Markdown
+    "sphinx_design",         # Cards, grids, tabs, badges
+    "sphinx_copybutton",     # Copy button on code blocks
+]
+
+html_theme = "lumina"
+html_theme_options = {
+    "accent_color": "#10b981",                                          # Emerald (default)
+    "source_repository": "https://github.com/you/your-project",        # Enables "Edit on GitHub"
+    "source_branch": "main",
+    "source_directory": "docs/",
+}
+```
 
 ## Theme Options Reference
 
-All options are set in `html_theme_options` in your `conf.py`. Every option has a sensible default, so you only need to set what you want to change.
+All options go in `html_theme_options` in your `conf.py`. Every option has a sensible default, so you only need to set what you want to change.
 
 ### Appearance
 
@@ -965,6 +1259,24 @@ These options enable the “Edit on GitHub” link in the table of contents side
 |----------------|--------|-----------|----------------------------------------------------------------------------------------------|
 | `social_links` | list   | `[]`      | Icon links in the header. Each item needs `icon` and `url` keys. Supported icon: `"github"`. |
 | `footer_text`  | string | `""`      | Custom text displayed in the page footer.                                                    |
+
+## Accent Colors
+
+The `accent_color` option controls links, active navigation items, buttons, and other interactive elements. It applies to both light and dark modes automatically.
+
+Here are some well-tested color choices:
+
+| Color   | Hex       | Best for                                               |
+|---------|-----------|--------------------------------------------------------|
+| Emerald | `#10b981` | Default. Clean and professional.                       |
+| Blue    | `#3b82f6` | Traditional documentation feel.                        |
+| Violet  | `#8b5cf6` | Creative and modern projects.                          |
+| Rose    | `#f43f5e` | Bold, attention-grabbing.                              |
+| Amber   | `#f59e0b` | Warm, energetic. Ensure contrast on light backgrounds. |
+| Teal    | `#14b8a6` | Calm, technical feel.                                  |
+
+#### WARNING
+Choose a color with sufficient contrast against both light and dark backgrounds. Avoid very light colors (pastels) — they become unreadable on white backgrounds.
 
 ## Full Configuration Example
 
@@ -1012,34 +1324,31 @@ html_theme_options = {
 }
 ```
 
-## Accent Colors
+## Next Steps
 
-The `accent_color` option controls links, active navigation items, buttons, and other interactive elements. It applies to both light and dark modes automatically.
+Go deeper with CSS custom properties, custom fonts, syntax highlighting themes, and template overrides.
 
-Here are some well-tested color choices:
 
-| Color   | Hex       | Best for                                               |
-|---------|-----------|--------------------------------------------------------|
-| Emerald | `#10b981` | Default. Clean and professional.                       |
-| Blue    | `#3b82f6` | Traditional documentation feel.                        |
-| Violet  | `#8b5cf6` | Creative and modern projects.                          |
-| Rose    | `#f43f5e` | Bold, attention-grabbing.                              |
-| Amber   | `#f59e0b` | Warm, energetic. Ensure contrast on light backgrounds. |
-| Teal    | `#14b8a6` | Calm, technical feel.                                  |
+# custom-styling.html.md
 
-#### WARNING
-Choose a color with sufficient contrast against both light and dark backgrounds. Avoid very light colors (pastels) — they become unreadable on white backgrounds.
+# Custom Styling
 
-## CSS Custom Properties
+Override CSS custom properties, fonts, syntax highlighting themes, and templates for deeper customization.
 
-Lumina defines CSS custom properties that you can override for deeper customization. Add a custom stylesheet to your project:
+## Adding a Custom Stylesheet
+
+Create a CSS file and register it in your `conf.py`:
 
 ```python
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 ```
 
-Then create `docs/_static/custom.css`:
+Then create `docs/_static/custom.css` with your overrides.
+
+## CSS Custom Properties
+
+Lumina defines CSS custom properties for all visual tokens. Override them in your custom stylesheet.
 
 ### Core Colors
 
@@ -1104,7 +1413,7 @@ Lumina ships with self-hosted fonts — no external CDN requests:
 - **Source Sans 3** (400, 500, 600, 700) — body text
 - **JetBrains Mono** (400, 500) — code blocks and inline code
 
-To use your own fonts, override the font-family declarations in your custom CSS. The body font is applied on the `body` element and code fonts are set on `code`, `pre`, and `.highlight` elements:
+To use your own fonts, override the font-family declarations in your custom CSS:
 
 ```css
 body {
@@ -1117,16 +1426,16 @@ code, pre, .highlight {
 ```
 
 #### NOTE
-If you use custom fonts, you are responsible for adding the font files to your `_static/` directory and including the appropriate `@font-face` declarations.
+If you use custom fonts, add the font files to your `_static/` directory and include the appropriate `@font-face` declarations.
 
 ## Syntax Highlighting
 
 Lumina uses separate Pygments styles for light and dark modes:
 
-- **Light mode**: `default` style
-- **Dark mode**: `monokai` style
+- **Light mode:** `default` style
+- **Dark mode:** `monokai` style
 
-To change them, set the Pygments options in your `conf.py`:
+To change them:
 
 ```python
 pygments_style = "friendly"           # Light mode
@@ -1135,7 +1444,7 @@ pygments_dark_style = "dracula"       # Dark mode (Lumina extension)
 
 ## Hiding Page Elements
 
-You can selectively hide UI elements per-page using `html_theme_options` or on specific pages using file-level metadata.
+Selectively hide UI elements globally or per-page.
 
 ### Globally
 
@@ -1159,7 +1468,7 @@ sd_hide_title: true    # Hide the page title (useful for landing pages)
 
 ## Custom Templates
 
-Lumina’s templates are designed for extension. To override a specific component, create a `_templates/` directory and add your own version:
+Lumina’s templates are designed for extension. To override a specific component, create a `_templates/` directory:
 
 ```python
 templates_path = ["_templates"]
@@ -1177,6 +1486,99 @@ Then create a template that extends the original:
 ```
 
 The `!` prefix tells Sphinx to use the theme’s original template as the base, so you only override the blocks you need.
+
+
+# dark-mode.html.md
+
+# Dark Mode
+
+Lumina includes dark mode out of the box. Readers can toggle between light, dark, and system preference using the button in the header.
+
+## Configuration
+
+Set the default color mode in your `conf.py`:
+
+```python
+html_theme_options = {
+    "dark_mode_default": "auto",   # "auto", "light", or "dark"
+}
+```
+
+`"auto"`
+: Follows the reader’s operating system preference. This is the default.
+
+`"light"`
+: Forces light mode regardless of system preference.
+
+`"dark"`
+: Forces dark mode regardless of system preference.
+
+## How It Works
+
+Lumina toggles dark mode via the `data-theme` attribute on the `<html>` element:
+
+- **Light mode:** `<html data-theme="light">`
+- **Dark mode:** `<html data-theme="dark">`
+
+The reader’s choice is persisted in `localStorage` under the key `lumina-theme`. An inline script in the page `<head>` applies the theme before the first paint, preventing any flash of unstyled content (FOUC).
+
+## Customizing Dark Mode Colors
+
+Override the dark mode color palette by targeting the `[data-theme="dark"]` selector in a custom stylesheet.
+
+First, add the stylesheet to your project:
+
+```python
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
+```
+
+Then override the dark mode properties:
+
+```css
+[data-theme="dark"] {
+    --lumina-bg: #09090b;
+    --lumina-bg-secondary: #18181b;
+    --lumina-text: #fafafa;
+    --lumina-text-muted: #a1a1aa;
+    --lumina-border: #27272a;
+    --lumina-accent: #10b981;
+    --lumina-accent-light: #022c22;
+    --lumina-code-bg: #1c1c20;
+}
+```
+
+
+# development-workflow.html.md
+
+# Development Workflow
+
+Set up live-reloading for a fast edit-preview cycle while writing documentation.
+
+## Live Reload with sphinx-autobuild
+
+Install `sphinx-autobuild` and run it to watch your `docs/` directory for changes:
+
+### uv (recommended)
+
+```bash
+uv add sphinx-autobuild --dev
+uv run sphinx-autobuild docs docs/_build/html --open-browser
+```
+
+### pip
+
+```bash
+pip install sphinx-autobuild
+sphinx-autobuild docs docs/_build/html --open-browser
+```
+
+This watches your `docs/` directory and automatically rebuilds when files change. Your browser refreshes automatically.
+
+#### NOTE
+**Search during development:** Pagefind indexes your content during full builds. During live preview with `sphinx-autobuild`, search may not be available. Use `⌘F` / `Ctrl`+`F` for in-page search instead.
+
+## Asset Watcher
 
 
 # diagrams.html.md
@@ -1292,332 +1694,6 @@ mindmap
 ## Tips for Writing Diagrams
 
 
-# extensions.html.md
-
-# Extensions
-
-Lumina works with any Sphinx extension. This page covers the extensions we recommend and how to configure them for the best experience.
-
-## MyST Parser
-
-[MyST Parser](https://myst-parser.readthedocs.io/) lets you write documentation in Markdown instead of reStructuredText, with full access to Sphinx directives and roles.
-
-### Setup
-
-```bash
-uv add myst-parser
-```
-
-```python
-extensions = ["myst_parser"]
-
-myst_enable_extensions = [
-    "colon_fence",     # Use ::: for directives instead of ```
-    "dollarmath",      # $inline$ and $$display$$ LaTeX math
-    "amsmath",         # Multi-line equation environments
-    "tasklist",        # - [x] checkbox task lists
-    "deflist",         # Definition lists (Term\n: Definition)
-    "fieldlist",       # :Key: Value metadata lists
-    "substitution",    # {{variable}} template replacements
-]
-```
-
-### Substitutions
-
-Define reusable variables in `conf.py`:
-
-```python
-myst_substitutions = {
-    "project_name": "My Project",
-    "version": "1.0.0",
-}
-```
-
-Use them in any `.md` file:
-
-```markdown
-Welcome to {{project_name}} version {{version}}.
-```
-
-### Colon Fence Syntax
-
-The `colon_fence` extension gives you a cleaner syntax for directives:
-
-**Colon fence** (recommended):
-
-```markdown
-:::{note}
-This is cleaner and easier to type.
-:::
-```
-
-**Backtick fence** (standard):
-
-```markdown
-```{note}
-This also works, but nesting gets awkward.
-```
-```
-
-The colon syntax is especially helpful for nested directives — just add more colons for each level.
-
-## sphinx-design
-
-[sphinx-design](https://sphinx-design.readthedocs.io/) adds cards, grids, tabs, badges, buttons, and dropdowns. Lumina styles all of these components with its own design language.
-
-### Setup
-
-```bash
-uv add sphinx-design
-```
-
-```python
-extensions = ["sphinx_design"]
-```
-
-### What You Get
-
-Contained content blocks with optional headers, footers, and links.
-
-See [Cards & Grids](reference/cards-and-grids.md)
-
-Responsive layouts with configurable columns per breakpoint.
-
-See [Cards & Grids](reference/cards-and-grids.md)
-
-Tabbed content panels for grouping related information.
-
-See [Code Blocks](reference/code-blocks.md)
-
-Inline status labels with color variants.
-
-See [Badges & Buttons](reference/badges-and-buttons.md)
-
-Styled link buttons with primary and secondary variants.
-
-See [Badges & Buttons](reference/badges-and-buttons.md)
-
-Collapsible content sections.
-
-See [Admonitions](reference/admonitions.md)
-
-## sphinx-copybutton
-
-[sphinx-copybutton](https://sphinx-copybutton.readthedocs.io/) adds a copy-to-clipboard button to every code block. Lumina positions and styles it automatically.
-
-### Setup
-
-```bash
-uv add sphinx-copybutton
-```
-
-```python
-extensions = ["sphinx_copybutton"]
-```
-
-No additional configuration needed. The button appears on hover in the top-right corner of any code block.
-
-### Filtering Prompt Characters
-
-If your code blocks include shell prompts, configure the extension to strip them when copying:
-
-```python
-copybutton_prompt_text = r">>> |\.\.\. |\$ |> "
-copybutton_prompt_is_regexp = True
-```
-
-This strips `>>>`, `...`, `$`, and `>` prompts so readers copy only the actual commands.
-
-## sphinxcontrib-mermaid
-
-[sphinxcontrib-mermaid](https://sphinxcontrib-mermaid-demo.readthedocs.io/) renders Mermaid diagrams directly in your docs. Lumina automatically adjusts diagram colors to match the current light/dark theme.
-
-### Setup
-
-```bash
-uv add sphinxcontrib-mermaid
-```
-
-```python
-extensions = ["sphinxcontrib.mermaid"]
-```
-
-### Dark Mode Support
-
-Lumina handles Mermaid theme switching automatically — diagrams re-render when the user toggles dark mode. No extra configuration needed.
-
-### Usage
-
-Write diagrams with the `mermaid` directive:
-
-```markdown
-:::{mermaid}
-graph LR
-    A[Source] --> B[Build]
-    B --> C[Deploy]
-:::
-```
-
-See [Diagrams](reference/diagrams.md) for flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.
-
-## sphinxcontrib-openapi
-
-[sphinxcontrib-openapi](https://sphinxcontrib-openapi.readthedocs.io/) generates HTTP API documentation directly from OpenAPI (Swagger) specification files. It builds on [sphinxcontrib-httpdomain](https://sphinxcontrib-httpdomain.readthedocs.io/), which provides HTTP method directives for writing endpoint docs by hand. Lumina styles all HTTP endpoints with color-coded method indicators.
-
-### Setup
-
-```bash
-uv add sphinxcontrib-openapi
-```
-
-```python
-extensions = ["sphinxcontrib.openapi"]
-```
-
-This also installs the HTTP domain, so you can write individual endpoints manually with `http:get::`, `http:post::`, and other method directives.
-
-### Usage
-
-Point the `openapi` directive at your spec file:
-
-```markdown
-```{eval-rst}
-.. openapi:: path/to/openapi.yml
-```
-```
-
-See [HTTP API Documentation](reference/http-api.md) for rendered examples of both auto-generated and manually written HTTP API documentation.
-
-## sphinx-llm
-
-[sphinx-llm](https://github.com/NVIDIA/sphinx-llm) generates LLM-friendly versions of your documentation following the [llms.txt convention](https://llmstxt.org/). This makes your docs directly consumable by AI assistants and coding tools.
-
-It produces three outputs:
-
-- **`llms.txt`** — A markdown index of all pages with titles, URLs, and descriptions
-- **`llms-full.txt`** — The full content of every page concatenated into a single markdown file
-- **Per-page `.md` files** — Each HTML page gets a companion markdown file (e.g., `getting-started.html.md`)
-
-Lumina automatically adds a `<link rel="alternate">` tag in the HTML `<head>` pointing to `llms.txt` when this extension is detected — no extra configuration needed.
-
-### Setup
-
-```bash
-uv add sphinx-llm
-```
-
-```python
-extensions = ["sphinx_llm.txt"]
-```
-
-That’s it. On the next build, `llms.txt`, `llms-full.txt`, and per-page `.md` files will be generated alongside your HTML output.
-
-### Configuration
-
-All options are optional — the defaults work well for most projects:
-
-| Option                    | Default       | Description                                                                                                        |
-|---------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|
-| `llms_txt_enabled`        | `True`        | Master on/off switch. Disable with `llms_txt_enabled = False`.                                                     |
-| `llms_txt_description`    | Auto-detected | Project description shown in the `llms.txt` header. Falls back to `pyproject.toml` description, then `html_title`. |
-| `llms_txt_build_parallel` | `True`        | Run the markdown build in parallel with the HTML build.                                                            |
-| `llms_txt_suffix_mode`    | `"auto"`      | Controls per-page markdown filenames. Options: `"auto"`, `"file-suffix"`, `"url-suffix"`, `"replace"`.             |
-| `llms_txt_full_build`     | `True`        | Whether to generate `llms-full.txt`.                                                                               |
-
-### How It Works
-
-The extension runs a parallel Sphinx build using a markdown builder. This means all directives (including `autodoc`, `toctree`, cross-references) are fully expanded in the output — you get clean, rendered markdown, not raw source.
-
-Each entry in `llms.txt` includes a description sourced from the page’s `meta` description or the first 100 characters of content.
-
-## MathJax
-
-Sphinx includes MathJax support by default. Combined with MyST’s `dollarmath` and `amsmath` extensions, you get full LaTeX math rendering.
-
-### Setup
-
-No additional packages needed. Just enable the MyST extensions:
-
-```python
-myst_enable_extensions = [
-    "dollarmath",    # $E = mc^2$ inline, $$...$$ display
-    "amsmath",       # \begin{aligned}...\end{aligned}
-]
-```
-
-### Usage
-
-```markdown
-Inline math: $f(x) = x^2 + 1$
-
-Display math:
-
-$$
-\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-$$
-```
-
-See [Math](reference/math.md) for labeled equations, multi-line systems, and matrices.
-
-## Other Compatible Extensions
-
-Lumina inherits from Sphinx’s `basic` theme, so it works with any extension that targets standard Sphinx output. Some popular ones:
-
-| Extension                  | Purpose                                           |
-|----------------------------|---------------------------------------------------|
-| `sphinx.ext.autodoc`       | Generate API docs from Python docstrings.         |
-| `sphinx.ext.intersphinx`   | Cross-reference objects in other Sphinx projects. |
-| `sphinx.ext.viewcode`      | Add links to highlighted source code.             |
-| `sphinx.ext.napoleon`      | Support for Google and NumPy docstring styles.    |
-| `sphinx.ext.todo`          | Collect and display TODO items.                   |
-| `sphinx_autodoc_typehints` | Render type hints in API documentation.           |
-
-## Recommended `conf.py`
-
-Here’s a well-rounded configuration that includes all the recommended extensions:
-
-```python
-extensions = [
-    # Content
-    "myst_parser",
-    "sphinx_design",
-    "sphinx_copybutton",
-    "sphinxcontrib.mermaid",
-    "sphinxcontrib.openapi",
-
-    # LLM-friendly output
-    "sphinx_llm.txt",
-
-    # API documentation (if applicable)
-    "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode",
-]
-
-# MyST configuration
-myst_enable_extensions = [
-    "colon_fence",
-    "dollarmath",
-    "amsmath",
-    "tasklist",
-    "deflist",
-    "fieldlist",
-    "substitution",
-]
-
-# Copy button: strip shell prompts
-copybutton_prompt_text = r">>> |\.\.\. |\$ |> "
-copybutton_prompt_is_regexp = True
-
-# Intersphinx: link to Python and Sphinx docs
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-    "sphinx": ("https://www.sphinx-doc.org/en/master", None),
-}
-```
-
-
 # footnotes-and-references.html.md
 
 # Footnotes & References
@@ -1724,7 +1800,7 @@ The MyST syntax:
 
 Define reusable text snippets in `conf.py` and use them across pages.
 
-This documentation is for Sphinx Lumina Theme version 1.10.0.
+This documentation is for Sphinx Lumina Theme version 1.11.0.
 
 The MyST syntax:
 
@@ -1810,240 +1886,6 @@ This outputs every referenceable object, which you can search for the exact role
 ---
 * <a id='id3'>**[1]**</a> Georg Brandl started the Sphinx project in 2008 as a successor to Python’s previous documentation toolchain.
 * <a id='id4'>**[2]**</a> Over 85% of Python packages on PyPI use Sphinx for their documentation.
-
-
-# getting-started.html.md
-
-# Getting Started
-
-Get Lumina running in your Sphinx project in under five minutes.
-
-## Prerequisites
-
-You need a working Sphinx project. If you don’t have one yet:
-
-### uv (recommended)
-
-```bash
-mkdir my-docs && cd my-docs
-uv init && uv add sphinx myst-parser
-uv run sphinx-quickstart docs
-```
-
-### pip
-
-```bash
-mkdir my-docs && cd my-docs
-python -m venv .venv && source .venv/bin/activate
-pip install sphinx myst-parser
-sphinx-quickstart docs
-```
-
-Lumina requires **Python 3.10+** and **Sphinx 8.0+**.
-
-## Installation
-
-### uv (recommended)
-
-```bash
-uv add sphinx-lumina-theme@git+https://github.com/r4sky0/sphinx-lumina-theme.git@v1.10.0
-```
-
-### pip
-
-```bash
-pip install git+https://github.com/r4sky0/sphinx-lumina-theme.git@v1.10.0
-```
-
-## Minimal Configuration
-
-Open your `conf.py` and set the theme:
-
-```python
-html_theme = "lumina"
-```
-
-That’s it — Lumina works with zero configuration. Build your docs to see it:
-
-### uv (recommended)
-
-```bash
-uv run sphinx-build docs docs/_build/html
-```
-
-### pip
-
-```bash
-sphinx-build docs docs/_build/html
-```
-
-Open `docs/_build/html/index.html` in your browser.
-
-## Recommended Configuration
-
-Most projects will want a few more options. Here’s a practical starting point:
-
-```python
-extensions = [
-    "myst_parser",           # Write docs in Markdown
-    "sphinx_design",         # Cards, grids, tabs, badges
-    "sphinx_copybutton",     # Copy button on code blocks
-]
-
-html_theme = "lumina"
-html_theme_options = {
-    "accent_color": "#10b981",                                          # Emerald (default)
-    "source_repository": "https://github.com/you/your-project",        # Enables "Edit on GitHub"
-    "source_branch": "main",
-    "source_directory": "docs/",
-}
-```
-
-## Using MyST Markdown
-
-Lumina works with both reStructuredText and MyST Markdown. We recommend MyST for a more natural writing experience.
-
-Install the parser and enable useful extensions:
-
-### uv (recommended)
-
-```bash
-uv add myst-parser
-```
-
-### pip
-
-```bash
-pip install myst-parser
-```
-
-```python
-extensions = ["myst_parser"]
-
-myst_enable_extensions = [
-    "colon_fence",    # ::: directive syntax (cleaner than ```)
-    "dollarmath",     # $inline$ and $$display$$ math
-    "tasklist",       # - [x] task list checkboxes
-    "deflist",        # Definition lists
-    "fieldlist",      # :Field: value metadata
-    "substitution",   # {{variable}} replacements
-]
-```
-
-Then write your docs in `.md` files instead of `.rst`:
-
-```markdown
-# My Page Title
-
-This is a paragraph with **bold** and `code`.
-
-:::{note}
-Admonitions use the colon fence syntax.
-:::
-```
-
-## Setting Up Search
-
-Lumina supports two search backends:
-
-### Pagefind (default)
-
-[Pagefind](https://pagefind.app) provides fast, keyboard-driven search with no external services. Lumina runs Pagefind automatically at the end of each build — no manual setup required. You just need [Node.js](https://nodejs.org) installed so that `npx` is available.
-
-Build your docs and search is ready:
-
-### uv (recommended)
-
-```bash
-uv run sphinx-build docs docs/_build/html
-```
-
-### pip
-
-```bash
-sphinx-build docs docs/_build/html
-```
-
-### Built-in Sphinx search
-
-If you prefer not to use Pagefind, switch to Sphinx’s built-in search:
-
-```python
-html_theme_options = {
-    "search_backend": "sphinx",
-}
-```
-
-The built-in search works without any additional setup but is slower and less featured.
-
-## Adding Navigation Links
-
-Add links to your site header for quick access to key pages:
-
-```python
-html_theme_options = {
-    "nav_links": [
-        {"title": "Guide", "url": "getting-started"},
-        {"title": "API", "url": "api/index"},
-        {"title": "GitHub", "url": "https://github.com/you/your-project", "external": True},
-    ],
-}
-```
-
-## Adding Social Links
-
-Display icon links in the header (currently supports GitHub):
-
-```python
-html_theme_options = {
-    "social_links": [
-        {"icon": "github", "url": "https://github.com/you/your-project"},
-    ],
-}
-```
-
-## Dark Mode
-
-Lumina includes dark mode out of the box. Readers can toggle between light, dark, and system preference using the button in the header.
-
-To change the default:
-
-```python
-html_theme_options = {
-    "dark_mode_default": "auto",   # "auto", "light", or "dark"
-}
-```
-
-## Development Workflow
-
-For a live-reloading development experience, use `sphinx-autobuild`:
-
-### uv (recommended)
-
-```bash
-uv add sphinx-autobuild --dev
-uv run sphinx-autobuild docs docs/_build/html --open-browser
-```
-
-### pip
-
-```bash
-pip install sphinx-autobuild
-sphinx-autobuild docs docs/_build/html --open-browser
-```
-
-This watches your `docs/` directory and automatically rebuilds when files change. Your browser refreshes automatically.
-
-#### NOTE
-**Search during development:** Pagefind indexes your content during full builds. During live preview with `sphinx-autobuild`, search may not be available. Use `⌘F` / `Ctrl+F` for in-page search instead.
-
-## Next Steps
-
-Explore all theme options, accent colors, and CSS custom properties.
-
-Set up MyST, sphinx-design, Mermaid diagrams, and more.
-
-Browse the complete reference for typography, admonitions, code blocks, and more.
 
 
 # http-api.html.md
@@ -2325,6 +2167,82 @@ Choose the right format for your images:
 | **JPEG** | Photos (fallback)        | Wide compatibility. Use WebP instead when possible for smaller files.                                                            |
 
 
+# installation.html.md
+
+# Installation
+
+Install the Lumina theme and build your first page.
+
+## Prerequisites
+
+You need a working Sphinx project. If you don’t have one yet:
+
+### uv (recommended)
+
+```bash
+mkdir my-docs && cd my-docs
+uv init && uv add sphinx myst-parser
+uv run sphinx-quickstart docs
+```
+
+### pip
+
+```bash
+mkdir my-docs && cd my-docs
+python -m venv .venv && source .venv/bin/activate
+pip install sphinx myst-parser
+sphinx-quickstart docs
+```
+
+Lumina requires **Python 3.10+** and **Sphinx 8.0+**.
+
+## Install the Theme
+
+### uv (recommended)
+
+```bash
+uv add sphinx-lumina-theme@git+https://github.com/r4sky0/sphinx-lumina-theme.git@v1.11.0
+```
+
+### pip
+
+```bash
+pip install git+https://github.com/r4sky0/sphinx-lumina-theme.git@v1.11.0
+```
+
+## First Build
+
+Open your `conf.py` and set the theme:
+
+```python
+html_theme = "lumina"
+```
+
+That’s it — Lumina works with zero configuration. Build your docs:
+
+### uv (recommended)
+
+```bash
+uv run sphinx-build docs docs/_build/html
+```
+
+### pip
+
+```bash
+sphinx-build docs docs/_build/html
+```
+
+Open `docs/_build/html/index.html` in your browser.
+
+## Next Steps
+
+Explore all theme options, accent colors, and the recommended setup.
+
+Set up search, dark mode, MyST Markdown, navigation, and more.
+
+Browse the complete reference for typography, admonitions, code blocks, and more.
+
+
 # introduction.html.md
 
 # Introduction
@@ -2376,7 +2294,7 @@ The theme extends Sphinx’s built-in `basic` theme, so it inherits all of Sphin
 
 ## Getting started
 
-Ready to try it? Head to the [Getting Started](getting-started.md) guide to install Lumina and configure it for your project.
+Ready to try it? Head to the [Getting Started](getting-started/index.md) guide to install Lumina and configure it for your project.
 
 
 # lists-and-tables.html.md
@@ -2437,7 +2355,7 @@ The MyST syntax:
 ```
 
 #### NOTE
-Task lists require the `tasklist` MyST extension. See [Extensions](../extensions.md) for setup.
+Task lists require the `tasklist` MyST extension. See [MyST Parser](../extensions/myst-parser.md) for setup.
 
 ## Rich Content in Lists
 
@@ -2550,7 +2468,7 @@ List tables can contain code, badges, and other inline elements.
 Mathematical notation rendered by MathJax. Enabled by the `dollarmath` and `amsmath` MyST extensions.
 
 #### NOTE
-See [Extensions](../extensions.md) for setup instructions.
+See [MathJax](../extensions/mathjax.md) for setup instructions.
 
 ## Inline Math
 
@@ -2717,9 +2635,345 @@ $$
 | $\mapsto$         | `\mapsto`         | $\implies$        | `\implies`        |
 
 
+# mathjax.html.md
+
+# MathJax
+
+Sphinx includes MathJax support by default. Combined with MyST’s `dollarmath` and `amsmath` extensions, you get full LaTeX math rendering.
+
+## Setup
+
+No additional packages needed. Just enable the MyST extensions:
+
+```python
+myst_enable_extensions = [
+    "dollarmath",    # $E = mc^2$ inline, $$...$$ display
+    "amsmath",       # \begin{aligned}...\end{aligned}
+]
+```
+
+## Usage
+
+```markdown
+Inline math: $f(x) = x^2 + 1$
+
+Display math:
+
+$$
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+$$
+```
+
+See [Math](../reference/math.md) for labeled equations, multi-line systems, and matrices.
+
+
+# mermaid.html.md
+
+# Mermaid Diagrams
+
+[sphinxcontrib-mermaid](https://sphinxcontrib-mermaid-demo.readthedocs.io/) renders Mermaid diagrams directly in your docs. Lumina automatically adjusts diagram colors to match the current light/dark theme.
+
+## Setup
+
+```bash
+uv add sphinxcontrib-mermaid
+```
+
+```python
+extensions = ["sphinxcontrib.mermaid"]
+```
+
+## Dark Mode Support
+
+Lumina handles Mermaid theme switching automatically — diagrams re-render when the reader toggles dark mode. No extra configuration needed.
+
+## Usage
+
+Write diagrams with the `mermaid` directive:
+
+```markdown
+```{mermaid}
+graph LR
+    A[Source] --> B[Build]
+    B --> C[Deploy]
+```
+```
+
+See [Diagrams](../reference/diagrams.md) for flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.
+
+
+# myst-markdown.html.md
+
+# MyST Markdown
+
+Write Sphinx documentation in Markdown with full access to directives and roles.
+
+Lumina works with both reStructuredText and [MyST Markdown](https://myst-parser.readthedocs.io/). We recommend MyST for a more natural writing experience.
+
+## Setup
+
+### uv (recommended)
+
+```bash
+uv add myst-parser
+```
+
+### pip
+
+```bash
+pip install myst-parser
+```
+
+```python
+extensions = ["myst_parser"]
+
+myst_enable_extensions = [
+    "colon_fence",     # Use ::: for directives instead of ```
+    "dollarmath",      # $inline$ and $$display$$ LaTeX math
+    "amsmath",         # Multi-line equation environments
+    "tasklist",        # - [x] checkbox task lists
+    "deflist",         # Definition lists (Term\n: Definition)
+    "fieldlist",       # :Key: Value metadata lists
+    "substitution",    # {{variable}} template replacements
+]
+```
+
+## Writing in MyST
+
+Write your docs in `.md` files instead of `.rst`:
+
+```markdown
+# My Page Title
+
+This is a paragraph with **bold** and `code`.
+
+:::{note}
+Admonitions use the colon fence syntax.
+:::
+```
+
+## Colon Fence Syntax
+
+The `colon_fence` extension gives you a cleaner syntax for directives.
+
+**Colon fence** (recommended):
+
+```markdown
+:::{note}
+This is cleaner and easier to type.
+:::
+```
+
+**Backtick fence** (standard):
+
+```markdown
+```{note}
+This also works, but nesting gets awkward.
+```
+```
+
+The colon syntax is especially helpful for nested directives — just add more colons for each level:
+
+```markdown
+::::{warning}
+Outer admonition.
+
+:::{tip}
+Inner admonition.
+:::
+::::
+```
+
+## Substitutions
+
+Define reusable variables in `conf.py` and use them across pages:
+
+```python
+myst_substitutions = {
+    "project_name": "My Project",
+    "version": "1.0.0",
+}
+```
+
+Use them in any `.md` file:
+
+```markdown
+Welcome to {{project_name}} version {{version}}.
+```
+
+## Available Extensions
+
+| Extension      | Description                                                           |
+|----------------|-----------------------------------------------------------------------|
+| `colon_fence`  | Use `:::` for directives instead of backtick fences. Cleaner nesting. |
+| `dollarmath`   | `$inline$` and `$$display$$` LaTeX math syntax.                       |
+| `amsmath`      | Multi-line equation environments like `\begin{aligned}`.              |
+| `tasklist`     | `- [x]` checkbox task lists.                                          |
+| `deflist`      | Definition lists with `Term\n: Definition` syntax.                    |
+| `fieldlist`    | `:Key: Value` metadata lists.                                         |
+| `substitution` | `{{variable}}` template replacements defined in `conf.py`.            |
+
+
+# myst-parser.html.md
+
+# MyST Parser
+
+[MyST Parser](https://myst-parser.readthedocs.io/) lets you write documentation in Markdown instead of reStructuredText, with full access to Sphinx directives and roles.
+
+## Setup
+
+```bash
+uv add myst-parser
+```
+
+```python
+extensions = ["myst_parser"]
+
+myst_enable_extensions = [
+    "colon_fence",     # Use ::: for directives instead of ```
+    "dollarmath",      # $inline$ and $$display$$ LaTeX math
+    "amsmath",         # Multi-line equation environments
+    "tasklist",        # - [x] checkbox task lists
+    "deflist",         # Definition lists (Term\n: Definition)
+    "fieldlist",       # :Key: Value metadata lists
+    "substitution",    # {{variable}} template replacements
+]
+```
+
+
+# navigation.html.md
+
+# Navigation
+
+Configure header links, social icons, sidebar depth, and breadcrumbs.
+
+## Header Navigation Links
+
+Add links to your site header for quick access to key pages:
+
+```python
+html_theme_options = {
+    "nav_links": [
+        {"title": "Guide", "url": "getting-started"},
+        {"title": "API", "url": "api/index"},
+        {"title": "GitHub", "url": "https://github.com/you/your-project", "external": True},
+    ],
+}
+```
+
+### Dropdown Menus
+
+Create dropdown navigation menus with the `children` key:
+
+```python
+html_theme_options = {
+    "nav_links": [
+        {
+            "title": "Reference",
+            "children": [
+                {"title": "Typography", "url": "reference/typography"},
+                {"title": "Code Blocks", "url": "reference/code-blocks"},
+            ],
+        },
+    ],
+}
+```
+
+## Social Links
+
+Display icon links in the header (currently supports GitHub):
+
+```python
+html_theme_options = {
+    "social_links": [
+        {"icon": "github", "url": "https://github.com/you/your-project"},
+    ],
+}
+```
+
+## Sidebar Depth
+
+Control how deep the sidebar table of contents tree expands:
+
+```python
+html_theme_options = {
+    "nav_depth": "3",   # Default: 3 levels deep
+}
+```
+
+## Breadcrumbs
+
+The breadcrumb trail above the content helps readers orient themselves. To hide it:
+
+```python
+html_theme_options = {
+    "show_breadcrumbs": "false",
+}
+```
+
+## Page Table of Contents
+
+The right-side page outline shows h2 and h3 headings. To hide it:
+
+```python
+html_theme_options = {
+    "show_toc": "false",
+}
+```
+
+## Previous / Next Navigation
+
+Page-level previous/next links appear at the bottom of each page. To hide them:
+
+```python
+html_theme_options = {
+    "show_prev_next": "false",
+}
+```
+
+
+# openapi.html.md
+
+# OpenAPI
+
+[sphinxcontrib-openapi](https://sphinxcontrib-openapi.readthedocs.io/) generates HTTP API documentation directly from OpenAPI (Swagger) specification files. It builds on [sphinxcontrib-httpdomain](https://sphinxcontrib-httpdomain.readthedocs.io/), which provides HTTP method directives for writing endpoint docs by hand. Lumina styles all HTTP endpoints with color-coded method indicators.
+
+## Setup
+
+```bash
+uv add sphinxcontrib-openapi
+```
+
+```python
+extensions = ["sphinxcontrib.openapi"]
+```
+
+This also installs the HTTP domain, so you can write individual endpoints manually with `http:get::`, `http:post::`, and other method directives.
+
+## Usage
+
+Point the `openapi` directive at your spec file:
+
+```markdown
+```{eval-rst}
+.. openapi:: path/to/openapi.yml
+```
+```
+
+See [HTTP API Documentation](../reference/http-api.md) for rendered examples of both auto-generated and manually written HTTP API documentation.
+
+
 # releases.html.md
 
 # Releases
+
+## v1.11.0 (2026-04-04)
+
+### Features
+
+- Reorganize documentation into hub-and-spoke architecture
+  ([#22](https://github.com/r4sky0/sphinx-lumina-theme/pull/22),
+  [`81ce49e`](https://github.com/r4sky0/sphinx-lumina-theme/commit/81ce49e49b95143d0ce75fc1abc896cc6c69ff30))
 
 ## v1.10.0 (2026-04-04)
 
@@ -2856,6 +3110,168 @@ $$
 ## v1.8.4 (2026-04-03)
 
 - Initial Release
+
+
+# search.html.md
+
+# Search
+
+Configure how readers search your documentation — Pagefind for fast client-side search, or Sphinx’s built-in search as a fallback.
+
+## Pagefind (default)
+
+[Pagefind](https://pagefind.app) provides fast, keyboard-driven search with no external services. Press `⌘K` or `Ctrl`+`K` to open the search modal.
+
+Lumina runs Pagefind automatically at the end of each build — no manual setup required. You just need [Node.js](https://nodejs.org) installed so that `npx` is available.
+
+Build your docs and search is ready:
+
+### uv (recommended)
+
+```bash
+uv run sphinx-build docs docs/_build/html
+```
+
+### pip
+
+```bash
+sphinx-build docs docs/_build/html
+```
+
+## Built-in Sphinx Search
+
+If you prefer not to use Pagefind, switch to Sphinx’s built-in search:
+
+```python
+html_theme_options = {
+    "search_backend": "sphinx",
+}
+```
+
+The built-in search works without any additional setup but is slower and less featured than Pagefind.
+
+#### NOTE
+**Search during development:** Pagefind indexes your content during full builds. During live preview with `sphinx-autobuild`, search may not be available. Use `⌘F` / `Ctrl`+`F` for in-page search instead.
+
+
+# sphinx-copybutton.html.md
+
+# sphinx-copybutton
+
+[sphinx-copybutton](https://sphinx-copybutton.readthedocs.io/) adds a copy-to-clipboard button to every code block. Lumina positions and styles it automatically.
+
+## Setup
+
+```bash
+uv add sphinx-copybutton
+```
+
+```python
+extensions = ["sphinx_copybutton"]
+```
+
+No additional configuration needed. The button appears on hover in the top-right corner of any code block.
+
+## Filtering Prompt Characters
+
+If your code blocks include shell prompts, configure the extension to strip them when copying:
+
+```python
+copybutton_prompt_text = r">>> |\.\.\. |\$ |> "
+copybutton_prompt_is_regexp = True
+```
+
+This strips `>>>`, `...`, `$`, and `>` prompts so readers copy only the actual commands.
+
+
+# sphinx-design.html.md
+
+# sphinx-design
+
+[sphinx-design](https://sphinx-design.readthedocs.io/) adds cards, grids, tabs, badges, buttons, and dropdowns. Lumina styles all of these components with its own design language.
+
+## Setup
+
+```bash
+uv add sphinx-design
+```
+
+```python
+extensions = ["sphinx_design"]
+```
+
+## What You Get
+
+Contained content blocks with optional headers, footers, and links.
+
+See [Cards & Grids](../reference/cards-and-grids.md)
+
+Responsive layouts with configurable columns per breakpoint.
+
+See [Cards & Grids](../reference/cards-and-grids.md)
+
+Tabbed content panels for grouping related information.
+
+See [Code Blocks](../reference/code-blocks.md)
+
+Inline status labels with color variants.
+
+See [Badges & Buttons](../reference/badges-and-buttons.md)
+
+Styled link buttons with primary and secondary variants.
+
+See [Badges & Buttons](../reference/badges-and-buttons.md)
+
+Collapsible content sections.
+
+See [Admonitions](../reference/admonitions.md)
+
+
+# sphinx-llm.html.md
+
+# sphinx-llm
+
+[sphinx-llm](https://github.com/NVIDIA/sphinx-llm) generates LLM-friendly versions of your documentation following the [llms.txt convention](https://llmstxt.org/). This makes your docs directly consumable by AI assistants and coding tools.
+
+## What It Produces
+
+- **`llms.txt`** — A markdown index of all pages with titles, URLs, and descriptions
+- **`llms-full.txt`** — The full content of every page concatenated into a single markdown file
+- **Per-page `.md` files** — Each HTML page gets a companion markdown file (e.g., `getting-started.html.md`)
+
+## Lumina Integration
+
+Lumina automatically adds a `<link rel="alternate">` tag in the HTML `<head>` pointing to `llms.txt` when this extension is detected — no extra configuration needed.
+
+## Setup
+
+```bash
+uv add sphinx-llm
+```
+
+```python
+extensions = ["sphinx_llm.txt"]
+```
+
+That’s it. On the next build, `llms.txt`, `llms-full.txt`, and per-page `.md` files appear alongside your HTML output.
+
+## Configuration
+
+All options are optional — the defaults work well for most projects:
+
+| Option                    | Default       | Description                                                                                                        |
+|---------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|
+| `llms_txt_enabled`        | `True`        | Master on/off switch. Disable with `llms_txt_enabled = False`.                                                     |
+| `llms_txt_description`    | Auto-detected | Project description shown in the `llms.txt` header. Falls back to `pyproject.toml` description, then `html_title`. |
+| `llms_txt_build_parallel` | `True`        | Run the markdown build in parallel with the HTML build.                                                            |
+| `llms_txt_suffix_mode`    | `"auto"`      | Controls per-page markdown filenames. Options: `"auto"`, `"file-suffix"`, `"url-suffix"`, `"replace"`.             |
+| `llms_txt_full_build`     | `True`        | Whether to generate `llms-full.txt`.                                                                               |
+
+## How It Works
+
+The extension runs a parallel Sphinx build using a markdown builder. All directives (including `autodoc`, `toctree`, cross-references) are fully expanded in the output — you get clean, rendered markdown, not raw source.
+
+Each entry in `llms.txt` includes a description sourced from the page’s `meta` description or the first 100 characters of content.
 
 
 # typography.html.md
