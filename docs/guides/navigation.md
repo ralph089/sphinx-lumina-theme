@@ -130,7 +130,3 @@ The `version_switcher_match` value should match a `version` field in your JSON. 
 ### How It Works
 
 When a reader selects a different version, the switcher navigates to the same page path on the selected version's URL. For example, viewing `https://example.com/en/1.17/guides/search.html` and selecting "latest" navigates to `https://example.com/en/latest/guides/search.html`.
-
-:::{tip}
-The JSON format is compatible with the [PyData Sphinx Theme](https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/version-dropdown.html), so you can reuse an existing `switcher.json` if you're migrating.
-:::
