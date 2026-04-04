@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
@@ -8,7 +9,7 @@
     <title>HTTP Routing Table &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=a4861ea2" />
+    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=11567dcc" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     
@@ -458,6 +459,7 @@ window.runMermaid = runMermaid;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
+
     
         <link rel="icon"
               type="image/svg+xml"
@@ -479,7 +481,8 @@ window.runMermaid = runMermaid;</script>
     <meta name="lumina-search-backend" content="pagefind">
     <meta name="lumina-base-url" content="./">
     
-        <script>document.documentElement.dataset.apiBaseUrl = "https://api.example.com/v1";</script>
+        <script>document.documentElement.dataset.apiBaseUrl = "https://petstore3.swagger.io/api/v3";</script>
+    
     
     
     
@@ -490,14 +493,21 @@ window.runMermaid = runMermaid;</script>
     
 
 
+
     <script>
       DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
     </script>
 
 
   </head><body>
+
+
+
+
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
-    <div id="lumina-header"><header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
     <div class="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
         
         <div class="flex items-center gap-3">
@@ -618,9 +628,12 @@ window.runMermaid = runMermaid;</script>
             
         </div>
     </div>
-</header></div>
+</header>
+
+    </div>
     <div class="lumina-wrapper">
         <aside id="lumina-sidebar">
+
             <div x-data="sidebar()">
     
     <div class="hidden h-[calc(100vh-3.5rem)] flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
@@ -690,7 +703,7 @@ window.runMermaid = runMermaid;</script>
                         <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                     </svg>
                 Lumina</a>
-                <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                <span class="lumina-sidebar-footer-version">v1.16.0</span>
             </div>
         
     </div>
@@ -784,18 +797,21 @@ window.runMermaid = runMermaid;</script>
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                            target="_blank"
                            rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                        <span class="lumina-sidebar-footer-version">v1.16.0</span>
                     </div>
                 
             </div>
         </div>
     </template>
 </div>
+
         </aside>
         <main id="lumina-content" data-pagefind-body>
             <div class="lumina-content-toolbar">
                 
-                    <div class="min-w-0 flex-1"><nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
      style="scrollbar-width:none"
      aria-label="Breadcrumb">
     <a href="index.html"
@@ -808,7 +824,9 @@ window.runMermaid = runMermaid;</script>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
     <span class="whitespace-nowrap text-[var(--lumina-text)]">HTTP Routing Table</span>
-</nav></div>
+</nav>
+
+                    </div>
                 
                 <button x-data="copyPage()"
                         @click="copy()"
@@ -844,44 +862,73 @@ window.runMermaid = runMermaid;</script>
                 </button>
             </div>
             <article class="lumina-article" x-data="headerLinks()">
+
                 
 
    <h1>HTTP Routing Table</h1>
 
    <div class="modindex-jumpbox">
-   <a href="#cap-/tasks"><strong>/tasks</strong></a> | 
+   <a href="#cap-/pet"><strong>/pet</strong></a> | 
+   <a href="#cap-/reports"><strong>/reports</strong></a> | 
+   <a href="#cap-/store"><strong>/store</strong></a> | 
    <a href="#cap-/users"><strong>/users</strong></a>
    </div>
 
    <table class="indextable modindextable">
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-/tasks"><td></td><td>
-       <strong>/tasks</strong></td><td></td></tr>
+     <tr class="cap" id="cap-/pet"><td></td><td>
+       <strong>/pet</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="reference/http-api.html#get--tasks"><code class="xref">GET /tasks</code></a></td><td>
-       <em>List tasks</em></td></tr>
+       <a href="reference/http-api.html#get--pet-findByStatus"><code class="xref">GET /pet/findByStatus</code></a></td><td>
+       <em>Finds Pets by status.</em></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="reference/http-api.html#get--tasks-task_id"><code class="xref">GET /tasks/{task_id}</code></a></td><td>
-       <em>Get a task</em></td></tr>
+       <a href="reference/http-api.html#get--pet-petId"><code class="xref">GET /pet/{petId}</code></a></td><td>
+       <em>Find pet by ID.</em></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="reference/http-api.html#post--tasks"><code class="xref">POST /tasks</code></a></td><td>
-       <em>Create a task</em></td></tr>
+       <a href="reference/http-api.html#post--pet"><code class="xref">POST /pet</code></a></td><td>
+       <em>Add a new pet to the store.</em></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="reference/http-api.html#delete--tasks-task_id"><code class="xref">DELETE /tasks/{task_id}</code></a></td><td>
-       <em>Delete a task</em></td></tr>
+       <a href="reference/http-api.html#post--pet-petId"><code class="xref">POST /pet/{petId}</code></a></td><td>
+       <em>Updates a pet in the store with form data.</em></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="reference/http-api.html#patch--tasks-task_id"><code class="xref">PATCH /tasks/{task_id}</code></a></td><td>
-       <em>Update a task</em></td></tr>
+       <a href="reference/http-api.html#delete--pet-petId"><code class="xref">DELETE /pet/{petId}</code></a></td><td>
+       <em>Deletes a pet.</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/reports"><td></td><td>
+       <strong>/reports</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="reference/http-api.html#get--reports"><code class="xref">GET /reports</code></a></td><td>
+       <em></em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="reference/http-api.html#post--reports"><code class="xref">POST /reports</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-/store"><td></td><td>
+       <strong>/store</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="reference/http-api.html#get--store-inventory"><code class="xref">GET /store/inventory</code></a></td><td>
+       <em>Returns pet inventories by status.</em></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="reference/http-api.html#post--store-order"><code class="xref">POST /store/order</code></a></td><td>
+       <em>Place an order for a pet.</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-/users"><td></td><td>
        <strong>/users</strong></td><td></td></tr>
@@ -903,8 +950,10 @@ window.runMermaid = runMermaid;</script>
    </table>
 
 
+
             </article>
             
+
                 <footer class="mt-10 border-t border-[var(--lumina-border)] pt-6">
     
     
@@ -913,14 +962,18 @@ window.runMermaid = runMermaid;</script>
     
     
 </footer>
+
             
         </main>
         
             <aside id="lumina-toc">
+
                 
+
             </aside>
         
     </div>
+
     <div id="lumina-search-modal"
      x-data="searchModal()"
      x-show="open"
@@ -1005,5 +1058,9 @@ window.runMermaid = runMermaid;</script>
         </div>
     </div>
 </div>
+
+
+
+
   </body>
 </html>

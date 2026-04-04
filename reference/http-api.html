@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="../">
@@ -6,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-04T09:02:51+00:00" />
+    <meta property="article:modified_time" content="2026-04-04T11:19:06+00:00" />
     <title>HTTP API Documentation &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=a4861ea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=11567dcc" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     
@@ -25,6 +26,7 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Contributing" href="../contributing/index.html" />
     <link rel="prev" title="API Documentation" href="api-documentation.html" />
+
     
         <link rel="icon"
               type="image/svg+xml"
@@ -46,7 +48,8 @@
     <meta name="lumina-search-backend" content="pagefind">
     <meta name="lumina-base-url" content="../">
     
-        <script>document.documentElement.dataset.apiBaseUrl = "https://api.example.com/v1";</script>
+        <script>document.documentElement.dataset.apiBaseUrl = "https://petstore3.swagger.io/api/v3";</script>
+    
     
     
     
@@ -56,9 +59,16 @@
               title="LLM-friendly documentation index">
     
 
+
   </head><body>
+
+
+
+
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
-    <div id="lumina-header"><header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
     <div class="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
         
         <div class="flex items-center gap-3">
@@ -179,9 +189,12 @@
             
         </div>
     </div>
-</header></div>
+</header>
+
+    </div>
     <div class="lumina-wrapper">
         <aside id="lumina-sidebar">
+
             <div x-data="sidebar()">
     
     <div class="hidden h-[calc(100vh-3.5rem)] flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
@@ -251,7 +264,7 @@
                         <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                     </svg>
                 Lumina</a>
-                <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                <span class="lumina-sidebar-footer-version">v1.16.0</span>
             </div>
         
     </div>
@@ -345,18 +358,21 @@
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                            target="_blank"
                            rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                        <span class="lumina-sidebar-footer-version">v1.16.0</span>
                     </div>
                 
             </div>
         </div>
     </template>
 </div>
+
         </aside>
         <main id="lumina-content" data-pagefind-body>
             <div class="lumina-content-toolbar">
                 
-                    <div class="min-w-0 flex-1"><nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
      style="scrollbar-width:none"
      aria-label="Breadcrumb">
     <a href="../index.html"
@@ -380,7 +396,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
     <span class="whitespace-nowrap text-[var(--lumina-text)]">HTTP API Documentation</span>
-</nav></div>
+</nav>
+
+                    </div>
                 
                 <button x-data="copyPage()"
                         @click="copy()"
@@ -416,104 +434,153 @@
                 </button>
             </div>
             <article class="lumina-article" x-data="headerLinks()">
-                <section class="tex2jax_ignore mathjax_ignore" id="http-api-documentation">
+
+                
+
+    <section class="tex2jax_ignore mathjax_ignore" id="http-api-documentation">
 <h1>HTTP API Documentation<a class="headerlink" href="#http-api-documentation" title="Link to this heading">¶</a></h1>
 <p>How HTTP API endpoints render in the Lumina theme. This page covers auto-generated docs from OpenAPI specs and manually written HTTP directives.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>See <a class="reference internal" href="../extensions/openapi.html"><span class="doc">OpenAPI</span></a> for installation and setup instructions.</p>
+<p>See <a class="reference internal" href="../extensions/openapi.html"><span class="doc">OpenAPI</span></a> for installation, setup, and interactive feature documentation (copy as curl and Try it out).</p>
 </div>
 <section id="from-an-openapi-spec">
 <h2>From an OpenAPI Spec<a class="headerlink" href="#from-an-openapi-spec" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">openapi</span></code> directive renders an entire API from a spec file. Point it at your OpenAPI (Swagger) YAML or JSON:</p>
 <dl class="http get">
-<dt class="sig sig-object http" id="get--tasks">
-<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/tasks</span></span><a class="headerlink" href="#get--tasks" title="Link to this definition">¶</a></dt>
-<dd><p><strong>List tasks</strong></p>
-<p>Returns all tasks, optionally filtered by status.</p>
+<dt class="sig sig-object http" id="get--pet-findByStatus">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/pet/findByStatus</span></span><a class="headerlink" href="#get--pet-findByStatus" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Finds Pets by status.</strong></p>
+<p>Multiple status values can be provided with comma separated strings.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Query Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>status</strong> (<em>string</em>) – Filter by task status.</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Status values that need to be considered for filter
+(Required)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – An array of tasks.</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – successful operation</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid status value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--pet-petId">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/pet/{petId}</span></span><a class="headerlink" href="#get--pet-petId" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Find pet by ID.</strong></p>
+<p>Returns a single pet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>petId</strong> (<em>integer</em>) – ID of pet to return</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – successful operation</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid ID supplied</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404">404 Not Found</a></span> – Pet not found</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http post">
-<dt class="sig sig-object http" id="post--tasks">
-<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/tasks</span></span><a class="headerlink" href="#post--tasks" title="Link to this definition">¶</a></dt>
-<dd><p><strong>Create a task</strong></p>
-<p>Creates a new task and returns it.</p>
+<dt class="sig sig-object http" id="post--pet-petId">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/pet/{petId}</span></span><a class="headerlink" href="#post--pet-petId" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Updates a pet in the store with form data.</strong></p>
+<p>Updates a pet resource based on the form data.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>petId</strong> (<em>integer</em>) – ID of pet that needs to be updated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>name</strong> (<em>string</em>) – Name of pet that needs to be updated</p></li>
+<li><p><strong>status</strong> (<em>string</em>) – Status of pet that needs to be updated</p></li>
+</ul>
+</dd>
 <dt class="field-odd">Status Codes<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/201">201 Created</a></span> – The newly created task.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http get">
-<dt class="sig sig-object http" id="get--tasks-task_id">
-<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/tasks/{task_id}</span></span><a class="headerlink" href="#get--tasks-task_id" title="Link to this definition">¶</a></dt>
-<dd><p><strong>Get a task</strong></p>
-<p>Returns a single task by its ID.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>task_id</strong> (<em>integer</em>) – Unique task identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – The requested task.</p></li>
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404">404 Not Found</a></span> – Task not found.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="http patch">
-<dt class="sig sig-object http" id="patch--tasks-task_id">
-<span class="sig-name descname"><span class="pre">PATCH</span> </span><span class="sig-name descname"><span class="pre">/tasks/{task_id}</span></span><a class="headerlink" href="#patch--tasks-task_id" title="Link to this definition">¶</a></dt>
-<dd><p><strong>Update a task</strong></p>
-<p>Updates an existing task. Only provided fields are changed.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>task_id</strong> (<em>integer</em>) – Unique task identifier.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Status Codes<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – The updated task.</p></li>
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404">404 Not Found</a></span> – Task not found.</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – successful operation</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid input</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="http delete">
-<dt class="sig sig-object http" id="delete--tasks-task_id">
-<span class="sig-name descname"><span class="pre">DELETE</span> </span><span class="sig-name descname"><span class="pre">/tasks/{task_id}</span></span><a class="headerlink" href="#delete--tasks-task_id" title="Link to this definition">¶</a></dt>
-<dd><p><strong>Delete a task</strong></p>
-<p>Permanently removes a task.</p>
+<dt class="sig sig-object http" id="delete--pet-petId">
+<span class="sig-name descname"><span class="pre">DELETE</span> </span><span class="sig-name descname"><span class="pre">/pet/{petId}</span></span><a class="headerlink" href="#delete--pet-petId" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Deletes a pet.</strong></p>
+<p>Delete a pet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>task_id</strong> (<em>integer</em>) – Unique task identifier.</p></li>
+<li><p><strong>petId</strong> (<em>integer</em>) – Pet id to delete</p></li>
 </ul>
 </dd>
 <dt class="field-even">Status Codes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204">204 No Content</a></span> – Task deleted successfully.</p></li>
-<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404">404 Not Found</a></span> – Task not found.</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – Pet deleted</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid pet value</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Request Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt class="sig sig-object http" id="post--pet">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/pet</span></span><a class="headerlink" href="#post--pet" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Add a new pet to the store.</strong></p>
+<p>Add a new pet to the store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – Successful operation</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid input</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422">422 Unprocessable Entity</a></span> – Validation exception</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http get">
+<dt class="sig sig-object http" id="get--store-inventory">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/store/inventory</span></span><a class="headerlink" href="#get--store-inventory" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Returns pet inventories by status.</strong></p>
+<p>Returns a map of status codes to quantities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – successful operation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt class="sig sig-object http" id="post--store-order">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/store/order</span></span><a class="headerlink" href="#post--store-order" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Place an order for a pet.</strong></p>
+<p>Place a new order in the store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – successful operation</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400">400 Bad Request</a></span> – Invalid input</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422">422 Unprocessable Entity</a></span> – Validation exception</p></li>
 </ul>
 </dd>
 </dl>
@@ -521,7 +588,7 @@
 
 <p>The MyST syntax:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{eval-rst}
-.. openapi:: openapi-tasks.yml
+.. openapi:: openapi-petstore.yml
 ```
 </pre></div>
 </div>
@@ -615,6 +682,71 @@
 </dl>
 </dd></dl>
 
+</section>
+<section id="per-block-url-override">
+<h3>Per-block URL Override<a class="headerlink" href="#per-block-url-override" title="Link to this heading">¶</a></h3>
+<p>When some endpoints live on a different server than the global <code class="docutils literal notranslate"><span class="pre">api_base_url</span></code>, wrap their directives in a <code class="docutils literal notranslate"><span class="pre">&lt;div</span> <span class="pre">data-api-base-url=&quot;...&quot;&gt;</span></code>. The “Try it out” panel and curl commands for those endpoints will use the override URL.</p>
+<div data-api-base-url="https://reports.api.example.com/v2"><dl class="http get">
+<dt class="sig sig-object http" id="get--reports">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/reports</span></span><a class="headerlink" href="#get--reports" title="Link to this definition">¶</a></dt>
+<dd><p>Returns available reports for the current user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request Headers<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Authorization</strong> – Bearer token.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200">200 OK</a></span> – A list of report objects.</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401">401 Unauthorized</a></span> – Authentication required.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="http post">
+<dt class="sig sig-object http" id="post--reports">
+<span class="sig-name descname"><span class="pre">POST</span> </span><span class="sig-name descname"><span class="pre">/reports</span></span><a class="headerlink" href="#post--reports" title="Link to this definition">¶</a></dt>
+<dd><p>Queues a new report for generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> (<em>string</em>) – Report type: <code class="docutils literal notranslate"><span class="pre">summary</span></code>, <code class="docutils literal notranslate"><span class="pre">detail</span></code>, or <code class="docutils literal notranslate"><span class="pre">audit</span></code>.</p></li>
+<li><p><strong>from</strong> (<em>string</em>) – Start date in <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> format.</p></li>
+<li><p><strong>to</strong> (<em>string</em>) – End date in <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> format.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Request Headers<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>Authorization</strong> – Bearer token.</p></li>
+<li><p><strong>Content-Type</strong> – <code class="docutils literal notranslate"><span class="pre">application/json</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/202">202 Accepted</a></span> – Report generation queued.</p></li>
+<li><p><span><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422">422 Unprocessable Entity</a></span> – Validation failed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div><p>The “Try it out” buttons above use <code class="docutils literal notranslate"><span class="pre">https://reports.api.example.com/v2</span></code> while the GET and POST <code class="docutils literal notranslate"><span class="pre">/users</span></code> endpoints above them use the global URL. The MyST syntax:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{raw} html
+&lt;div data-api-base-url=&quot;https://other.api.example.com/v2&quot;&gt;
+<span class="sb">```</span>
+
+<span class="sb">```{eval-rst}</span>
+<span class="sb">.. http:get:: /endpoint</span>
+<span class="sb">   ...</span>
+<span class="sb">```</span>
+
+```{raw} html
+&lt;/div&gt;
+```
+</pre></div>
+</div>
 <p>The MyST syntax for manual directives:</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{eval-rst}
 .. http:get:: /endpoint
@@ -641,8 +773,12 @@
 </section>
 </section>
 
+
+
+
             </article>
             
+
                 <footer class="mt-10 border-t border-[var(--lumina-border)] pt-6">
     
     
@@ -679,10 +815,12 @@
     
     
 </footer>
+
             
         </main>
         
             <aside id="lumina-toc">
+
                 
     <div class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-[220px] shrink-0 overflow-y-auto py-6 pr-4 xl:block">
         
@@ -712,6 +850,7 @@
 <li><a class="reference internal" href="#get-request">GET Request</a></li>
 <li><a class="reference internal" href="#post-request">POST Request</a></li>
 <li><a class="reference internal" href="#delete-request">DELETE Request</a></li>
+<li><a class="reference internal" href="#per-block-url-override">Per-block URL Override</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#cross-referencing">Cross-Referencing</a></li>
@@ -722,9 +861,11 @@
         </nav>
     </div>
 
+
             </aside>
         
     </div>
+
     <div id="lumina-search-modal"
      x-data="searchModal()"
      x-show="open"
@@ -809,5 +950,9 @@
         </div>
     </div>
 </div>
+
+
+
+
   </body>
 </html>

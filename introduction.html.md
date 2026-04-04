@@ -32,6 +32,8 @@ Flowcharts, sequence diagrams, class diagrams, Gantt charts, and more — with a
 
 Inline and display equations, labeled references, multi-line systems, and matrices via MathJax.
 
+Document REST endpoints from OpenAPI specs or hand-written directives. Every endpoint gets a **Copy as curl** button and a collapsible **Try it out** panel — no Swagger UI required.
+
 Source Sans 3 and JetBrains Mono are bundled with the theme. No external CDN requests, no privacy concerns.
 
 ## Built with

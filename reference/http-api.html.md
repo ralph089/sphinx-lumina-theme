@@ -6,67 +6,97 @@ How HTTP API endpoints render in the Lumina theme. This page covers auto-generat
 
 The `openapi` directive renders an entire API from a spec file. Point it at your OpenAPI (Swagger) YAML or JSON:
 
-### GET /tasks
+### GET /pet/findByStatus
 
-**List tasks**
+**Finds Pets by status.**
 
-Returns all tasks, optionally filtered by status.
+Multiple status values can be provided with comma separated strings.
 
 * **Query Parameters:**
-  * **status** (*string*) – Filter by task status.
+  * **status** (*string*) – Status values that need to be considered for filter
+    (Required)
 * **Status Codes:**
-  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – An array of tasks.
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – successful operation
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid status value
 
-### POST /tasks
+### GET /pet/{petId}
 
-**Create a task**
+**Find pet by ID.**
 
-Creates a new task and returns it.
-
-* **Status Codes:**
-  * [201 Created](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/201) – The newly created task.
-
-### GET /tasks/{task_id}
-
-**Get a task**
-
-Returns a single task by its ID.
+Returns a single pet.
 
 * **Parameters:**
-  * **task_id** (*integer*) – Unique task identifier.
+  * **petId** (*integer*) – ID of pet to return
 * **Status Codes:**
-  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – The requested task.
-  * [404 Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) – Task not found.
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – successful operation
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid ID supplied
+  * [404 Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) – Pet not found
 
-### PATCH /tasks/{task_id}
+### POST /pet/{petId}
 
-**Update a task**
+**Updates a pet in the store with form data.**
 
-Updates an existing task. Only provided fields are changed.
+Updates a pet resource based on the form data.
 
 * **Parameters:**
-  * **task_id** (*integer*) – Unique task identifier.
+  * **petId** (*integer*) – ID of pet that needs to be updated
+* **Query Parameters:**
+  * **name** (*string*) – Name of pet that needs to be updated
+  * **status** (*string*) – Status of pet that needs to be updated
 * **Status Codes:**
-  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – The updated task.
-  * [404 Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) – Task not found.
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – successful operation
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid input
 
-### DELETE /tasks/{task_id}
+### DELETE /pet/{petId}
 
-**Delete a task**
+**Deletes a pet.**
 
-Permanently removes a task.
+Delete a pet.
 
 * **Parameters:**
-  * **task_id** (*integer*) – Unique task identifier.
+  * **petId** (*integer*) – Pet id to delete
 * **Status Codes:**
-  * [204 No Content](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204) – Task deleted successfully.
-  * [404 Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) – Task not found.
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – Pet deleted
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid pet value
+* **Request Headers:**
+  * **api_key**
+
+### POST /pet
+
+**Add a new pet to the store.**
+
+Add a new pet to the store.
+
+* **Status Codes:**
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – Successful operation
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid input
+  * [422 Unprocessable Entity](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422) – Validation exception
+
+### GET /store/inventory
+
+**Returns pet inventories by status.**
+
+Returns a map of status codes to quantities.
+
+* **Status Codes:**
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – successful operation
+
+### POST /store/order
+
+**Place an order for a pet.**
+
+Place a new order in the store.
+
+* **Status Codes:**
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – successful operation
+  * [400 Bad Request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400) – Invalid input
+  * [422 Unprocessable Entity](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422) – Validation exception
 
 The MyST syntax:
 
 ```markdown
 ```{eval-rst}
-.. openapi:: openapi-tasks.yml
+.. openapi:: openapi-petstore.yml
 ```
 ```
 
@@ -121,6 +151,56 @@ Permanently deletes a user account. This action cannot be undone.
 * **Status Codes:**
   * [204 No Content](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/204) – User deleted successfully.
   * [404 Not Found](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404) – User not found.
+
+### Per-block URL Override
+
+When some endpoints live on a different server than the global `api_base_url`, wrap their directives in a `<div data-api-base-url="...">`. The “Try it out” panel and curl commands for those endpoints will use the override URL.
+
+<div data-api-base-url="https://reports.api.example.com/v2">
+
+### GET /reports
+
+Returns available reports for the current user.
+
+* **Request Headers:**
+  * **Authorization** – Bearer token.
+* **Status Codes:**
+  * [200 OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/200) – A list of report objects.
+  * [401 Unauthorized](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/401) – Authentication required.
+
+### POST /reports
+
+Queues a new report for generation.
+
+* **Request JSON Object:**
+  * **type** (*string*) – Report type: `summary`, `detail`, or `audit`.
+  * **from** (*string*) – Start date in `YYYY-MM-DD` format.
+  * **to** (*string*) – End date in `YYYY-MM-DD` format.
+* **Request Headers:**
+  * **Authorization** – Bearer token.
+  * **Content-Type** – `application/json`
+* **Status Codes:**
+  * [202 Accepted](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/202) – Report generation queued.
+  * [422 Unprocessable Entity](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/422) – Validation failed.
+
+</div>
+
+The “Try it out” buttons above use `https://reports.api.example.com/v2` while the GET and POST `/users` endpoints above them use the global URL. The MyST syntax:
+
+```markdown
+```{raw} html
+<div data-api-base-url="https://other.api.example.com/v2">
+```
+
+```{eval-rst}
+.. http:get:: /endpoint
+   ...
+```
+
+```{raw} html
+</div>
+```
+```
 
 The MyST syntax for manual directives:
 

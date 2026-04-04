@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
@@ -8,7 +9,7 @@
     <title>Search &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=a4861ea2" />
+    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=11567dcc" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     
@@ -463,6 +464,7 @@ window.runMermaid = runMermaid;</script>
     <script src="searchindex.js" defer="defer"></script>
     <meta name="robots" content="noindex" />
     
+
     
         <link rel="icon"
               type="image/svg+xml"
@@ -484,7 +486,8 @@ window.runMermaid = runMermaid;</script>
     <meta name="lumina-search-backend" content="pagefind">
     <meta name="lumina-base-url" content="./">
     
-        <script>document.documentElement.dataset.apiBaseUrl = "https://api.example.com/v1";</script>
+        <script>document.documentElement.dataset.apiBaseUrl = "https://petstore3.swagger.io/api/v3";</script>
+    
     
     
     
@@ -495,9 +498,16 @@ window.runMermaid = runMermaid;</script>
     
 
 
+
   </head><body>
+
+
+
+
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
-    <div id="lumina-header"><header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
     <div class="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
         
         <div class="flex items-center gap-3">
@@ -618,9 +628,12 @@ window.runMermaid = runMermaid;</script>
             
         </div>
     </div>
-</header></div>
+</header>
+
+    </div>
     <div class="lumina-wrapper">
         <aside id="lumina-sidebar">
+
             <div x-data="sidebar()">
     
     <div class="hidden h-[calc(100vh-3.5rem)] flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
@@ -690,7 +703,7 @@ window.runMermaid = runMermaid;</script>
                         <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                     </svg>
                 Lumina</a>
-                <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                <span class="lumina-sidebar-footer-version">v1.16.0</span>
             </div>
         
     </div>
@@ -784,18 +797,21 @@ window.runMermaid = runMermaid;</script>
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                            target="_blank"
                            rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                        <span class="lumina-sidebar-footer-version">v1.16.0</span>
                     </div>
                 
             </div>
         </div>
     </template>
 </div>
+
         </aside>
         <main id="lumina-content" data-pagefind-body>
             <div class="lumina-content-toolbar">
                 
-                    <div class="min-w-0 flex-1"><nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
      style="scrollbar-width:none"
      aria-label="Breadcrumb">
     <a href="index.html"
@@ -808,7 +824,9 @@ window.runMermaid = runMermaid;</script>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
     <span class="whitespace-nowrap text-[var(--lumina-text)]">Search</span>
-</nav></div>
+</nav>
+
+                    </div>
                 
                 <button x-data="copyPage()"
                         @click="copy()"
@@ -844,6 +862,7 @@ window.runMermaid = runMermaid;</script>
                 </button>
             </div>
             <article class="lumina-article" x-data="headerLinks()">
+
                 
   <h1 id="search-documentation">Search</h1>
   
@@ -873,8 +892,10 @@ window.runMermaid = runMermaid;</script>
   <div id="search-results"></div>
   
 
+
             </article>
             
+
                 <footer class="mt-10 border-t border-[var(--lumina-border)] pt-6">
     
     
@@ -883,14 +904,18 @@ window.runMermaid = runMermaid;</script>
     
     
 </footer>
+
             
         </main>
         
             <aside id="lumina-toc">
+
                 
+
             </aside>
         
     </div>
+
     <div id="lumina-search-modal"
      x-data="searchModal()"
      x-show="open"
@@ -975,5 +1000,9 @@ window.runMermaid = runMermaid;</script>
         </div>
     </div>
 </div>
+
+
+
+
   </body>
 </html>

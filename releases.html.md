@@ -1,5 +1,13 @@
 # Releases
 
+## v1.16.0 (2026-04-04)
+
+### Features
+
+- Interactive HTTP API docs with Try it out and curl copy
+  ([#28](https://github.com/r4sky0/sphinx-lumina-theme/pull/28),
+  [`9bb8f22`](https://github.com/r4sky0/sphinx-lumina-theme/commit/9bb8f22961bc907012eccfd39bfc4dffaf609988))
+
 ## v1.15.0 (2026-04-04)
 
 ### Features

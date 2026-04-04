@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="../">
@@ -6,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-04T09:02:51+00:00" />
+    <meta property="article:modified_time" content="2026-04-04T11:19:06+00:00" />
     <title>OpenAPI &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=a4861ea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=11567dcc" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     
@@ -25,6 +26,7 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="sphinx-llm" href="sphinx-llm.html" />
     <link rel="prev" title="Mermaid Diagrams" href="mermaid.html" />
+
     
         <link rel="icon"
               type="image/svg+xml"
@@ -46,7 +48,8 @@
     <meta name="lumina-search-backend" content="pagefind">
     <meta name="lumina-base-url" content="../">
     
-        <script>document.documentElement.dataset.apiBaseUrl = "https://api.example.com/v1";</script>
+        <script>document.documentElement.dataset.apiBaseUrl = "https://petstore3.swagger.io/api/v3";</script>
+    
     
     
     
@@ -56,9 +59,16 @@
               title="LLM-friendly documentation index">
     
 
+
   </head><body>
+
+
+
+
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
-    <div id="lumina-header"><header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
     <div class="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
         
         <div class="flex items-center gap-3">
@@ -179,9 +189,12 @@
             
         </div>
     </div>
-</header></div>
+</header>
+
+    </div>
     <div class="lumina-wrapper">
         <aside id="lumina-sidebar">
+
             <div x-data="sidebar()">
     
     <div class="hidden h-[calc(100vh-3.5rem)] flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
@@ -251,7 +264,7 @@
                         <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                     </svg>
                 Lumina</a>
-                <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                <span class="lumina-sidebar-footer-version">v1.16.0</span>
             </div>
         
     </div>
@@ -345,18 +358,21 @@
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                            target="_blank"
                            rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v1.15.0</span>
+                        <span class="lumina-sidebar-footer-version">v1.16.0</span>
                     </div>
                 
             </div>
         </div>
     </template>
 </div>
+
         </aside>
         <main id="lumina-content" data-pagefind-body>
             <div class="lumina-content-toolbar">
                 
-                    <div class="min-w-0 flex-1"><nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
+                    <div class="min-w-0 flex-1">
+
+                        <nav class="flex items-center gap-2 overflow-x-auto text-sm text-[var(--lumina-text-muted)]"
      style="scrollbar-width:none"
      aria-label="Breadcrumb">
     <a href="../index.html"
@@ -380,7 +396,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
     <span class="whitespace-nowrap text-[var(--lumina-text)]">OpenAPI</span>
-</nav></div>
+</nav>
+
+                    </div>
                 
                 <button x-data="copyPage()"
                         @click="copy()"
@@ -416,9 +434,12 @@
                 </button>
             </div>
             <article class="lumina-article" x-data="headerLinks()">
-                <section class="tex2jax_ignore mathjax_ignore" id="openapi">
+
+                
+
+    <section class="tex2jax_ignore mathjax_ignore" id="openapi">
 <h1>OpenAPI<a class="headerlink" href="#openapi" title="Link to this heading">¶</a></h1>
-<p><a class="reference external" href="https://sphinxcontrib-openapi.readthedocs.io/">sphinxcontrib-openapi</a> generates HTTP API documentation directly from OpenAPI (Swagger) specification files. It builds on <a class="reference external" href="https://sphinxcontrib-httpdomain.readthedocs.io/">sphinxcontrib-httpdomain</a>, which provides HTTP method directives for writing endpoint docs by hand. Lumina styles all HTTP endpoints with color-coded method indicators.</p>
+<p><a class="reference external" href="https://sphinxcontrib-openapi.readthedocs.io/">sphinxcontrib-openapi</a> generates HTTP API documentation directly from OpenAPI (Swagger) specification files. It builds on <a class="reference external" href="https://sphinxcontrib-httpdomain.readthedocs.io/">sphinxcontrib-httpdomain</a>, which provides HTTP method directives for writing endpoint docs by hand. Lumina styles all HTTP endpoints with color-coded method indicators and adds interactive features when you configure a base URL.</p>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinxcontrib-openapi
@@ -442,10 +463,111 @@
 </div>
 <p>See <a class="reference internal" href="../reference/http-api.html"><span class="doc">HTTP API Documentation</span></a> for rendered examples of both auto-generated and manually written HTTP API documentation.</p>
 </section>
+<section id="interactive-features">
+<h2>Interactive Features<a class="headerlink" href="#interactive-features" title="Link to this heading">¶</a></h2>
+<p>Set <code class="docutils literal notranslate"><span class="pre">api_base_url</span></code> in your theme options to activate two interactive features on every HTTP endpoint:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id2" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;api_base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.example.com/v1&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<section id="copy-as-curl">
+<h3>Copy as curl<a class="headerlink" href="#copy-as-curl" title="Link to this heading">¶</a></h3>
+<p>A <strong>Copy as curl</strong> button appears in the signature bar of each endpoint. Clicking it copies a ready-to-run <code class="docutils literal notranslate"><span class="pre">curl</span></code> command to your clipboard, with:</p>
+<ul class="simple">
+<li><p>The correct HTTP method and full URL (base URL + path)</p></li>
+<li><p>All documented request headers (e.g., <code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Bearer</span> <span class="pre">&lt;token&gt;</span></code>)</p></li>
+<li><p>A JSON body template pre-populated from documented request fields</p></li>
+<li><p>Query parameters shown as <code class="docutils literal notranslate"><span class="pre">?param=&lt;value&gt;</span></code> placeholders</p></li>
+</ul>
+<p>For endpoints with multiple flags the command uses multi-line formatting for readability:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://api.example.com/v1/users&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;email&quot;:&quot;&quot;,&quot;name&quot;:&quot;&quot;,&quot;role&quot;:&quot;&quot;}&#39;</span>
+</pre></div>
+</div>
 </section>
+<section id="try-it-out">
+<h3>Try it out<a class="headerlink" href="#try-it-out" title="Link to this heading">¶</a></h3>
+<p>A collapsible <strong>Try it out</strong> panel sits below each endpoint description. It lets readers send real HTTP requests directly from the docs page without leaving the browser.</p>
+<p>The panel pre-populates from the documented endpoint:</p>
+<ul class="simple">
+<li><p><strong>Path parameters</strong> — required fields with live URL preview as you type</p></li>
+<li><p><strong>Query parameters</strong> — optional fields shown with their types</p></li>
+<li><p><strong>Authorization</strong> — bearer token input (hidden by default; persisted in <code class="docutils literal notranslate"><span class="pre">sessionStorage</span></code> across page loads)</p></li>
+<li><p><strong>Additional headers</strong> — any other documented request headers</p></li>
+<li><p><strong>Request body</strong> — JSON textarea pre-filled with a schema template for POST/PUT/PATCH endpoints</p></li>
+</ul>
+<p>After sending, the panel shows the HTTP status code, response time in milliseconds, and a syntax-highlighted JSON response body (or plain text for non-JSON responses).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The “Try it out” panel sends requests directly from the reader’s browser. Your API server must allow CORS requests from the docs origin, or requests will fail with a network error. Many public APIs (like Stripe, GitHub, or Petstore) already support CORS.</p>
+</div>
+</section>
+<section id="overriding-the-base-url-per-block">
+<h3>Overriding the base URL per block<a class="headerlink" href="#overriding-the-base-url-per-block" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">api_base_url</span></code> sets a global default for all endpoints on all pages. To use a different server URL for a specific group of endpoints — for example, a staging environment or a separate microservice — wrap those endpoints in a <code class="docutils literal notranslate"><span class="pre">&lt;div&gt;</span></code> with a <code class="docutils literal notranslate"><span class="pre">data-api-base-url</span></code> attribute.</p>
+<p>The closest ancestor’s <code class="docutils literal notranslate"><span class="pre">data-api-base-url</span></code> takes precedence over the global setting:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;div data-api-base-url=&quot;https://staging.api.example.com/v1&quot;&gt;
+
+```{eval-rst}
+.. openapi:: staging-api.yml
+```
+
+&lt;/div&gt;
+</pre></div>
+</div>
+<p>This works with both <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">openapi::</span></code> directives and individual <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">http:get::</span></code> / <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">http:post::</span></code> directives.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>HTML blocks in MyST require <code class="docutils literal notranslate"><span class="pre">html_block</span></code> in <code class="docutils literal notranslate"><span class="pre">myst_enable_extensions</span></code>, or use a <code class="docutils literal notranslate"><span class="pre">{raw}</span> <span class="pre">html</span></code> directive pair instead:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{raw} html
+&lt;div data-api-base-url=&quot;https://staging.api.example.com/v1&quot;&gt;
+<span class="sb">```</span>
+
+<span class="sb">```{eval-rst}</span>
+<span class="sb">.. openapi:: staging-api.yml</span>
+<span class="sb">```</span>
+
+```{raw} html
+&lt;/div&gt;
+```
+</pre></div>
+</div>
+</div>
+<p>The server badge (shown above the first endpoint) always reflects the global <code class="docutils literal notranslate"><span class="pre">api_base_url</span></code>. Per-block overrides affect only the curl commands and “Try it out” URLs.</p>
+</section>
+<section id="disabling-try-it-out">
+<h3>Disabling Try it out<a class="headerlink" href="#disabling-try-it-out" title="Link to this heading">¶</a></h3>
+<p>To keep the “Copy as curl” button but hide the interactive panel:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id3" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;api_base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.example.com/v1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;try_it_out&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="bearer-token-persistence">
+<h3>Bearer token persistence<a class="headerlink" href="#bearer-token-persistence" title="Link to this heading">¶</a></h3>
+<p>When a reader enters a bearer token in the “Try it out” panel, it is saved to <code class="docutils literal notranslate"><span class="pre">sessionStorage</span></code> under the key <code class="docutils literal notranslate"><span class="pre">lumina-api-token</span></code>. The token is restored automatically when the panel is opened on any endpoint in the same browser tab. It is never sent to any server other than your API.</p>
+<p>The token is cleared when the browser tab is closed (sessionStorage scope).</p>
+</section>
+</section>
+</section>
+
+
+
 
             </article>
             
+
                 <footer class="mt-10 border-t border-[var(--lumina-border)] pt-6">
     
     
@@ -482,10 +604,12 @@
     
     
 </footer>
+
             
         </main>
         
             <aside id="lumina-toc">
+
                 
     <div class="sticky top-14 hidden h-[calc(100vh-3.5rem)] w-[220px] shrink-0 overflow-y-auto py-6 pr-4 xl:block">
         
@@ -512,6 +636,14 @@
 <li><a class="reference internal" href="#">OpenAPI</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#interactive-features">Interactive Features</a><ul>
+<li><a class="reference internal" href="#copy-as-curl">Copy as curl</a></li>
+<li><a class="reference internal" href="#try-it-out">Try it out</a></li>
+<li><a class="reference internal" href="#overriding-the-base-url-per-block">Overriding the base URL per block</a></li>
+<li><a class="reference internal" href="#disabling-try-it-out">Disabling Try it out</a></li>
+<li><a class="reference internal" href="#bearer-token-persistence">Bearer token persistence</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -519,9 +651,11 @@
         </nav>
     </div>
 
+
             </aside>
         
     </div>
+
     <div id="lumina-search-modal"
      x-data="searchModal()"
      x-show="open"
@@ -606,5 +740,9 @@
         </div>
     </div>
 </div>
+
+
+
+
   </body>
 </html>
