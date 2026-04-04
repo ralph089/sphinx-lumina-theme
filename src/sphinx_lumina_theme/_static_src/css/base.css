@@ -377,6 +377,14 @@ html.has-announcement .lumina-wrapper {
   flex-shrink: 0;
 }
 
+.lumina-sidebar-desktop {
+  height: calc(100vh - 3.5rem);
+}
+
+html.has-announcement .lumina-sidebar-desktop {
+  height: calc(100vh - 3.5rem - 2.25rem);
+}
+
 @media (min-width: 1024px) {
   #lumina-sidebar {
     position: sticky;
