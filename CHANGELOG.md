@@ -2,6 +2,15 @@
 
 <!-- releases -->
 
+## v1.9.0 (2026-04-04)
+
+### Features
+
+- Add sphinxcontrib-openapi showcase with curl copy
+  ([#20](https://github.com/r4sky0/sphinx-lumina-theme/pull/20),
+  [`aac58f1`](https://github.com/r4sky0/sphinx-lumina-theme/commit/aac58f13e9829753fc74e56202460db169672d62))
+
+
 ## v1.8.13 (2026-04-04)
 
 ### Bug Fixes
