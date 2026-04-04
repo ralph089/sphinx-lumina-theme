@@ -2,6 +2,15 @@
 
 <!-- releases -->
 
+## v1.8.11 (2026-04-04)
+
+### Bug Fixes
+
+- Polish dark mode icons, clipboard fallback, and minor UI details
+  ([#17](https://github.com/r4sky0/sphinx-lumina-theme/pull/17),
+  [`e766441`](https://github.com/r4sky0/sphinx-lumina-theme/commit/e766441ce858c07a539a95a1614ac50b1eb8da7f))
+
+
 ## v1.8.10 (2026-04-03)
 
 ### Bug Fixes
