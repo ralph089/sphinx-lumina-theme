@@ -9,23 +9,6 @@ dependencies = [
     "sphinx>=8.0",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.0",
-    "beautifulsoup4>=4.12",
-    "myst-parser>=4.0",
-    "sphinx-design>=0.6",
-    "sphinx-copybutton>=0.5",
-    "sphinxcontrib-mermaid>=1.0",
-    "sphinxcontrib-openapi>=0.8",
-    "sphinxcontrib-httpdomain>=2.0",
-    "sphinx-last-updated-by-git>=0.3",
-    "sphinx-autobuild>=2024.0",
-    "ruff>=0.11",
-    "djlint>=1.36",
-    "pytest-playwright>=0.6",
-]
-
 [project.entry-points."sphinx.html_themes"]
 lumina = "sphinx_lumina_theme"
 
@@ -84,5 +67,18 @@ output_format = "md"
 
 [dependency-groups]
 dev = [
+    "pytest>=8.0",
+    "beautifulsoup4>=4.12",
+    "myst-parser>=4.0",
+    "sphinx-design>=0.6",
+    "sphinx-copybutton>=0.5",
+    "sphinxcontrib-mermaid>=1.0",
+    "sphinxcontrib-openapi>=0.8",
+    "sphinxcontrib-httpdomain>=2.0",
+    "sphinx-last-updated-by-git>=0.3",
+    "sphinx-autobuild>=2024.0",
+    "ruff>=0.11",
+    "djlint>=1.36",
+    "pytest-playwright>=0.6",
     "sphinx-llm>=0.4.1",
 ]

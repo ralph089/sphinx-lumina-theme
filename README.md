@@ -87,7 +87,7 @@ See the full [Configuration](https://r4sky0.github.io/sphinx-lumina-theme/gettin
 git clone https://github.com/r4sky0/sphinx-lumina-theme.git
 cd sphinx-lumina-theme
 pnpm install        # JS dependencies
-uv sync --extra dev # Python dependencies
+uv sync --dev       # Python dependencies
 pnpm run build      # Build CSS + JS assets
 uv run pytest       # Run tests
 ```
