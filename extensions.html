@@ -48,6 +48,12 @@
         <script>document.documentElement.dataset.apiBaseUrl = "https://api.example.com/v1";</script>
     
     
+    
+        <link rel="alternate"
+              type="text/markdown"
+              href="llms.txt"
+              title="LLM-friendly documentation index">
+    
 
   </head><body>
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
@@ -219,7 +225,7 @@
                     <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                 </svg>
             Lumina</a>
-            <span class="lumina-sidebar-footer-version">v1.9.0</span>
+            <span class="lumina-sidebar-footer-version">v1.10.0</span>
         </div>
     </div>
     
@@ -287,7 +293,7 @@
                     <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                        target="_blank"
                        rel="noopener">Lumina</a>
-                    <span class="lumina-sidebar-footer-version">v1.9.0</span>
+                    <span class="lumina-sidebar-footer-version">v1.10.0</span>
                 </div>
             </div>
         </div>
@@ -368,8 +374,8 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>myst-parser
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;myst_parser&quot;</span><span class="p">]</span>
 
 <span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
@@ -425,8 +431,8 @@ This also works, but nesting gets awkward.
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinx-design
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_design&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -508,8 +514,8 @@ Dropdowns</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinx-copybutton
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id10" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -534,8 +540,8 @@ Dropdowns</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinxcontrib-mermaid
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id11" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinxcontrib.mermaid&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -566,8 +572,8 @@ graph LR
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinxcontrib-openapi
 </pre></div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id12" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinxcontrib.openapi&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -585,11 +591,79 @@ graph LR
 <p>See <a class="reference internal" href="reference/http-api.html"><span class="doc">HTTP API Documentation</span></a> for rendered examples of both auto-generated and manually written HTTP API documentation.</p>
 </section>
 </section>
+<section id="sphinx-llm">
+<h2>sphinx-llm<a class="headerlink" href="#sphinx-llm" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/NVIDIA/sphinx-llm">sphinx-llm</a> generates LLM-friendly versions of your documentation following the <a class="reference external" href="https://llmstxt.org/">llms.txt convention</a>. This makes your docs directly consumable by AI assistants and coding tools.</p>
+<p>It produces three outputs:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code></strong> — A markdown index of all pages with titles, URLs, and descriptions</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">llms-full.txt</span></code></strong> — The full content of every page concatenated into a single markdown file</p></li>
+<li><p><strong>Per-page <code class="docutils literal notranslate"><span class="pre">.md</span></code> files</strong> — Each HTML page gets a companion markdown file (e.g., <code class="docutils literal notranslate"><span class="pre">getting-started.html.md</span></code>)</p></li>
+</ul>
+<p>Lumina automatically adds a <code class="docutils literal notranslate"><span class="pre">&lt;link</span> <span class="pre">rel=&quot;alternate&quot;&gt;</span></code> tag in the HTML <code class="docutils literal notranslate"><span class="pre">&lt;head&gt;</span></code> pointing to <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> when this extension is detected — no extra configuration needed.</p>
+<section id="id6">
+<h3>Setup<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>sphinx-llm
+</pre></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id14" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sphinx_llm.txt&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>That’s it. On the next build, <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">llms-full.txt</span></code>, and per-page <code class="docutils literal notranslate"><span class="pre">.md</span></code> files will be generated alongside your HTML output.</p>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h3>
+<p>All options are optional — the defaults work well for most projects:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 15.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">llms_txt_enabled</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Master on/off switch. Disable with <code class="docutils literal notranslate"><span class="pre">llms_txt_enabled</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">llms_txt_description</span></code></p></td>
+<td><p>Auto-detected</p></td>
+<td><p>Project description shown in the <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> header. Falls back to <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> description, then <code class="docutils literal notranslate"><span class="pre">html_title</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">llms_txt_build_parallel</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Run the markdown build in parallel with the HTML build.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">llms_txt_suffix_mode</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code></p></td>
+<td><p>Controls per-page markdown filenames. Options: <code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;file-suffix&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;url-suffix&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;replace&quot;</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">llms_txt_full_build</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>Whether to generate <code class="docutils literal notranslate"><span class="pre">llms-full.txt</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-it-works">
+<h3>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h3>
+<p>The extension runs a parallel Sphinx build using a markdown builder. This means all directives (including <code class="docutils literal notranslate"><span class="pre">autodoc</span></code>, <code class="docutils literal notranslate"><span class="pre">toctree</span></code>, cross-references) are fully expanded in the output — you get clean, rendered markdown, not raw source.</p>
+<p>Each entry in <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> includes a description sourced from the page’s <code class="docutils literal notranslate"><span class="pre">meta</span></code> description or the first 100 characters of content.</p>
+</section>
+</section>
 <section id="mathjax">
 <h2>MathJax<a class="headerlink" href="#mathjax" title="Link to this heading">¶</a></h2>
 <p>Sphinx includes MathJax support by default. Combined with MyST’s <code class="docutils literal notranslate"><span class="pre">dollarmath</span></code> and <code class="docutils literal notranslate"><span class="pre">amsmath</span></code> extensions, you get full LaTeX math rendering.</p>
-<section id="id6">
-<h3>Setup<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<section id="id7">
+<h3>Setup<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <p>No additional packages needed. Just enable the MyST extensions:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">myst_enable_extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;dollarmath&quot;</span><span class="p">,</span>    <span class="c1"># $E = mc^2$ inline, $$...$$ display</span>
@@ -598,8 +672,8 @@ graph LR
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h3>Usage<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<section id="id8">
+<h3>Usage<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Inline math: $f(x) = x^2 + 1$
 
 Display math:
@@ -650,8 +724,8 @@ $$
 <section id="recommended-conf-py">
 <h2>Recommended <code class="docutils literal notranslate"><span class="pre">conf.py</span></code><a class="headerlink" href="#recommended-conf-py" title="Link to this heading">¶</a></h2>
 <p>Here’s a well-rounded configuration that includes all the recommended extensions:</p>
-<div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">conf.py — Recommended extensions setup</span><a class="headerlink" href="#id13" title="Link to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">conf.py — Recommended extensions setup</span><a class="headerlink" href="#id15" title="Link to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># Content</span>
     <span class="s2">&quot;myst_parser&quot;</span><span class="p">,</span>
@@ -659,6 +733,9 @@ $$
     <span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinxcontrib.mermaid&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sphinxcontrib.openapi&quot;</span><span class="p">,</span>
+
+    <span class="c1"># LLM-friendly output</span>
+    <span class="s2">&quot;sphinx_llm.txt&quot;</span><span class="p">,</span>
 
     <span class="c1"># API documentation (if applicable)</span>
     <span class="s2">&quot;sphinx.ext.autodoc&quot;</span><span class="p">,</span>
@@ -773,9 +850,15 @@ $$
 <li><a class="reference internal" href="#id5">Usage</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mathjax">MathJax</a><ul>
+<li><a class="reference internal" href="#sphinx-llm">sphinx-llm</a><ul>
 <li><a class="reference internal" href="#id6">Setup</a></li>
-<li><a class="reference internal" href="#id7">Usage</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#how-it-works">How It Works</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mathjax">MathJax</a><ul>
+<li><a class="reference internal" href="#id7">Setup</a></li>
+<li><a class="reference internal" href="#id8">Usage</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#other-compatible-extensions">Other Compatible Extensions</a></li>

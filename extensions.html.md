@@ -12,8 +12,7 @@ Lumina works with any Sphinx extension. This page covers the extensions we recom
 uv add myst-parser
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["myst_parser"]
 
 myst_enable_extensions = [
@@ -50,19 +49,19 @@ The `colon_fence` extension gives you a cleaner syntax for directives:
 
 **Colon fence** (recommended):
 
-````markdown
+```markdown
 :::{note}
 This is cleaner and easier to type.
 :::
-````
+```
 
 **Backtick fence** (standard):
 
-````markdown
+```markdown
 ```{note}
 This also works, but nesting gets awkward.
 ```
-````
+```
 
 The colon syntax is especially helpful for nested directives — just add more colons for each level.
 
@@ -76,53 +75,35 @@ The colon syntax is especially helpful for nested directives — just add more c
 uv add sphinx-design
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["sphinx_design"]
 ```
 
 ### What You Get
 
-::::{grid} 1 1 2 3
-:gutter: 3
-
-:::{grid-item-card} Cards
 Contained content blocks with optional headers, footers, and links.
 
-See {doc}`reference/cards-and-grids`
-:::
+See [Cards & Grids](reference/cards-and-grids.md)
 
-:::{grid-item-card} Grids
 Responsive layouts with configurable columns per breakpoint.
 
-See {doc}`reference/cards-and-grids`
-:::
+See [Cards & Grids](reference/cards-and-grids.md)
 
-:::{grid-item-card} Tabs
 Tabbed content panels for grouping related information.
 
-See {doc}`reference/code-blocks`
-:::
+See [Code Blocks](reference/code-blocks.md)
 
-:::{grid-item-card} Badges
 Inline status labels with color variants.
 
-See {doc}`reference/badges-and-buttons`
-:::
+See [Badges & Buttons](reference/badges-and-buttons.md)
 
-:::{grid-item-card} Buttons
 Styled link buttons with primary and secondary variants.
 
-See {doc}`reference/badges-and-buttons`
-:::
+See [Badges & Buttons](reference/badges-and-buttons.md)
 
-:::{grid-item-card} Dropdowns
 Collapsible content sections.
 
-See {doc}`reference/admonitions`
-:::
-
-::::
+See [Admonitions](reference/admonitions.md)
 
 ## sphinx-copybutton
 
@@ -134,8 +115,7 @@ See {doc}`reference/admonitions`
 uv add sphinx-copybutton
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["sphinx_copybutton"]
 ```
 
@@ -162,8 +142,7 @@ This strips `>>>`, `...`, `$`, and `>` prompts so readers copy only the actual c
 uv add sphinxcontrib-mermaid
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["sphinxcontrib.mermaid"]
 ```
 
@@ -183,7 +162,7 @@ graph LR
 :::
 ```
 
-See {doc}`reference/diagrams` for flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.
+See [Diagrams](reference/diagrams.md) for flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.
 
 ## sphinxcontrib-openapi
 
@@ -195,8 +174,7 @@ See {doc}`reference/diagrams` for flowcharts, sequence diagrams, class diagrams,
 uv add sphinxcontrib-openapi
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["sphinxcontrib.openapi"]
 ```
 
@@ -206,13 +184,13 @@ This also installs the HTTP domain, so you can write individual endpoints manual
 
 Point the `openapi` directive at your spec file:
 
-````markdown
+```markdown
 ```{eval-rst}
 .. openapi:: path/to/openapi.yml
 ```
-````
+```
 
-See {doc}`reference/http-api` for rendered examples of both auto-generated and manually written HTTP API documentation.
+See [HTTP API Documentation](reference/http-api.md) for rendered examples of both auto-generated and manually written HTTP API documentation.
 
 ## sphinx-llm
 
@@ -232,50 +210,33 @@ Lumina automatically adds a `<link rel="alternate">` tag in the HTML `<head>` po
 uv add sphinx-llm
 ```
 
-```{code-block} python
-:caption: conf.py
+```python
 extensions = ["sphinx_llm.txt"]
 ```
 
-That's it. On the next build, `llms.txt`, `llms-full.txt`, and per-page `.md` files will be generated alongside your HTML output.
+That’s it. On the next build, `llms.txt`, `llms-full.txt`, and per-page `.md` files will be generated alongside your HTML output.
 
 ### Configuration
 
 All options are optional — the defaults work well for most projects:
 
-```{list-table}
-:header-rows: 1
-:widths: 30 15 55
-
-* - Option
-  - Default
-  - Description
-* - `llms_txt_enabled`
-  - `True`
-  - Master on/off switch. Disable with `llms_txt_enabled = False`.
-* - `llms_txt_description`
-  - Auto-detected
-  - Project description shown in the `llms.txt` header. Falls back to `pyproject.toml` description, then `html_title`.
-* - `llms_txt_build_parallel`
-  - `True`
-  - Run the markdown build in parallel with the HTML build.
-* - `llms_txt_suffix_mode`
-  - `"auto"`
-  - Controls per-page markdown filenames. Options: `"auto"`, `"file-suffix"`, `"url-suffix"`, `"replace"`.
-* - `llms_txt_full_build`
-  - `True`
-  - Whether to generate `llms-full.txt`.
-```
+| Option                    | Default       | Description                                                                                                        |
+|---------------------------|---------------|--------------------------------------------------------------------------------------------------------------------|
+| `llms_txt_enabled`        | `True`        | Master on/off switch. Disable with `llms_txt_enabled = False`.                                                     |
+| `llms_txt_description`    | Auto-detected | Project description shown in the `llms.txt` header. Falls back to `pyproject.toml` description, then `html_title`. |
+| `llms_txt_build_parallel` | `True`        | Run the markdown build in parallel with the HTML build.                                                            |
+| `llms_txt_suffix_mode`    | `"auto"`      | Controls per-page markdown filenames. Options: `"auto"`, `"file-suffix"`, `"url-suffix"`, `"replace"`.             |
+| `llms_txt_full_build`     | `True`        | Whether to generate `llms-full.txt`.                                                                               |
 
 ### How It Works
 
 The extension runs a parallel Sphinx build using a markdown builder. This means all directives (including `autodoc`, `toctree`, cross-references) are fully expanded in the output — you get clean, rendered markdown, not raw source.
 
-Each entry in `llms.txt` includes a description sourced from the page's `meta` description or the first 100 characters of content.
+Each entry in `llms.txt` includes a description sourced from the page’s `meta` description or the first 100 characters of content.
 
 ## MathJax
 
-Sphinx includes MathJax support by default. Combined with MyST's `dollarmath` and `amsmath` extensions, you get full LaTeX math rendering.
+Sphinx includes MathJax support by default. Combined with MyST’s `dollarmath` and `amsmath` extensions, you get full LaTeX math rendering.
 
 ### Setup
 
@@ -300,38 +261,26 @@ $$
 $$
 ```
 
-See {doc}`reference/math` for labeled equations, multi-line systems, and matrices.
+See [Math](reference/math.md) for labeled equations, multi-line systems, and matrices.
 
 ## Other Compatible Extensions
 
-Lumina inherits from Sphinx's `basic` theme, so it works with any extension that targets standard Sphinx output. Some popular ones:
+Lumina inherits from Sphinx’s `basic` theme, so it works with any extension that targets standard Sphinx output. Some popular ones:
 
-```{list-table}
-:header-rows: 1
-:widths: 25 75
-
-* - Extension
-  - Purpose
-* - `sphinx.ext.autodoc`
-  - Generate API docs from Python docstrings.
-* - `sphinx.ext.intersphinx`
-  - Cross-reference objects in other Sphinx projects.
-* - `sphinx.ext.viewcode`
-  - Add links to highlighted source code.
-* - `sphinx.ext.napoleon`
-  - Support for Google and NumPy docstring styles.
-* - `sphinx.ext.todo`
-  - Collect and display TODO items.
-* - `sphinx_autodoc_typehints`
-  - Render type hints in API documentation.
-```
+| Extension                  | Purpose                                           |
+|----------------------------|---------------------------------------------------|
+| `sphinx.ext.autodoc`       | Generate API docs from Python docstrings.         |
+| `sphinx.ext.intersphinx`   | Cross-reference objects in other Sphinx projects. |
+| `sphinx.ext.viewcode`      | Add links to highlighted source code.             |
+| `sphinx.ext.napoleon`      | Support for Google and NumPy docstring styles.    |
+| `sphinx.ext.todo`          | Collect and display TODO items.                   |
+| `sphinx_autodoc_typehints` | Render type hints in API documentation.           |
 
 ## Recommended `conf.py`
 
-Here's a well-rounded configuration that includes all the recommended extensions:
+Here’s a well-rounded configuration that includes all the recommended extensions:
 
-```{code-block} python
-:caption: conf.py — Recommended extensions setup
+```python
 extensions = [
     # Content
     "myst_parser",
