@@ -12,7 +12,7 @@
     <title>Sphinx Lumina Theme &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=11567dcc" />
+    <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=2e4d7a1b" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <script src="_static/fluid-simulation.js"></script>
@@ -190,7 +190,7 @@
         <canvas x-ref="canvas" class="lumina-hero-canvas" aria-hidden="true"></canvas>
         <div class="lumina-hero-content">
             <div class="lumina-hero-badge">
-                Sphinx Theme <span class="lumina-hero-badge-sep">&middot;</span> v1.16.1
+                Sphinx Theme <span class="lumina-hero-badge-sep">&middot;</span> v1.17.0
             </div>
             <h1 class="lumina-hero-title">
                 Your docs,
@@ -313,8 +313,15 @@
                    class="flex flex-col gap-0.5 rounded-lg px-3 py-2.5 no-underline transition-colors"
                    :class="index === selectedIndex ? 'bg-[var(--lumina-accent-light)] text-[var(--lumina-accent)]' : 'hover:bg-[var(--lumina-bg-secondary)] text-[var(--lumina-text)]'"
                    @mouseenter="selectedIndex = index">
-                    <span class="text-sm font-medium" x-text="result.title"></span>
-                    <span class="text-xs text-[var(--lumina-text-muted)] line-clamp-2"
+                    <div class="flex min-w-0 items-center justify-between gap-2">
+                        <span class="truncate text-sm font-medium" x-text="result.title"></span>
+                        <template x-if="result.section">
+                            <span class="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                                  :class="index === selectedIndex ? 'bg-[var(--lumina-accent)] text-white opacity-70' : 'bg-[var(--lumina-bg-secondary)] text-[var(--lumina-text-muted)]'"
+                                  x-text="result.section"></span>
+                        </template>
+                    </div>
+                    <span class="line-clamp-2 text-xs text-[var(--lumina-text-muted)]"
                           x-html="result.excerpt"></span>
                 </a>
             </template>

@@ -1,5 +1,29 @@
 # Releases
 
+## v1.17.0 (2026-04-04)
+
+### Features
+
+- Improve Pagefind search quality and result UX
+  ([#31](https://github.com/r4sky0/sphinx-lumina-theme/pull/31),
+  [`47826f6`](https://github.com/r4sky0/sphinx-lumina-theme/commit/47826f68d7a89b1a2bb5096d9269ec27dc9957fe))
+
+<details>
+<summary>Maintenance</summary>
+
+#### Continuous Integration
+
+- Auto-deploy docs on push to main when docs/ changes
+  ([#32](https://github.com/r4sky0/sphinx-lumina-theme/pull/32),
+  [`ecb6054`](https://github.com/r4sky0/sphinx-lumina-theme/commit/ecb60547164086785b642dc183130fecf876a1af))
+
+#### Documentation
+
+- Document the landing page template ([#30](https://github.com/r4sky0/sphinx-lumina-theme/pull/30),
+  [`b9a0c4a`](https://github.com/r4sky0/sphinx-lumina-theme/commit/b9a0c4a0a4e0b5472610e25915b5876002b80ec0))
+
+</details>
+
 ## v1.16.1 (2026-04-04)
 
 ### Bug Fixes
