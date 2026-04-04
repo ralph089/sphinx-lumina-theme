@@ -106,7 +106,7 @@ Display a dropdown in the header that lets readers switch between documentation 
 [
   {"version": "latest", "url": "https://example.com/en/latest/", "name": "dev (latest)"},
   {"version": "1.17", "url": "https://example.com/en/1.17/"},
-  {"version": "1.16", "url": "https://example.com/en/1.16/", "preferred": true}
+  {"version": "1.16", "url": "https://example.com/en/1.16/"}
 ]
 ```
 
@@ -114,7 +114,6 @@ Each entry has:
 - **`version`** (required) -- version identifier, used to match `version_switcher_match`
 - **`url`** (required) -- base URL for that version's docs (must end with `/`)
 - **`name`** (optional) -- display label, falls back to `version`
-- **`preferred`** (optional) -- marks the stable/recommended version
 
 2. **Configure the theme** in your `conf.py`:
 

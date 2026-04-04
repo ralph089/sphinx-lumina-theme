@@ -32,6 +32,15 @@ export default function versionSwitcher() {
       this.open = !this.open;
     },
 
+    _versionUrl(v) {
+      // Safely join version base URL with current page's relative path
+      try {
+        return new URL(this.relPath, v.url).href;
+      } catch {
+        return v.url;
+      }
+    },
+
     async _fetchVersions(url) {
       try {
         const resp = await fetch(url);
@@ -40,10 +49,16 @@ export default function versionSwitcher() {
           return;
         }
         const data = await resp.json();
-        this.versions = data;
+        if (!Array.isArray(data)) {
+          this.error = true;
+          return;
+        }
+        this.versions = data.filter(
+          (v) => v && typeof v.version === "string" && typeof v.url === "string"
+        );
 
         // Find the current version and set the display label
-        const current = data.find((v) => v.version === this.match);
+        const current = this.versions.find((v) => v.version === this.match);
         if (current) {
           this.currentLabel = current.name || current.version;
         }

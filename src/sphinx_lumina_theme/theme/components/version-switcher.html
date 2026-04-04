@@ -3,9 +3,9 @@
          x-data="versionSwitcher()"
          data-json-url="{{ lumina_version_json }}"
          data-version-match="{{ lumina_version_match }}"
-         class="relative">
+         class="relative"
+         @keydown.escape="open = false">
         <button @click="toggle()"
-                @keydown.escape="open = false"
                 :aria-expanded="open"
                 aria-haspopup="true"
                 aria-label="Select documentation version"
@@ -32,7 +32,7 @@
              class="absolute left-0 top-full mt-1 min-w-[10rem] rounded-lg border border-[var(--lumina-border)] bg-[var(--lumina-bg)] py-1 shadow-lg"
              role="menu">
             <template x-for="v in versions" :key="v.version">
-                <a :href="v.url + relPath"
+                <a :href="_versionUrl(v)"
                    class="flex items-center gap-2 px-3 py-1.5 text-[0.8125rem] text-[var(--lumina-text-muted)] hover:text-[var(--lumina-text)] hover:bg-[var(--lumina-bg-secondary)] transition-colors no-underline"
                    :class="v.version === match && 'font-medium text-[var(--lumina-accent)]'"
                    role="menuitem">
