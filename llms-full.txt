@@ -13,7 +13,7 @@ How to set up a development environment and contribute to the Sphinx Lumina Them
 
 You need the following tools installed:
 
-- **Python 3.10+** and [uv](https://docs.astral.sh/uv/) for Python dependency management
+- **Python 3.12+** and [uv](https://docs.astral.sh/uv/) for Python dependency management
 - **Node.js 18+** and [pnpm](https://pnpm.io/) for JavaScript dependency management
 
 ## Development Setup
@@ -630,7 +630,7 @@ The MyST syntax:
 
 ## Badges in Context
 
-Badges work naturally inline with text: The API is stable and supports Python 3.10+. The old endpoint is deprecated.
+Badges work naturally inline with text: The API is stable and supports Python 3.12+. The old endpoint is deprecated.
 
 ## Buttons
 
@@ -1006,7 +1006,7 @@ database:
 [project]
 name = "my-project"
 version = "1.0.0"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -2293,7 +2293,7 @@ pip install sphinx myst-parser
 sphinx-quickstart docs
 ```
 
-Lumina requires **Python 3.10+** and **Sphinx 8.0+**.
+Lumina requires **Python 3.12+** and **Sphinx 8.0+**.
 
 ## Install the Theme
 
@@ -2528,7 +2528,7 @@ Nested unordered lists:
 Nested ordered lists:
 
 1. Install dependencies
-   1. Install Python 3.10+
+   1. Install Python 3.12+
    2. Install Node.js 18+
 2. Configure the project
    1. Copy the example config

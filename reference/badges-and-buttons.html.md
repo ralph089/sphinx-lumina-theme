@@ -48,7 +48,7 @@ The MyST syntax:
 
 ## Badges in Context
 
-Badges work naturally inline with text: The API is stable and supports Python 3.10+. The old endpoint is deprecated.
+Badges work naturally inline with text: The API is stable and supports Python 3.12+. The old endpoint is deprecated.
 
 ## Buttons
 
