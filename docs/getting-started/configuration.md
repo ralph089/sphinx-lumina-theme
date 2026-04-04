@@ -250,6 +250,7 @@ html_theme_options = {
     "show_breadcrumbs": "true",
     "show_prev_next": "true",
     "show_attribution": "true",
+    "show_back_to_top": "true",
 
     # Search
     "search_backend": "pagefind",

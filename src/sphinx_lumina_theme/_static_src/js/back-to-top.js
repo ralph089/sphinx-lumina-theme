@@ -6,9 +6,14 @@ export default function backToTop() {
 
     init() {
       this._lastScrollY = window.scrollY;
-      window.addEventListener("scroll", () => this._onScroll(), {
+      this._scrollHandler = () => this._onScroll();
+      window.addEventListener("scroll", this._scrollHandler, {
         passive: true,
       });
+    },
+
+    destroy() {
+      window.removeEventListener("scroll", this._scrollHandler);
     },
 
     _onScroll() {
