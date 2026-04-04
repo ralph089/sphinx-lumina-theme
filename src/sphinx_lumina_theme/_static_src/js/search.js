@@ -2,6 +2,23 @@ import DOMPurify from "dompurify";
 
 const EXCERPT_CONFIG = { ALLOWED_TAGS: ["mark"], ALLOWED_ATTR: [] };
 
+const SECTION_LABELS = {
+  "getting-started": "Getting Started",
+  "guides": "Guides",
+  "reference": "Reference",
+  "extensions": "Extensions",
+  "contributing": "Contributing",
+};
+
+function sectionFromUrl(url) {
+  const segments = url.split("?")[0].split("#")[0]
+    .replace(/\.html$/, "")
+    .split("/")
+    .filter(Boolean);
+  if (segments.length < 2) return null;
+  return SECTION_LABELS[segments[segments.length - 2]] ?? null;
+}
+
 export default function searchModal() {
   return {
     open: false,
@@ -133,6 +150,7 @@ export default function searchModal() {
           title: r.meta?.title || "Untitled",
           url: r.url,
           excerpt: DOMPurify.sanitize(r.excerpt, EXCERPT_CONFIG),
+          section: sectionFromUrl(r.url),
         }));
       } else {
         this.results = [

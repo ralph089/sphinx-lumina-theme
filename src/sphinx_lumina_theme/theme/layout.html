@@ -71,7 +71,7 @@
 
         </aside>
         <main id="lumina-content" data-pagefind-body>
-            <div class="lumina-content-toolbar">
+            <div class="lumina-content-toolbar" data-pagefind-ignore>
                 {% if theme_show_breadcrumbs == "true" %}
                     <div class="min-w-0 flex-1">
 
@@ -121,7 +121,8 @@
             </article>
             {% if theme_show_prev_next == "true" %}
 
-                {% include "components/footer.html" %}
+                <div data-pagefind-ignore>{% include "components/footer.html" %}</div>
+
 
             {% endif %}
         </main>
