@@ -1,5 +1,41 @@
 # Releases
 
+## v1.22.1 (2026-04-04)
+
+### Bug Fixes
+
+- Try It Out panel — Safari crash, collapsed content leak, polish
+  ([#43](https://github.com/r4sky0/sphinx-lumina-theme/pull/43),
+  [`810df2d`](https://github.com/r4sky0/sphinx-lumina-theme/commit/810df2d66f0d2c805e0aae69d5bdf00876b921c5))
+
+## v1.22.0 (2026-04-04)
+
+### Features
+
+- Add dismissible announcement banner ([#38](https://github.com/r4sky0/sphinx-lumina-theme/pull/38),
+  [`62fbccd`](https://github.com/r4sky0/sphinx-lumina-theme/commit/62fbccd6b1fb4e603ec95d30c955287d33058881))
+
+## v1.21.1 (2026-04-04)
+
+### Bug Fixes
+
+- Fix README for PyPI ([#42](https://github.com/r4sky0/sphinx-lumina-theme/pull/42),
+  [`95e6383`](https://github.com/r4sky0/sphinx-lumina-theme/commit/95e63838506da78dda11ab221a962bde0d627a9c))
+
+## v1.21.0 (2026-04-04)
+
+### Features
+
+- Add separate light/dark mode logos ([#40](https://github.com/r4sky0/sphinx-lumina-theme/pull/40),
+  [`bd5a86a`](https://github.com/r4sky0/sphinx-lumina-theme/commit/bd5a86a9fac808bff4e0a9a32be7151e013e249a))
+
+## v1.20.0 (2026-04-04)
+
+### Features
+
+- Add back-to-top button ([#39](https://github.com/r4sky0/sphinx-lumina-theme/pull/39),
+  [`312335e`](https://github.com/r4sky0/sphinx-lumina-theme/commit/312335e4830b2251e6ee579dd8b1a3d9a6277519))
+
 ## v1.19.0 (2026-04-04)
 
 ### Features

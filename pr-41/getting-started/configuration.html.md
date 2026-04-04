@@ -28,11 +28,19 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
 
 ### Appearance
 
-| Option              | Type   | Default     | Description                                                                                  |
-|---------------------|--------|-------------|----------------------------------------------------------------------------------------------|
-| `accent_color`      | string | `"#10b981"` | Primary brand color used for links, active states, and accents. Any valid CSS color.         |
-| `dark_mode_default` | string | `"auto"`    | Initial color mode. `"auto"` follows system preference, `"light"` and `"dark"` force a mode. |
-| `logo_only`         | string | `"false"`   | When `"true"`, hides the project name in the header and shows only the logo.                 |
+| Option              | Type   | Default     | Description                                                                                                                                                   |
+|---------------------|--------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `accent_color`      | string | `"#10b981"` | Primary brand color used for links, active states, and accents. Any valid CSS color.                                                                          |
+| `dark_mode_default` | string | `"auto"`    | Initial color mode. `"auto"` follows system preference, `"light"` and `"dark"` force a mode.                                                                  |
+| `logo_only`         | string | `"false"`   | When `"true"`, hides the project name in the header and shows only the logo.                                                                                  |
+| `light_logo`        | string | `""`        | Logo image for light mode (path relative to `_static`). Falls back to `html_logo`.                                                                            |
+| `dark_logo`         | string | `""`        | Logo image for dark mode (path relative to `_static`). When set alone, displays in both modes. Set both `light_logo` and `dark_logo` for automatic switching. |
+
+### Announcement
+
+| Option         | Type   | Default   | Description                                                                                                                                                                                                      |
+|----------------|--------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `announcement` | string | `""`      | HTML content for a dismissible banner above the header. Supports links and inline formatting. Users can dismiss it; the preference persists in `localStorage` and resets automatically when the content changes. |
 
 ### Navigation
 
@@ -44,6 +52,7 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
 | `show_breadcrumbs` | string | `"true"`  | Show or hide the breadcrumb trail above the content.                                                                                                                                                     |
 | `show_prev_next`   | string | `"true"`  | Show or hide previous/next page navigation at the bottom.                                                                                                                                                |
 | `show_attribution` | string | `"true"`  | Show or hide the “Built with Lumina” attribution link in the sidebar footer.                                                                                                                             |
+| `show_back_to_top` | string | `"true"`  | Show or hide the back-to-top button that appears when scrolling up.                                                                                                                                      |
 
 ### Version Switcher
 
@@ -114,6 +123,11 @@ html_theme_options = {
     "accent_color": "#10b981",
     "dark_mode_default": "auto",
     "logo_only": "false",
+    "light_logo": "logo-light.svg",
+    "dark_logo": "logo-dark.svg",
+
+    # Announcement
+    "announcement": 'New in v2.0 — <a href="/changelog">see what changed</a>!',
 
     # Navigation
     "nav_links": [
@@ -132,6 +146,7 @@ html_theme_options = {
     "show_breadcrumbs": "true",
     "show_prev_next": "true",
     "show_attribution": "true",
+    "show_back_to_top": "true",
 
     # Version switcher
     "version_switcher_json": "https://example.com/versions.json",
