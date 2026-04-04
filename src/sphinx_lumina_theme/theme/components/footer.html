@@ -20,6 +20,19 @@
             {% endif %}
         </nav>
     {% endif %}
+    {# Last updated #}
+    {% if last_updated %}
+        <p class="mb-4 flex items-center gap-1.5 text-xs text-[var(--lumina-text-muted)]">
+            <svg class="h-3.5 w-3.5 shrink-0"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Last updated <time>{{ last_updated }}</time>
+        </p>
+    {% endif %}
     {# Footer text #}
     {% if theme_footer_text and theme_footer_text != "" %}
         <div class="text-center text-sm text-[var(--lumina-text-muted)] pb-6">{{ theme_footer_text }}</div>

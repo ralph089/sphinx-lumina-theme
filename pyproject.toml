@@ -19,6 +19,7 @@ dev = [
     "sphinxcontrib-mermaid>=1.0",
     "sphinxcontrib-openapi>=0.8",
     "sphinxcontrib-httpdomain>=2.0",
+    "sphinx-last-updated-by-git>=0.3",
     "sphinx-autobuild>=2024.0",
     "ruff>=0.11",
     "djlint>=1.36",

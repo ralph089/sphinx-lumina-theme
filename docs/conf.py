@@ -10,7 +10,10 @@ extensions = [
     "sphinxcontrib.mermaid",
     "sphinxcontrib.openapi",
     "sphinx_llm.txt",
+    "sphinx_last_updated_by_git",
 ]
+html_last_updated_fmt = "%B %-d, %Y"
+suppress_warnings = ["git.too_shallow"]
 myst_enable_extensions = [
     "colon_fence",
     "amsmath",
