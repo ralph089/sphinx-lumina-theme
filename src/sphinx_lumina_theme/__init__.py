@@ -38,7 +38,7 @@ def _add_context(app, pagename, templatename, context, doctree):
     if announcement:
         context["announcement_content"] = announcement
         context["announcement_id"] = hashlib.md5(
-            announcement.encode()
+            announcement.encode(), usedforsecurity=False
         ).hexdigest()[:8]
 
     # Allow pages to opt into a custom template via metadata
