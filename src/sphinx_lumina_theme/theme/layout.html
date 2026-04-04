@@ -34,7 +34,11 @@
     {% endif %}
     {% if theme_try_it_out == "false" %}<script>document.documentElement.dataset.tryItOut = "false";</script>{% endif %}
     {% if theme_accent_color != "#10b981" %}
-        <style>:root,[data-theme="light"],[data-theme="dark"]{--lumina-accent:{{ theme_accent_color }};}</style>
+        <style>
+            :root,[data-theme="light"]{--lumina-accent:{{ theme_accent_color }};--lumina-accent-light:color-mix(in srgb,{{ theme_accent_color }} 12%,white);}
+            [data-theme="dark"]{--lumina-accent:{{ theme_accent_color }};--lumina-accent-light:color-mix(in srgb,{{ theme_accent_color }} 15%,#09090b);}
+            html:root,html[data-theme="dark"]{--sd-color-primary:color-mix(in srgb,{{ theme_accent_color }} 85%,black);--sd-color-primary-highlight:color-mix(in srgb,{{ theme_accent_color }} 70%,black);--sd-color-primary-text:#fff;--sd-color-primary-bg:color-mix(in srgb,{{ theme_accent_color }} 12%,transparent);}
+        </style>
     {% endif %}
     {% if has_llms_txt %}
         <link rel="alternate"
