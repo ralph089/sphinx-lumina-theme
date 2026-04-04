@@ -54,6 +54,13 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
 | `show_attribution` | string | `"true"`  | Show or hide the “Built with Lumina” attribution link in the sidebar footer.                                                                                                                             |
 | `show_back_to_top` | string | `"true"`  | Show or hide the back-to-top button that appears when scrolling up.                                                                                                                                      |
 
+### Version Switcher
+
+| Option                   | Type   | Default   | Description                                                                                            |
+|--------------------------|--------|-----------|--------------------------------------------------------------------------------------------------------|
+| `version_switcher_json`  | string | `""`      | URL to a JSON file listing available documentation versions. Enables a version dropdown in the header. |
+| `version_switcher_match` | string | `""`      | The current version string to highlight in the dropdown. Should match a `version` field in the JSON.   |
+
 ### Search
 
 | Option           | Type   | Default      | Description                                                                                            |
@@ -140,6 +147,10 @@ html_theme_options = {
     "show_prev_next": "true",
     "show_attribution": "true",
     "show_back_to_top": "true",
+
+    # Version switcher
+    "version_switcher_json": "https://example.com/versions.json",
+    "version_switcher_match": "1.17",
 
     # Search
     "search_backend": "pagefind",

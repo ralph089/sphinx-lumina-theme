@@ -1250,6 +1250,13 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
 | `show_attribution` | string | `"true"`  | Show or hide the “Built with Lumina” attribution link in the sidebar footer.                                                                                                                             |
 | `show_back_to_top` | string | `"true"`  | Show or hide the back-to-top button that appears when scrolling up.                                                                                                                                      |
 
+### Version Switcher
+
+| Option                   | Type   | Default   | Description                                                                                            |
+|--------------------------|--------|-----------|--------------------------------------------------------------------------------------------------------|
+| `version_switcher_json`  | string | `""`      | URL to a JSON file listing available documentation versions. Enables a version dropdown in the header. |
+| `version_switcher_match` | string | `""`      | The current version string to highlight in the dropdown. Should match a `version` field in the JSON.   |
+
 ### Search
 
 | Option           | Type   | Default      | Description                                                                                            |
@@ -1336,6 +1343,10 @@ html_theme_options = {
     "show_prev_next": "true",
     "show_attribution": "true",
     "show_back_to_top": "true",
+
+    # Version switcher
+    "version_switcher_json": "https://example.com/versions.json",
+    "version_switcher_match": "1.17",
 
     # Search
     "search_backend": "pagefind",
@@ -2395,6 +2406,8 @@ Inline and display equations, labeled references, multi-line systems, and matric
 
 Document REST endpoints from OpenAPI specs or hand-written directives. Every endpoint gets a **Copy as curl** button and a collapsible **Try it out** panel — no Swagger UI required.
 
+Let readers switch between documentation versions with a dropdown loaded from a JSON file you host alongside your docs.
+
 Source Sans 3 and JetBrains Mono are bundled with the theme. No external CDN requests, no privacy concerns.
 
 ## Built with
@@ -3143,6 +3156,43 @@ html_theme_options = {
     "show_prev_next": "false",
 }
 ```
+
+## Version Switcher
+
+Display a dropdown in the header that lets readers switch between documentation versions. The version list loads from a JSON file you host alongside your docs.
+
+### Setup
+
+1. **Create a `versions.json` file** and host it at a stable URL:
+
+```json
+[
+  {"version": "latest", "url": "https://example.com/en/latest/", "name": "dev (latest)"},
+  {"version": "1.17", "url": "https://example.com/en/1.17/"},
+  {"version": "1.16", "url": "https://example.com/en/1.16/"}
+]
+```
+
+Each entry has:
+
+- **`version`** (required) – version identifier, used to match `version_switcher_match`
+- **`url`** (required) – base URL for that version’s docs (must end with `/`)
+- **`name`** (optional) – display label, falls back to `version`
+
+1. **Configure the theme** in your `conf.py`:
+
+```python
+html_theme_options = {
+    "version_switcher_json": "https://example.com/versions.json",
+    "version_switcher_match": "1.17",
+}
+```
+
+The `version_switcher_match` value should match a `version` field in your JSON. The dropdown highlights that entry as “(current)”.
+
+### How It Works
+
+When a reader selects a different version, the switcher navigates to the same page path on the selected version’s URL. For example, viewing `https://example.com/en/1.17/guides/search.html` and selecting “latest” navigates to `https://example.com/en/latest/guides/search.html`.
 
 
 # openapi.html.md

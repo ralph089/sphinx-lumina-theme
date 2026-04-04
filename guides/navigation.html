@@ -7,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-04T09:02:51+00:00" />
+    <meta property="article:modified_time" content="2026-04-04T18:28:33+00:00" />
     <title>Navigation &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=3f9be52b" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=3acb9841" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     
@@ -121,6 +121,9 @@
                     <span class="font-semibold text-base">Sphinx Lumina Theme</span>
                 
             </a>
+
+            
+
         </div>
         
         
@@ -571,6 +574,49 @@
 </div>
 </div>
 </section>
+<section id="version-switcher">
+<h2>Version Switcher<a class="headerlink" href="#version-switcher" title="Link to this heading">¶</a></h2>
+<p>Display a dropdown in the header that lets readers switch between documentation versions. The version list loads from a JSON file you host alongside your docs.</p>
+<section id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create a <code class="docutils literal notranslate"><span class="pre">versions.json</span></code> file</strong> and host it at a stable URL:</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">versions.json</span><a class="headerlink" href="#id8" title="Link to this code">¶</a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latest&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/en/latest/&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev (latest)&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.17&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/en/1.17/&quot;</span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.16&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://example.com/en/1.16/&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Each entry has:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">version</span></code></strong> (required) – version identifier, used to match <code class="docutils literal notranslate"><span class="pre">version_switcher_match</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">url</span></code></strong> (required) – base URL for that version’s docs (must end with <code class="docutils literal notranslate"><span class="pre">/</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">name</span></code></strong> (optional) – display label, falls back to <code class="docutils literal notranslate"><span class="pre">version</span></code></p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Configure the theme</strong> in your <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">conf.py</span><a class="headerlink" href="#id9" title="Link to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;version_switcher_json&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/versions.json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;version_switcher_match&quot;</span><span class="p">:</span> <span class="s2">&quot;1.17&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">version_switcher_match</span></code> value should match a <code class="docutils literal notranslate"><span class="pre">version</span></code> field in your JSON. The dropdown highlights that entry as “(current)”.</p>
+</section>
+<section id="how-it-works">
+<h3>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h3>
+<p>When a reader selects a different version, the switcher navigates to the same page path on the selected version’s URL. For example, viewing <code class="docutils literal notranslate"><span class="pre">https://example.com/en/1.17/guides/search.html</span></code> and selecting “latest” navigates to <code class="docutils literal notranslate"><span class="pre">https://example.com/en/latest/guides/search.html</span></code>.</p>
+</section>
+</section>
 </section>
 
 
@@ -659,6 +705,11 @@
 <li><a class="reference internal" href="#breadcrumbs">Breadcrumbs</a></li>
 <li><a class="reference internal" href="#page-table-of-contents">Page Table of Contents</a></li>
 <li><a class="reference internal" href="#previous-next-navigation">Previous / Next Navigation</a></li>
+<li><a class="reference internal" href="#version-switcher">Version Switcher</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#how-it-works">How It Works</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
