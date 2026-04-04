@@ -2,6 +2,15 @@
 
 <!-- releases -->
 
+## v1.24.0 (2026-04-04)
+
+### Features
+
+- Improve performance - defer scripts, optimize fluid sim, preload font
+  ([#47](https://github.com/r4sky0/sphinx-lumina-theme/pull/47),
+  [`619dd30`](https://github.com/r4sky0/sphinx-lumina-theme/commit/619dd30a789297c5ab698e297d0f75d81eb74e8a))
+
+
 ## v1.23.0 (2026-04-04)
 
 ### Features
