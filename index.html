@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 
 <html lang="en" data-content_root="./">
@@ -28,6 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introduction" href="introduction.html" />
+
     
 
     
@@ -66,6 +68,7 @@
     <link rel="stylesheet"
           href="_static/showcase-landing.css">
 
+
   </head><body>
 
 
@@ -73,7 +76,9 @@
 
     <a href="#lumina-content" class="lumina-skip-link">Skip to content</a>
     
-    <div id="lumina-header"><header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
+    <div id="lumina-header">
+
+        <header class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--lumina-border)] bg-[var(--lumina-bg)]/80 backdrop-blur-sm">
     <div class="mx-auto flex h-14 max-w-[90rem] items-center justify-between px-4 lg:px-6">
         
         <div class="flex items-center gap-3">
@@ -184,7 +189,9 @@
             
         </div>
     </div>
-</header></div>
+</header>
+
+    </div>
     
     <section class="lumina-hero" x-data="fluidSimulation()">
         <canvas x-ref="canvas" class="lumina-hero-canvas" aria-hidden="true"></canvas>
@@ -227,10 +234,48 @@
                 
             </div>
             <div class="lumina-hero-tags">
-                <span>Dark Mode</span>
-                <span>Instant Search</span>
-                <span>MyST Markdown</span>
-                <span>Responsive</span>
+                <span>
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor" />
+                    </svg>
+                    Dark Mode
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="10.5" cy="10.5" r="7" />
+                        <path d="m21 21-5.2-5.2" />
+                    </svg>
+                    Instant Search
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="m8 7-5 5 5 5" />
+                        <path d="m16 7 5 5-5 5" />
+                    </svg>
+                    MyST Markdown
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5"
+                         stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <rect x="2" y="3" width="13" height="10" rx="1.5" /><rect x="14" y="9" width="8" height="12" rx="1.5" />
+                    </svg>
+                    Responsive
+                </span>
             </div>
         </div>
     </section>
@@ -238,14 +283,18 @@
           class="lumina-landing-content is-empty"
           data-pagefind-body>
         <article class="lumina-article">
+
             <section class="tex2jax_ignore mathjax_ignore" id="sphinx-lumina-theme">
 <h1 class="sd-d-none">Sphinx Lumina Theme<a class="headerlink" href="#sphinx-lumina-theme" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
 
+
+
         </article>
     </main>
+
     <div id="lumina-search-modal"
      x-data="searchModal()"
      x-show="open"
