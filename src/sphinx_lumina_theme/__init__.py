@@ -27,12 +27,9 @@ def _add_context(app, pagename, templatename, context, doctree):
     light_logo = app.builder.theme_options.get("light_logo", "")
     dark_logo = app.builder.theme_options.get("dark_logo", "")
 
-    if light_logo and dark_logo:
+    if light_logo:
         context["lumina_light_logo"] = context["pathto"]("_static/" + light_logo, 1)
-        context["lumina_dark_logo"] = context["pathto"]("_static/" + dark_logo, 1)
-    elif light_logo:
-        context["lumina_light_logo"] = context["pathto"]("_static/" + light_logo, 1)
-    elif dark_logo:
+    if dark_logo:
         context["lumina_dark_logo"] = context["pathto"]("_static/" + dark_logo, 1)
 
     # Allow pages to opt into a custom template via metadata

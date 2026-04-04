@@ -60,7 +60,7 @@ All options go in `html_theme_options` in your `conf.py`. Every option has a sen
 * - `dark_logo`
   - string
   - `""`
-  - Logo image for dark mode (path relative to `_static`). Falls back to `light_logo`, then `html_logo`.
+  - Logo image for dark mode (path relative to `_static`). When set alone, displays in both modes. Set both `light_logo` and `dark_logo` for automatic switching.
 ```
 
 ### Navigation
