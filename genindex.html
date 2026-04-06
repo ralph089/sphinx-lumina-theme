@@ -11,6 +11,7 @@
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="_static/lumina.css?v=e24303bc" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_js.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <script defer="defer" src="_static/documentation_options.js?v=5929fcd5"></script>
     <script defer="defer" src="_static/doctools.js?v=fd6eb6e6"></script>
@@ -528,7 +529,11 @@ window.runMermaid = runMermaid;</script>
                     class="shrink-0 rounded p-0.5 text-white/80 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                     aria-label="Dismiss announcement"
                     type="button">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-4 w-4"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -546,7 +551,8 @@ window.runMermaid = runMermaid;</script>
                     <svg class="lumina-logo h-7 w-7"
                          viewBox="0 0 32 32"
                          fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
+                         xmlns="http://www.w3.org/2000/svg"
+                         aria-hidden="true">
                         <path d="M16 3L28 27H4L16 3Z" stroke="var(--lumina-accent)" stroke-width="2" fill="none" />
                         <path class="lumina-logo-facet-l" d="M16 10L8 27H16" fill="var(--lumina-accent)" />
                         <path class="lumina-logo-facet-r" d="M16 10L24 27H16" fill="var(--lumina-accent)" />
@@ -573,7 +579,8 @@ window.runMermaid = runMermaid;</script>
                 <svg class="h-4 w-4 shrink-0"
                      fill="none"
                      stroke="currentColor"
-                     viewBox="0 0 24 24">
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <span class="hidden lg:inline flex-1 text-left">Search docs...</span>
@@ -597,7 +604,8 @@ window.runMermaid = runMermaid;</script>
                      class="h-5 w-5 absolute"
                      fill="none"
                      stroke="currentColor"
-                     viewBox="0 0 24 24">
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
                 
@@ -611,7 +619,8 @@ window.runMermaid = runMermaid;</script>
                      class="h-5 w-5 absolute"
                      fill="none"
                      stroke="currentColor"
-                     viewBox="0 0 24 24">
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                 </svg>
                 
@@ -625,7 +634,8 @@ window.runMermaid = runMermaid;</script>
                      class="h-5 w-5 absolute"
                      fill="none"
                      stroke="currentColor"
-                     viewBox="0 0 24 24">
+                     viewBox="0 0 24 24"
+                     aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
             </button>
@@ -638,7 +648,10 @@ window.runMermaid = runMermaid;</script>
                        rel="noopener"
                        aria-label="Github (opens in new tab)">
                         
-                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <svg class="h-5 w-5"
+                                 fill="currentColor"
+                                 viewBox="0 0 24 24"
+                                 aria-hidden="true">
                                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                             </svg>
                         
@@ -652,7 +665,11 @@ window.runMermaid = runMermaid;</script>
                         aria-label="Toggle navigation"
                         aria-expanded="false"
                         aria-controls="lumina-sidebar-drawer">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-5 w-5"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24"
+                         aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
@@ -693,6 +710,7 @@ window.runMermaid = runMermaid;</script>
 <li class="toctree-l2"><a class="reference internal" href="extensions/mermaid.html">Mermaid Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/openapi.html">OpenAPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-llm.html">sphinx-llm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-js.html">sphinx-js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-last-updated-by-git.html">sphinx-last-updated-by-git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/mathjax.html">MathJax</a></li>
 </ul>
@@ -714,6 +732,7 @@ window.runMermaid = runMermaid;</script>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing/architecture.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/javascript-api.html">JavaScript API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
@@ -767,7 +786,11 @@ window.runMermaid = runMermaid;</script>
                         @click="close()"
                         class="absolute top-4 right-4 rounded-md p-1 text-[var(--lumina-text-muted)] hover:text-[var(--lumina-text)] cursor-pointer"
                         aria-label="Close navigation">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-5 w-5"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24"
+                         aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
@@ -798,6 +821,7 @@ window.runMermaid = runMermaid;</script>
 <li class="toctree-l2"><a class="reference internal" href="extensions/mermaid.html">Mermaid Diagrams</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/openapi.html">OpenAPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-llm.html">sphinx-llm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-js.html">sphinx-js</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/sphinx-last-updated-by-git.html">sphinx-last-updated-by-git</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extensions/mathjax.html">MathJax</a></li>
 </ul>
@@ -819,6 +843,7 @@ window.runMermaid = runMermaid;</script>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing/architecture.html">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/javascript-api.html">JavaScript API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releases.html">Releases</a></li>
@@ -873,6 +898,7 @@ window.runMermaid = runMermaid;</script>
                          viewBox="0 0 24 24"
                          fill="none"
                          stroke="currentColor"
+                         aria-hidden="true"
                          stroke-width="2"
                          stroke-linecap="round"
                          stroke-linejoin="round">
@@ -885,6 +911,7 @@ window.runMermaid = runMermaid;</script>
                          viewBox="0 0 24 24"
                          fill="none"
                          stroke="currentColor"
+                         aria-hidden="true"
                          stroke-width="2"
                          stroke-linecap="round"
                          stroke-linejoin="round">
@@ -901,20 +928,38 @@ window.runMermaid = runMermaid;</script>
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#B"><strong>B</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#announcementBanner">announcementBanner() (built-in function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#backToTop">backToTop() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#boot">boot() (built-in function)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     built-in function
@@ -938,6 +983,14 @@ window.runMermaid = runMermaid;</script>
         <li><a href="reference/api-documentation.html#connect">built-in function</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#copyPage">copyPage() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#curlCopy">curlCopy() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#curlCopyBtn">curlCopyBtn() (built-in function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -969,6 +1022,10 @@ window.runMermaid = runMermaid;</script>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/api-documentation.html#EventEmitter.handlers">handlers (EventEmitter attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#headerLinks">headerLinks() (built-in function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1003,6 +1060,14 @@ window.runMermaid = runMermaid;</script>
   </ul></td>
 </tr></table>
 
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#navDropdown">navDropdown() (built-in function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -1026,6 +1091,14 @@ window.runMermaid = runMermaid;</script>
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#scrollspy">scrollspy() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#searchModal">searchModal() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#sidebar">sidebar() (built-in function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reference/footnotes-and-references.html#term-Sphinx"><strong>Sphinx</strong></a>
 </li>
       <li>
@@ -1035,9 +1108,29 @@ window.runMermaid = runMermaid;</script>
         <li><a href="reference/api-documentation.html#module-sphinx_lumina_theme">module</a>
 </li>
       </ul></li>
+      <li><a href="reference/api-documentation.html#sphinx_lumina_theme.SUPPORTED_SEARCH_BACKENDS">SUPPORTED_SEARCH_BACKENDS (in module sphinx_lumina_theme)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#themeToggle">themeToggle() (built-in function)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reference/api-documentation.html#sphinx_lumina_theme.SUPPORTED_SEARCH_BACKENDS">SUPPORTED_SEARCH_BACKENDS (in module sphinx_lumina_theme)</a>
+      <li><a href="contributing/javascript-api.html#tryIt">tryIt() (built-in function)</a>
+</li>
+      <li><a href="contributing/javascript-api.html#tryItPanel">tryItPanel() (built-in function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="contributing/javascript-api.html#versionSwitcher">versionSwitcher() (built-in function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1088,7 +1181,11 @@ window.runMermaid = runMermaid;</script>
                 class="fixed bottom-6 right-6 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--lumina-border)] bg-[var(--lumina-bg)] text-[var(--lumina-text-muted)] shadow-md hover:text-[var(--lumina-text)] hover:border-[var(--lumina-accent)] hover:shadow-lg transition-all cursor-pointer"
                 aria-label="Back to top"
                 type="button">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
             </svg>
         </button>
@@ -1127,7 +1224,8 @@ window.runMermaid = runMermaid;</script>
             <svg class="h-5 w-5 text-[var(--lumina-text-muted)]"
                  fill="none"
                  stroke="currentColor"
-                 viewBox="0 0 24 24">
+                 viewBox="0 0 24 24"
+                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input type="search"

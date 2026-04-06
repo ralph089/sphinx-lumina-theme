@@ -42,7 +42,7 @@ pnpm run dev            # Watch mode (unminified, sourcemaps)
 
 Alpine.js components are registered via `Alpine.data()` in separate modules under `_static_src/js/`. Each component is imported and registered in `app.js`, then referenced in templates with `x-data`.
 
-Components: scrollspy, themeToggle, searchModal, sidebar, headerLinks, copyPage.
+See {doc}`javascript-api` for the full component API reference.
 
 ## Theming
 

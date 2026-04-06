@@ -68,6 +68,8 @@ Tests use pytest with BeautifulSoup for HTML assertions. The `build_output` fixt
 
 Learn how the theme is structured — build pipeline, templates, Alpine.js components, and testing.
 
+Auto-generated reference for every Alpine.js component in the theme.
+
 
 # index.html.md
 
@@ -84,6 +86,8 @@ Copy-to-clipboard button on every code block.
 Flowcharts, sequence diagrams, class diagrams, and more.
 
 Auto-generated HTTP API docs from OpenAPI specs.
+
+Auto-generated JavaScript API docs from JSDoc comments.
 
 LLM-friendly docs following the llms.txt convention.
 
@@ -121,6 +125,7 @@ extensions = [
     "sphinx_llm.txt",
 
     # API documentation (if applicable)
+    "sphinx_js",                    # JS API from JSDoc
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
@@ -555,7 +560,7 @@ pnpm run dev            # Watch mode (unminified, sourcemaps)
 
 Alpine.js components are registered via `Alpine.data()` in separate modules under `_static_src/js/`. Each component is imported and registered in `app.js`, then referenced in templates with `x-data`.
 
-Components: scrollspy, themeToggle, searchModal, sidebar, headerLinks, copyPage.
+See [JavaScript API](javascript-api.md) for the full component API reference.
 
 ## Theming
 
@@ -2426,6 +2431,264 @@ The theme extends Sphinx’s built-in `basic` theme, so it inherits all of Sphin
 Ready to try it? Head to the [Getting Started](getting-started/index.md) guide to install Lumina and configure it for your project.
 
 
+# javascript-api.html.md
+
+# JavaScript API
+
+Auto-generated reference for the theme’s Alpine.js components. Each component is a factory function registered via `Alpine.data()` in [the entry point]() and referenced in Jinja2 templates with `x-data`.
+
+## Entry Point
+
+### boot()
+
+Initializes the theme by starting Alpine.js and running post-render
+boot functions (curlCopy, tryIt). Called on DOMContentLoaded or
+immediately if the DOM is already ready.
+
+## Navigation
+
+### scrollspy()
+
+Factory for the scrollspy Alpine component.
+Registered as `Alpine.data("scrollspy", scrollspy)`.
+
+**Properties:**
+
+- `activeId`  *(string|null)* — The `id` of the currently visible section.
+- `observer`  *(IntersectionObserver|null)* — The observer instance.
+
+**Methods:**
+
+- `init()` — Collects TOC link targets and starts observing.
+- `updateActive(nav)` — Toggles the `lumina-toc-active` class on TOC links.
+- `destroy()` — Disconnects the IntersectionObserver.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### sidebar()
+
+Factory for the sidebar Alpine component.
+Registered as `Alpine.data("sidebar", sidebar)`.
+
+**Properties:**
+
+- `mobileOpen`  *(boolean)* — Whether the mobile sidebar is visible.
+
+**Methods:**
+
+- `toggle()` — Toggles the sidebar and locks/unlocks body scroll.
+- `close()` — Closes the sidebar and restores focus.
+- `init()` — Attaches toggle button handlers and a media-query listener.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### navDropdown()
+
+Factory for the nav-dropdown Alpine component.
+Registered as `Alpine.data("navDropdown", navDropdown)`.
+
+**Properties:**
+
+- `open`  *(boolean)* — Whether the dropdown is visible.
+
+**Methods:**
+
+- `toggle()` — Toggles the dropdown open/closed.
+- `show()` — Opens the dropdown, cancelling any pending hide timer.
+- `hide()` — Closes the dropdown after a 150 ms delay.
+- `cancelHide()` — Cancels a pending hide (e.g. when re-entering the dropdown).
+- `handleKeydown(e)` — Closes on Escape and returns focus to the trigger.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### versionSwitcher()
+
+Factory for the version-switcher Alpine component.
+Registered as `Alpine.data("versionSwitcher", versionSwitcher)`.
+
+**Properties:**
+
+- `open`  *(boolean)* — Whether the version dropdown is visible.
+- `versions`  *(Array)* — Fetched array of `{ version, name, url }` objects.
+- `currentLabel`  *(string)* — Display label for the active version.
+- `error`  *(boolean)* — Whether version fetching failed.
+
+**Methods:**
+
+- `init()` — Reads config attributes and fetches the version manifest.
+- `toggle()` — Toggles the dropdown open/closed.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+## UI Controls
+
+### themeToggle()
+
+Factory for the theme-toggle Alpine component.
+Registered as `Alpine.data("themeToggle", themeToggle)`.
+
+**Properties:**
+
+- `mode`  *(string)* — Current mode: `"auto"`, `"light"`, or `"dark"`.
+
+**Methods:**
+
+- `init()` — Reads stored preference, applies the theme, and listens for OS changes.
+- `cycle()` — Advances the mode: auto → light → dark → auto.
+- `apply()` — Applies the effective theme to `document.documentElement`.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### searchModal()
+
+Factory for the search modal Alpine component.
+Registered as `Alpine.data("searchModal", searchModal)`.
+
+**Properties:**
+
+- `open`  *(boolean)* — Whether the modal is visible.
+- `query`  *(string)* — Current search input value.
+- `results`  *(Array)* — Array of search result objects.
+- `selectedIndex`  *(number)* — Index of the keyboard-highlighted result.
+- `loaded`  *(boolean)* — Whether the search engine has been initialized.
+- `error`  *(string|null)* — Error message, if search initialization failed.
+- `backend`  *(string)* — Search backend: `"pagefind"` or `"sphinx"`.
+
+**Methods:**
+
+- `init()` — Sets up keyboard shortcuts and trigger buttons.
+- `toggle()` — Opens or closes the modal.
+- `openModal()` — Opens the modal, loads the search engine on first use.
+- `close()` — Closes the modal and restores focus.
+- `search()` — Runs a search query and populates results.
+- `moveDown()` — Moves keyboard selection down.
+- `moveUp()` — Moves keyboard selection up.
+- `goToSelected()` — Navigates to the selected result.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### backToTop()
+
+Factory for the back-to-top Alpine component.
+Registered as `Alpine.data("backToTop", backToTop)`.
+
+**Properties:**
+
+- `visible`  *(boolean)* — Whether the button is currently shown.
+
+**Methods:**
+
+- `init()` — Attaches a passive scroll listener.
+- `destroy()` — Removes the scroll listener.
+- `scrollToTop()` — Scrolls the page to the top, respecting reduced-motion preference.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### announcementBanner()
+
+Factory for the announcement banner Alpine component.
+Registered as `Alpine.data("announcementBanner", announcementBanner)`.
+
+**Methods:**
+
+- `init()` — Reads the announcement ID from `data-announcement-id`.
+- `dismiss()` — Hides the banner and persists the dismissal in localStorage.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+## Content Utilities
+
+### headerLinks()
+
+Factory for the header-links Alpine component.
+Registered as `Alpine.data("headerLinks", headerLinks)`.
+
+**Methods:**
+
+- `init()` — Attaches click handlers to all `.headerlink` elements.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### copyPage()
+
+Factory for the copy-page Alpine component.
+Registered as `Alpine.data("copyPage", copyPage)`.
+
+**Properties:**
+
+- `copied`  *(boolean)* — Briefly `true` after a successful copy.
+
+**Methods:**
+
+- `copy()` — Converts the article to Markdown and copies it to the clipboard.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+## API Tools
+
+### curlCopyBtn()
+
+Alpine.js data factory for the per-endpoint copy-curl button.
+Registered as `Alpine.data("curlCopyBtn", curlCopyBtn)`.
+
+**Properties:**
+
+- `copied`  *(boolean)* — Briefly `true` after a successful copy.
+
+**Methods:**
+
+- `copy()` — Copies the pre-built curl command to the clipboard.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### curlCopy()
+
+Boot function that scans the page for HTTP endpoints and injects
+copy-curl buttons. Called from `boot()` in app.js after `Alpine.start()`.
+
+### tryItPanel()
+
+Alpine.js data factory for the interactive request panel.
+Registered as `Alpine.data("tryItPanel", tryItPanel)`.
+
+**Properties:**
+
+- `open`  *(boolean)* — Whether the panel is expanded.
+- `sending`  *(boolean)* — True while a request is in-flight.
+- `response`  *(object|null)* — Last response (status, body, elapsed time).
+- `method`  *(string)* — HTTP method (GET, POST, etc.).
+- `path`  *(string)* — Endpoint path with `{param}` placeholders.
+- `baseUrl`  *(string)* — API base URL from theme options.
+
+**Methods:**
+
+- `init()` — Reads config injected by the boot function.
+- `send()` — Sends the request and populates the response.
+- `copyResponse()` — Copies the response body to the clipboard.
+- `clear()` — Resets the response and error state.
+
+* **Returns:**
+  **object** – Alpine.js component data.
+
+### tryIt()
+
+Boot function that scans the page for HTTP endpoints and injects
+interactive “Try It Out” panels. Called from `boot()` in app.js
+after `Alpine.start()`. Skipped if `data-try-it-out="false"`
+is set on `<html>`.
+
+
 # landing-page.html.md
 
 # Landing Page
@@ -3776,6 +4039,170 @@ See [Badges & Buttons](../reference/badges-and-buttons.md)
 Collapsible content sections.
 
 See [Admonitions](../reference/admonitions.md)
+
+
+# sphinx-js.html.md
+
+# sphinx-js
+
+[sphinx-js](https://github.com/mozilla/sphinx-js) auto-generates JavaScript API documentation from JSDoc comments in your source code. It runs [JSDoc](https://jsdoc.app/) under the hood and renders the output as native Sphinx content — fully styled by Lumina.
+
+## Setup
+
+Install both the Sphinx extension and JSDoc:
+
+```bash
+uv add --dev sphinx-js
+pnpm add -D jsdoc
+```
+
+Add the extension to your Sphinx configuration:
+
+```python
+extensions = ["sphinx_js"]
+
+js_source_path = "../src/js"          # path to your JS source (relative to conf.py)
+jsdoc_config_path = "../jsdoc.json"   # path to your JSDoc config
+```
+
+Create a JSDoc configuration file at the project root:
+
+```json
+{
+  "source": {
+    "include": ["src/js"],
+    "includePattern": ".+\\.js$"
+  },
+  "opts": {
+    "recurse": true
+  }
+}
+```
+
+#### WARNING
+Do **not** enable JSDoc’s `plugins/markdown` plugin. It converts descriptions to HTML before sphinx-js sees them, causing raw HTML tags to appear in the rendered output. sphinx-js expects plain text and handles formatting natively via reStructuredText.
+
+## Writing JSDoc Comments
+
+Add JSDoc blocks above your exported functions. sphinx-js picks up `@function`, `@returns`, `@param`, and description text.
+
+```javascript
+/**
+ * @module utils
+ * @description Helper utilities for the application.
+ */
+
+/**
+ * Format a date as a human-readable relative string (e.g. "3 days ago").
+ *
+ * @function formatRelativeDate
+ * @param {Date} date - The date to format.
+ * @param {string} [locale="en"] - BCP 47 locale tag.
+ * @returns {string} A relative time string.
+ */
+export function formatRelativeDate(date, locale = "en") {
+  // ...
+}
+```
+
+### Documenting Properties and Methods
+
+For factory functions that return objects (common with Alpine.js, Vue options, or similar patterns), list properties and methods in the description using RST-compatible formatting:
+
+```javascript
+/**
+ * Factory for the theme toggle component.
+ *
+ * **Properties:**
+ *
+ * - ``mode`` *(string)* — Current mode: ``"auto"``, ``"light"``, or ``"dark"``.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Reads stored preference and applies the theme.
+ * - ``cycle()`` — Advances to the next mode.
+ *
+ * @function themeToggle
+ * @returns {object} Component data object.
+ */
+export default function themeToggle() {
+  return {
+    mode: "auto",
+    init() { /* ... */ },
+    cycle() { /* ... */ },
+  };
+}
+```
+
+## Usage in Documentation
+
+Reference documented functions with the `js:autofunction` directive:
+
+```markdown
+```{js:autofunction} formatRelativeDate
+```
+```
+
+This renders the function signature, parameters, return type, and description — all pulled from the JSDoc comment.
+
+### Organizing Multiple Functions
+
+Group related functions under headings on a single page:
+
+```markdown
+# JavaScript API
+
+## Utilities
+
+```{js:autofunction} formatRelativeDate
+```
+
+```{js:autofunction} debounce
+```
+
+## Components
+
+```{js:autofunction} themeToggle
+```
+```
+
+### Other Directives
+
+sphinx-js provides several directives:
+
+| Directive          | Purpose                                            |
+|--------------------|----------------------------------------------------|
+| `js:autofunction`  | Document a single function or method.              |
+| `js:autoclass`     | Document a class with its constructor and members. |
+| `js:autoattribute` | Document a module-level constant or variable.      |
+| `js:automodule`    | Document all exports from a module at once.        |
+
+## Example Output
+
+This theme’s own JavaScript components are documented with sphinx-js. See the [JavaScript API](../contributing/javascript-api.md) page for a real-world example of all these patterns in action.
+
+## Troubleshooting
+
+### JSDoc can’t parse ES module imports
+
+Ensure you’re using JSDoc 4.x, which supports ES module syntax (`import`/`export`). Older versions require the `jsdoc-babel` plugin.
+
+```bash
+pnpm add -D jsdoc@^4.0
+```
+
+### Functions don’t appear in the output
+
+- Verify the function has a `/** ... */` doc block (not `// ...` comments).
+- Check that `js_source_path` in `conf.py` points to the directory containing your JS files.
+- Run JSDoc directly to confirm it finds your functions:
+  ```bash
+  npx jsdoc -c jsdoc.json -X | python -m json.tool | head -50
+  ```
+
+### Escaped HTML tags in rendered docs
+
+Remove `"plugins": ["plugins/markdown"]` from your `jsdoc.json`. This plugin converts descriptions to HTML before sphinx-js processes them. sphinx-js expects plain text with RST formatting.
 
 
 # sphinx-last-updated-by-git.html.md

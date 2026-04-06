@@ -60,3 +60,5 @@ Tests use pytest with BeautifulSoup for HTML assertions. The `build_output` fixt
 - Ensure all tests pass before requesting review
 
 Learn how the theme is structured — build pipeline, templates, Alpine.js components, and testing.
+
+Auto-generated reference for every Alpine.js component in the theme.
