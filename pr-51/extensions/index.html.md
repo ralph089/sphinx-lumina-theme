@@ -12,6 +12,8 @@ Flowcharts, sequence diagrams, class diagrams, and more.
 
 Auto-generated HTTP API docs from OpenAPI specs.
 
+Auto-generated JavaScript API docs from JSDoc comments.
+
 LLM-friendly docs following the llms.txt convention.
 
 Show “Last updated” dates in the page footer from git history.
@@ -48,6 +50,7 @@ extensions = [
     "sphinx_llm.txt",
 
     # API documentation (if applicable)
+    "sphinx_js",                    # JS API from JSDoc
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
