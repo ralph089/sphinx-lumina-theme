@@ -56,6 +56,18 @@ wheels = [
 ]
 
 [[package]]
+name = "cattrs"
+version = "24.1.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "attrs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/29/7b/da4aa2f95afb2f28010453d03d6eedf018f9e085bd001f039e15731aba89/cattrs-24.1.3.tar.gz", hash = "sha256:981a6ef05875b5bb0c7fb68885546186d306f10f0f6718fe9b96c226e68821ff", size = 426684, upload-time = "2025-03-25T15:01:00.325Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3c/ee/d68a3de23867a9156bab7e0a22fb9a0305067ee639032a22982cf7f725e7/cattrs-24.1.3-py3-none-any.whl", hash = "sha256:adf957dddd26840f27ffbd060a6c4dd3b2192c5b7c2c0525ef1bd8131d8a83f5", size = 66462, upload-time = "2025-03-25T15:00:58.663Z" },
+]
+
+[[package]]
 name = "certifi"
 version = "2026.2.25"
 source = { registry = "https://pypi.org/simple" }
@@ -496,6 +508,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/65/ee/299d360cdc32edc7d2cf530f3accf79c4fca01e96ffc950d8a52213bd8e4/packaging-26.0.tar.gz", hash = "sha256:00243ae351a257117b6a241061796684b084ed1c516a08c48a3f7e147a9d80b4", size = 143416, upload-time = "2026-01-21T20:50:39.064Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/b9/c538f279a4e237a006a2c98387d081e9eb060d203d8ed34467cc0f0b9b53/packaging-26.0-py3-none-any.whl", hash = "sha256:b36f1fef9334a5588b4166f8bcd26a14e521f2b55e6b9de3aaa80d3ff7a37529", size = 74366, upload-time = "2026-01-21T20:50:37.788Z" },
+]
+
+[[package]]
+name = "parsimonious"
+version = "0.10.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "regex" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7b/91/abdc50c4ef06fdf8d047f60ee777ca9b2a7885e1a9cea81343fbecda52d7/parsimonious-0.10.0.tar.gz", hash = "sha256:8281600da180ec8ae35427a4ab4f7b82bfec1e3d1e52f80cb60ea82b9512501c", size = 52172, upload-time = "2022-09-03T17:01:17.004Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/aa/0f/c8b64d9b54ea631fcad4e9e3c8dbe8c11bb32a623be94f22974c88e71eaf/parsimonious-0.10.0-py3-none-any.whl", hash = "sha256:982ab435fabe86519b57f6b35610aa4e4e977e9f02a14353edf4bbc75369fc0f", size = 48427, upload-time = "2022-09-03T17:01:13.814Z" },
 ]
 
 [[package]]
@@ -996,6 +1020,23 @@ wheels = [
 ]
 
 [[package]]
+name = "sphinx-js"
+version = "5.0.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "attrs" },
+    { name = "cattrs" },
+    { name = "jinja2" },
+    { name = "markupsafe" },
+    { name = "parsimonious" },
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0e/a0/ca8ed06041b59a0038a6951f410b223d52dcccb78b441a20ae6fac34fe3d/sphinx_js-5.0.3.tar.gz", hash = "sha256:df4bc7813f9ec68b7e3af49089269c8e6e937444b6ea03ff2a97aa5b6e887217", size = 92904, upload-time = "2026-03-30T13:41:59.183Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/15/27/340c5ede07c1498ef1642489693e019f1db15927ad29579ce44c5f0047e7/sphinx_js-5.0.3-py3-none-any.whl", hash = "sha256:f432839c023eebbc28235916dfe5019a36f48ffb3a729c38ce689ef78a5d12c9", size = 69586, upload-time = "2026-03-30T13:41:57.596Z" },
+]
+
+[[package]]
 name = "sphinx-last-updated-by-git"
 version = "0.3.8"
 source = { registry = "https://pypi.org/simple" }
@@ -1039,6 +1080,7 @@ dev = [
     { name = "sphinx-autobuild" },
     { name = "sphinx-copybutton" },
     { name = "sphinx-design" },
+    { name = "sphinx-js" },
     { name = "sphinx-last-updated-by-git" },
     { name = "sphinx-llm" },
     { name = "sphinxcontrib-httpdomain" },
@@ -1060,6 +1102,7 @@ dev = [
     { name = "sphinx-autobuild", specifier = ">=2024.0" },
     { name = "sphinx-copybutton", specifier = ">=0.5" },
     { name = "sphinx-design", specifier = ">=0.6" },
+    { name = "sphinx-js", specifier = ">=4.0" },
     { name = "sphinx-last-updated-by-git", specifier = ">=0.3" },
     { name = "sphinx-llm", specifier = ">=0.4.1" },
     { name = "sphinxcontrib-httpdomain", specifier = ">=2.0" },

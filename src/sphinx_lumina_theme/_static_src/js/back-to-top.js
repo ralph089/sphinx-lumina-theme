@@ -1,3 +1,27 @@
+/**
+ * @module back-to-top
+ * @description Alpine.js component that shows a "back to top" button when
+ * the user scrolls up past a threshold. Respects the
+ * ``prefers-reduced-motion`` media query for smooth/instant scrolling.
+ */
+
+/**
+ * Factory for the back-to-top Alpine component.
+ * Registered as ``Alpine.data("backToTop", backToTop)``.
+ *
+ * **Properties:**
+ *
+ * - ``visible`` *(boolean)* — Whether the button is currently shown.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Attaches a passive scroll listener.
+ * - ``destroy()`` — Removes the scroll listener.
+ * - ``scrollToTop()`` — Scrolls the page to the top, respecting reduced-motion preference.
+ *
+ * @function backToTop
+ * @returns {object} Alpine.js component data.
+ */
 export default function backToTop() {
   return {
     visible: false,

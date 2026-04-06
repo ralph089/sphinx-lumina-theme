@@ -1,3 +1,28 @@
+/**
+ * @module scrollspy
+ * @description Alpine.js component that highlights the active table-of-contents
+ * link as the user scrolls. Uses ``IntersectionObserver`` with a top offset
+ * to track which section heading is currently in view.
+ */
+
+/**
+ * Factory for the scrollspy Alpine component.
+ * Registered as ``Alpine.data("scrollspy", scrollspy)``.
+ *
+ * **Properties:**
+ *
+ * - ``activeId`` *(string|null)* — The ``id`` of the currently visible section.
+ * - ``observer`` *(IntersectionObserver|null)* — The observer instance.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Collects TOC link targets and starts observing.
+ * - ``updateActive(nav)`` — Toggles the ``lumina-toc-active`` class on TOC links.
+ * - ``destroy()`` — Disconnects the IntersectionObserver.
+ *
+ * @function scrollspy
+ * @returns {object} Alpine.js component data.
+ */
 export default function scrollspy() {
   return {
     activeId: null,

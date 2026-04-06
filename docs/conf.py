@@ -11,7 +11,12 @@ extensions = [
     "sphinxcontrib.openapi",
     "sphinx_llm.txt",
     "sphinx_last_updated_by_git",
+    "sphinx_js",
 ]
+
+# sphinx-js configuration
+js_source_path = "../src/sphinx_lumina_theme/_static_src/js"
+jsdoc_config_path = "../jsdoc.json"
 html_last_updated_fmt = "%B %-d, %Y"
 suppress_warnings = ["git.too_shallow"]
 myst_enable_extensions = [

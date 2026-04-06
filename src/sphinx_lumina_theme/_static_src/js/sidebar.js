@@ -1,3 +1,28 @@
+/**
+ * @module sidebar
+ * @description Alpine.js component for the mobile sidebar drawer.
+ * Manages open/close state, body scroll locking, ARIA attributes,
+ * and focus management (returns focus to the trigger on close).
+ * Auto-closes when the viewport crosses the ``1024px`` breakpoint.
+ */
+
+/**
+ * Factory for the sidebar Alpine component.
+ * Registered as ``Alpine.data("sidebar", sidebar)``.
+ *
+ * **Properties:**
+ *
+ * - ``mobileOpen`` *(boolean)* — Whether the mobile sidebar is visible.
+ *
+ * **Methods:**
+ *
+ * - ``toggle()`` — Toggles the sidebar and locks/unlocks body scroll.
+ * - ``close()`` — Closes the sidebar and restores focus.
+ * - ``init()`` — Attaches toggle button handlers and a media-query listener.
+ *
+ * @function sidebar
+ * @returns {object} Alpine.js component data.
+ */
 export default function sidebar() {
   return {
     mobileOpen: false,

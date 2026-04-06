@@ -1,3 +1,29 @@
+/**
+ * @module version-switcher
+ * @description Alpine.js component for switching between documentation
+ * versions. Fetches a JSON manifest of available versions and lets the
+ * user navigate to the same page on a different version's URL.
+ */
+
+/**
+ * Factory for the version-switcher Alpine component.
+ * Registered as ``Alpine.data("versionSwitcher", versionSwitcher)``.
+ *
+ * **Properties:**
+ *
+ * - ``open`` *(boolean)* — Whether the version dropdown is visible.
+ * - ``versions`` *(Array)* — Fetched array of ``{ version, name, url }`` objects.
+ * - ``currentLabel`` *(string)* — Display label for the active version.
+ * - ``error`` *(boolean)* — Whether version fetching failed.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Reads config attributes and fetches the version manifest.
+ * - ``toggle()`` — Toggles the dropdown open/closed.
+ *
+ * @function versionSwitcher
+ * @returns {object} Alpine.js component data.
+ */
 export default function versionSwitcher() {
   return {
     open: false,
