@@ -5,6 +5,5 @@
   },
   "opts": {
     "recurse": true
-  },
-  "plugins": ["plugins/markdown"]
+  }
 }
