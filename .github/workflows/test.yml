@@ -9,32 +9,17 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: tests-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Set up uv and Python
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.14"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          uv sync --dev
+      - uses: ./.github/actions/setup
 
       - name: Ruff check
         run: uv run ruff check .
@@ -53,28 +38,11 @@ jobs:
         python: ["3.12", "3.13", "3.14"]
         sphinx: ["8", "9"]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Set up uv and Python
-        uses: astral-sh/setup-uv@v7
+      - uses: ./.github/actions/setup
         with:
           python-version: ${{ matrix.python }}
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          uv sync --dev
 
       - name: Override Sphinx version
         run: uv pip install "sphinx~=${{ matrix.sphinx }}.0"
@@ -88,28 +56,9 @@ jobs:
   test-extensions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Set up uv and Python
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.14"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          uv sync --dev
+      - uses: ./.github/actions/setup
 
       - name: Build assets
         run: pnpm run build
@@ -129,28 +78,9 @@ jobs:
     needs: test-structure
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
-      - name: Set up uv and Python
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.14"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          uv sync --dev
+      - uses: ./.github/actions/setup
 
       - name: Install Playwright browsers
         run: uv run playwright install --with-deps chromium firefox webkit

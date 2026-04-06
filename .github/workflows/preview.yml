@@ -17,30 +17,11 @@ jobs:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0
 
-      - name: Set up uv and Python
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: "3.14"
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v5
-        with:
-          version: 10
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: |
-          pnpm install
-          uv sync --dev
+      - uses: ./.github/actions/setup
 
       - name: Build assets
         run: pnpm run build
@@ -48,44 +29,14 @@ jobs:
       - name: Build docs
         run: uv run sphinx-build docs docs/_build/html
 
-      - name: Deploy to gh-pages
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Fetch or create gh-pages branch
-          git fetch origin gh-pages:gh-pages 2>/dev/null || true
-
-          if git rev-parse --verify gh-pages >/dev/null 2>&1; then
-            git worktree add gh-pages-deploy gh-pages
-          else
-            git worktree add --detach gh-pages-deploy
-            cd gh-pages-deploy
-            git checkout --orphan gh-pages
-            git rm -rf . 2>/dev/null || true
-            cd ..
-          fi
-
-          # Copy build output
-          PR_DIR="gh-pages-deploy/pr-${PR_NUMBER}"
-          rm -rf "$PR_DIR"
-          cp -r docs/_build/html "$PR_DIR"
-
-          # Ensure GitHub Pages skips Jekyll processing
-          touch gh-pages-deploy/.nojekyll
-
-          # Commit and push
-          cd gh-pages-deploy
-          git add .
-          git diff --cached --quiet || {
-            git commit -m "Deploy PR #${PR_NUMBER} preview"
-            git push origin gh-pages
-          }
+      - uses: ./.github/actions/deploy-gh-pages
+        with:
+          source-dir: docs/_build/html
+          target-dir: pr-${{ github.event.pull_request.number }}
+          commit-message: "Deploy PR #${{ github.event.pull_request.number }} preview"
 
       - name: Comment on PR
-        uses: actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
           script: |
             const prNumber = context.issue.number;
@@ -117,7 +68,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           ref: gh-pages
           fetch-depth: 1

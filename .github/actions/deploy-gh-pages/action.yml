@@ -1,0 +1,77 @@
+name: Deploy to gh-pages
+description: Deploy built HTML to the gh-pages branch using git worktree
+
+inputs:
+  source-dir:
+    description: Path to the built HTML directory
+    required: true
+  target-dir:
+    description: Target directory on gh-pages (use "." for root, "pr-N" for previews)
+    default: "."
+  commit-message:
+    description: Commit message for the deployment
+    required: true
+  preserve-pr-dirs:
+    description: Whether to preserve pr-* directories when deploying to root
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - name: Deploy to gh-pages
+      shell: bash
+      env:
+        SOURCE_DIR: ${{ inputs.source-dir }}
+        TARGET_DIR: ${{ inputs.target-dir }}
+        COMMIT_MESSAGE: ${{ inputs.commit-message }}
+        PRESERVE_PR_DIRS: ${{ inputs.preserve-pr-dirs }}
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+        # Fetch or create gh-pages branch
+        git fetch origin gh-pages:gh-pages 2>/dev/null || true
+
+        if git rev-parse --verify gh-pages >/dev/null 2>&1; then
+          git worktree add gh-pages-deploy gh-pages
+        else
+          git worktree add --detach gh-pages-deploy
+          cd gh-pages-deploy
+          git checkout --orphan gh-pages
+          git rm -rf . 2>/dev/null || true
+          cd ..
+        fi
+
+        if [ "$TARGET_DIR" = "." ]; then
+          # Root deployment: remove everything except .git and optionally pr-* dirs
+          cd gh-pages-deploy
+          if [ "$PRESERVE_PR_DIRS" = "true" ]; then
+            find . -maxdepth 1 \
+              ! -name '.' \
+              ! -name '.git' \
+              ! -name 'pr-*' \
+              -exec rm -rf {} +
+          else
+            find . -maxdepth 1 \
+              ! -name '.' \
+              ! -name '.git' \
+              -exec rm -rf {} +
+          fi
+          cd ..
+          cp -r "${SOURCE_DIR}/." gh-pages-deploy/
+        else
+          # Subdirectory deployment (e.g., PR previews)
+          rm -rf "gh-pages-deploy/${TARGET_DIR}"
+          cp -r "$SOURCE_DIR" "gh-pages-deploy/${TARGET_DIR}"
+        fi
+
+        # Ensure GitHub Pages skips Jekyll processing
+        touch gh-pages-deploy/.nojekyll
+
+        # Commit and push if there are changes
+        cd gh-pages-deploy
+        git add .
+        git diff --cached --quiet || {
+          git commit -m "$COMMIT_MESSAGE"
+          git push origin gh-pages
+        }
