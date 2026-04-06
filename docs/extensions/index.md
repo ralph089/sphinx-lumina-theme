@@ -35,6 +35,12 @@ Flowcharts, sequence diagrams, class diagrams, and more.
 Auto-generated HTTP API docs from OpenAPI specs.
 :::
 
+:::{grid-item-card} sphinx-js {bdg-secondary}`optional`
+:link: sphinx-js
+:link-type: doc
+Auto-generated JavaScript API docs from JSDoc comments.
+:::
+
 :::{grid-item-card} sphinx-llm {bdg-secondary}`optional`
 :link: sphinx-llm
 :link-type: doc
@@ -97,6 +103,7 @@ extensions = [
     "sphinx_llm.txt",
 
     # API documentation (if applicable)
+    "sphinx_js",                    # JS API from JSDoc
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
@@ -133,6 +140,7 @@ sphinx-copybutton
 mermaid
 openapi
 sphinx-llm
+sphinx-js
 sphinx-last-updated-by-git
 mathjax
 ```
