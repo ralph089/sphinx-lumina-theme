@@ -1,11 +1,26 @@
 /**
- * Copy Page as Markdown — Alpine.js component
- *
- * Converts the rendered article HTML to clean Markdown and copies it
- * to the clipboard. Works regardless of whether the source is rST or
- * MyST Markdown, since it converts from the rendered HTML output.
+ * @module copy-page
+ * @description Alpine.js component that converts the rendered article HTML
+ * to clean Markdown and copies it to the clipboard. Works regardless of
+ * whether the source is rST or MyST Markdown, since it converts from
+ * the rendered HTML output.
  */
 
+/**
+ * Factory for the copy-page Alpine component.
+ * Registered as ``Alpine.data("copyPage", copyPage)``.
+ *
+ * **Properties:**
+ *
+ * - ``copied`` *(boolean)* — Briefly ``true`` after a successful copy.
+ *
+ * **Methods:**
+ *
+ * - ``copy()`` — Converts the article to Markdown and copies it to the clipboard.
+ *
+ * @function copyPage
+ * @returns {object} Alpine.js component data.
+ */
 export default function copyPage() {
   return {
     copied: false,

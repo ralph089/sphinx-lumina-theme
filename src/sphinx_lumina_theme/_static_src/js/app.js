@@ -1,3 +1,12 @@
+/**
+ * @module app
+ * @description Entry point for the Lumina theme's client-side interactivity.
+ * Imports all Alpine.js component modules, registers them via
+ * ``Alpine.data()``, and starts Alpine once the DOM is ready.
+ * Also calls boot functions for modules that inject elements
+ * post-render (curlCopy, tryIt).
+ */
+
 import Alpine from "alpinejs";
 import scrollspy from "./scrollspy.js";
 import themeToggle from "./theme-toggle.js";
@@ -27,6 +36,14 @@ Alpine.data("versionSwitcher", versionSwitcher);
 window.Alpine = Alpine;
 
 /* ── Wait for DOM before starting Alpine and post-init modules ── */
+
+/**
+ * Initializes the theme by starting Alpine.js and running post-render
+ * boot functions (curlCopy, tryIt). Called on DOMContentLoaded or
+ * immediately if the DOM is already ready.
+ *
+ * @function boot
+ */
 function boot() {
   Alpine.start();
   curlCopy();

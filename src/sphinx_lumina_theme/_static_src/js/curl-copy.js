@@ -1,18 +1,13 @@
 /**
- * Curl Copy
+ * @module curl-copy
+ * @description Scans HTTP-domain endpoints (``dl.http``) and injects a
+ * "Copy as curl" button into each signature card. Builds the curl command
+ * from the rendered method, path, query parameters, headers, and JSON body
+ * fields in the DOM. The base URL comes from the ``api_base_url`` theme option.
  *
- * Scans HTTP domain endpoints (dl.http) and injects a "Copy curl"
- * button (Alpine.js component) into each signature card. Builds the
- * curl command from the rendered method, path, query parameters,
- * headers, and JSON body fields in the DOM.
- *
- * Exports:
- *   curlCopyBtn  — Alpine.data factory, registered in app.js
- *   curlCopy     — boot function, called from boot() in app.js
- *
- * Called from boot() in app.js after Alpine.start().
- * The base URL is read from html_theme_options["api_base_url"],
- * output as a data attribute on <html> by the theme template.
+ * Exports two items:
+ * - {@link curlCopyBtn} — Alpine.data factory, registered in app.js.
+ * - {@link curlCopy} — boot function, called from ``boot()`` in app.js.
  */
 
 /* Module-level store — maps each injected button to its curl string */
@@ -20,6 +15,21 @@ const _curlCmds = new WeakMap();
 
 /* ── Alpine.data factory ───────────────────────────────────────────── */
 
+/**
+ * Alpine.js data factory for the per-endpoint copy-curl button.
+ * Registered as ``Alpine.data("curlCopyBtn", curlCopyBtn)``.
+ *
+ * **Properties:**
+ *
+ * - ``copied`` *(boolean)* — Briefly ``true`` after a successful copy.
+ *
+ * **Methods:**
+ *
+ * - ``copy()`` — Copies the pre-built curl command to the clipboard.
+ *
+ * @function curlCopyBtn
+ * @returns {object} Alpine.js component data.
+ */
 export function curlCopyBtn() {
   return {
     copied: false,
@@ -40,6 +50,12 @@ export function curlCopyBtn() {
 
 /* ── Boot ──────────────────────────────────────────────────────────── */
 
+/**
+ * Boot function that scans the page for HTTP endpoints and injects
+ * copy-curl buttons. Called from ``boot()`` in app.js after ``Alpine.start()``.
+ *
+ * @function curlCopy
+ */
 export default function curlCopy() {
   const endpoints = document.querySelectorAll("dl.http");
   if (endpoints.length === 0) return;

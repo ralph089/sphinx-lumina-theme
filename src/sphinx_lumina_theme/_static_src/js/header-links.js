@@ -1,3 +1,21 @@
+/**
+ * @module header-links
+ * @description Alpine.js component that converts section header permalink
+ * clicks into a "copy link" action. Copies the full URL to the clipboard
+ * and shows a brief "Copied!" tooltip.
+ */
+
+/**
+ * Factory for the header-links Alpine component.
+ * Registered as ``Alpine.data("headerLinks", headerLinks)``.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Attaches click handlers to all ``.headerlink`` elements.
+ *
+ * @function headerLinks
+ * @returns {object} Alpine.js component data.
+ */
 export default function headerLinks() {
   return {
     init() {

@@ -124,4 +124,5 @@ dev = [
     "djlint>=1.36",
     "pytest-playwright>=0.6",
     "sphinx-llm>=0.4.1",
+    "sphinx-js>=4.0",
 ]

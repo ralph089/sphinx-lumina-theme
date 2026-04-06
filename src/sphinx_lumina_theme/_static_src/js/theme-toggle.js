@@ -1,3 +1,28 @@
+/**
+ * @module theme-toggle
+ * @description Alpine.js component for cycling between light, dark, and auto
+ * color schemes. Persists the user's preference in ``localStorage``
+ * (key ``lumina-theme``) and listens for system-level
+ * ``prefers-color-scheme`` changes when set to auto.
+ */
+
+/**
+ * Factory for the theme-toggle Alpine component.
+ * Registered as ``Alpine.data("themeToggle", themeToggle)``.
+ *
+ * **Properties:**
+ *
+ * - ``mode`` *(string)* — Current mode: ``"auto"``, ``"light"``, or ``"dark"``.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Reads stored preference, applies the theme, and listens for OS changes.
+ * - ``cycle()`` — Advances the mode: auto → light → dark → auto.
+ * - ``apply()`` — Applies the effective theme to ``document.documentElement``.
+ *
+ * @function themeToggle
+ * @returns {object} Alpine.js component data.
+ */
 export default function themeToggle() {
   return {
     mode: "auto",

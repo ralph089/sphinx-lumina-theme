@@ -1,3 +1,23 @@
+/**
+ * @module announcement
+ * @description Alpine.js component for a dismissible announcement banner.
+ * Reads a ``data-announcement-id`` attribute from the host element and
+ * persists dismissal state in ``localStorage`` so the banner stays
+ * hidden on subsequent page loads.
+ */
+
+/**
+ * Factory for the announcement banner Alpine component.
+ * Registered as ``Alpine.data("announcementBanner", announcementBanner)``.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Reads the announcement ID from ``data-announcement-id``.
+ * - ``dismiss()`` — Hides the banner and persists the dismissal in localStorage.
+ *
+ * @function announcementBanner
+ * @returns {object} Alpine.js component data.
+ */
 export default function announcementBanner() {
   let _id = null;
   return {

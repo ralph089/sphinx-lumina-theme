@@ -1,15 +1,13 @@
 /**
- * Try It Out
+ * @module try-it
+ * @description Injects an interactive "Try It Out" request panel into each
+ * HTTP-domain endpoint (``dl.http``). Extracts parameters from the rendered
+ * DOM and sends real ``fetch`` requests. Bearer tokens are persisted in
+ * ``sessionStorage`` (key ``lumina-api-token``).
  *
- * Injects an interactive request panel into each HTTP domain endpoint (dl.http).
- * Parameters are extracted from the rendered DOM; the panel is an Alpine.js
- * component initialized via Alpine.initTree() on each dynamically injected element.
- *
- * Exports:
- *   tryItPanel   — Alpine.data factory, registered in app.js
- *   tryIt        — boot function, called from boot() in app.js
- *
- * Bearer token is persisted in sessionStorage key "lumina-api-token".
+ * Exports two items:
+ * - {@link tryItPanel} — Alpine.data factory, registered in app.js.
+ * - {@link tryIt} — boot function, called from ``boot()`` in app.js.
  */
 
 const SESSION_KEY = "lumina-api-token";
@@ -19,6 +17,29 @@ const _configs = new WeakMap();
 
 /* ── Alpine.data factory ───────────────────────────────────────────── */
 
+/**
+ * Alpine.js data factory for the interactive request panel.
+ * Registered as ``Alpine.data("tryItPanel", tryItPanel)``.
+ *
+ * **Properties:**
+ *
+ * - ``open`` *(boolean)* — Whether the panel is expanded.
+ * - ``sending`` *(boolean)* — True while a request is in-flight.
+ * - ``response`` *(object|null)* — Last response (status, body, elapsed time).
+ * - ``method`` *(string)* — HTTP method (GET, POST, etc.).
+ * - ``path`` *(string)* — Endpoint path with ``{param}`` placeholders.
+ * - ``baseUrl`` *(string)* — API base URL from theme options.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Reads config injected by the boot function.
+ * - ``send()`` — Sends the request and populates the response.
+ * - ``copyResponse()`` — Copies the response body to the clipboard.
+ * - ``clear()`` — Resets the response and error state.
+ *
+ * @function tryItPanel
+ * @returns {object} Alpine.js component data.
+ */
 export function tryItPanel() {
   return {
     /* Panel state */
@@ -194,6 +215,14 @@ export function tryItPanel() {
 
 /* ── Boot ──────────────────────────────────────────────────────────── */
 
+/**
+ * Boot function that scans the page for HTTP endpoints and injects
+ * interactive "Try It Out" panels. Called from ``boot()`` in app.js
+ * after ``Alpine.start()``. Skipped if ``data-try-it-out="false"``
+ * is set on ``<html>``.
+ *
+ * @function tryIt
+ */
 export default function tryIt() {
   if (document.documentElement.dataset.tryItOut === "false") return;
   const endpoints = document.querySelectorAll("dl.http");

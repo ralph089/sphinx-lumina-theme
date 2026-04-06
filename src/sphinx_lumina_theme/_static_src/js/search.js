@@ -1,3 +1,11 @@
+/**
+ * @module search
+ * @description Alpine.js component for the full-text search modal. Supports
+ * Pagefind as the primary backend with a fallback to Sphinx's built-in
+ * search. Provides keyboard navigation (arrow keys, Enter, Escape),
+ * a focus trap, and the ``/`` and ``Ctrl+K`` / ``⌘K`` shortcuts.
+ */
+
 import DOMPurify from "dompurify";
 
 const EXCERPT_CONFIG = { ALLOWED_TAGS: ["mark"], ALLOWED_ATTR: [] };
@@ -12,6 +20,34 @@ function sectionFromUrl(url) {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/**
+ * Factory for the search modal Alpine component.
+ * Registered as ``Alpine.data("searchModal", searchModal)``.
+ *
+ * **Properties:**
+ *
+ * - ``open`` *(boolean)* — Whether the modal is visible.
+ * - ``query`` *(string)* — Current search input value.
+ * - ``results`` *(Array)* — Array of search result objects.
+ * - ``selectedIndex`` *(number)* — Index of the keyboard-highlighted result.
+ * - ``loaded`` *(boolean)* — Whether the search engine has been initialized.
+ * - ``error`` *(string|null)* — Error message, if search initialization failed.
+ * - ``backend`` *(string)* — Search backend: ``"pagefind"`` or ``"sphinx"``.
+ *
+ * **Methods:**
+ *
+ * - ``init()`` — Sets up keyboard shortcuts and trigger buttons.
+ * - ``toggle()`` — Opens or closes the modal.
+ * - ``openModal()`` — Opens the modal, loads the search engine on first use.
+ * - ``close()`` — Closes the modal and restores focus.
+ * - ``search()`` — Runs a search query and populates results.
+ * - ``moveDown()`` — Moves keyboard selection down.
+ * - ``moveUp()`` — Moves keyboard selection up.
+ * - ``goToSelected()`` — Navigates to the selected result.
+ *
+ * @function searchModal
+ * @returns {object} Alpine.js component data.
+ */
 export default function searchModal() {
   return {
     open: false,
