@@ -31,9 +31,16 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[var(--lumina-text)] px-5 py-2.5 text-sm font-medium text-[var(--lumina-bg)] shadow-xl"
+             class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full bg-[var(--lumina-accent)] px-5 py-2.5 text-sm text-white shadow-xl"
              style="pointer-events: none">
-            Copied <code class="font-mono font-semibold" x-text="copiedName"></code>
+            <span>Copied</span>
+            <span class="font-semibold"
+                  x-text="copiedName"
+                  style="font-family: 'JetBrains Mono', monospace;
+                         color: white;
+                         background: none;
+                         border: none;
+                         padding: 0"></span>
         </div>
 
         {# Icon grid #}
