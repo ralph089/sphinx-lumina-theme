@@ -356,6 +356,39 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
 }
 
 /* ── Table of contents ── */
+
+/* Scroll container: fade edges + hidden scrollbar */
+.lumina-toc-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    white 16px,
+    white calc(100% - 16px),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    white 16px,
+    white calc(100% - 16px),
+    transparent
+  );
+  max-height: calc(100% - 3rem);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.lumina-toc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Nav: positioned for the sliding indicator */
+.lumina-toc-nav {
+  position: relative;
+}
+
 .lumina-toc-nav ul {
   list-style: none;
   padding: 0;
@@ -366,15 +399,25 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
   margin: 0;
 }
 
+/* Track line */
+.lumina-toc-nav > ul {
+  border-left: 1px solid var(--lumina-border);
+}
+
+/* Top-level links */
 .lumina-toc-nav a {
   display: block;
-  padding: 0.25rem 0;
-  padding-left: 0.75rem;
+  padding: 0.3125rem 0 0.3125rem 0.875rem;
   font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--lumina-text-muted);
   text-decoration: none;
-  border-left: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lumina-toc-nav > ul > li > a {
+  font-weight: 500;
+  color: var(--lumina-text);
 }
 
 .lumina-toc-nav a:hover {
@@ -383,12 +426,35 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
 
 .lumina-toc-nav a.lumina-toc-active {
   color: var(--lumina-accent);
-  border-left-color: var(--lumina-accent);
-  font-weight: 500;
 }
 
+/* Nested items: indented, lighter weight */
 .lumina-toc-nav ul ul {
-  padding-left: 0.75rem;
+  padding-left: 0.625rem;
+}
+
+.lumina-toc-nav ul ul a {
+  font-size: 0.7875rem;
+}
+
+/* Sliding indicator bar */
+.lumina-toc-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.5px;
+  width: 2px;
+  border-radius: 1px;
+  background-color: var(--lumina-accent);
+  clip-path: polygon(
+    0 var(--ind-top, 0),
+    100% var(--ind-top, 0),
+    100% var(--ind-bottom, 0),
+    0 var(--ind-bottom, 0)
+  );
+  transition: clip-path 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* ── Layout ── */
