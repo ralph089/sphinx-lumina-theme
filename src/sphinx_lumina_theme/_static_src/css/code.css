@@ -159,16 +159,16 @@ div.highlight {
   --sd-color-tabs-underline-inactive: transparent;
   --sd-color-tabs-overline: transparent;
   --sd-color-tabs-underline: var(--lumina-border);
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--lumina-accent) 10%, var(--lumina-border));
-  border-radius: 0.5rem;
-  background: var(--lumina-bg);
+  border: none;
+  border-radius: 0;
+  background: none;
 }
 
 .sd-tab-set > label {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--lumina-text-muted);
@@ -202,14 +202,16 @@ div.highlight {
 .sd-tab-content div.highlight,
 .sd-tab-content pre.highlight {
   margin: 0;
-  border: none;
-  border-radius: 0;
+  border: 1px solid color-mix(in srgb, var(--lumina-accent) 10%, var(--lumina-border));
+  border-top: none;
+  border-radius: 0 0 0.375rem 0.375rem;
 }
 
 .sd-tab-content .literal-block-wrapper {
   margin: 0;
-  border: none;
-  border-radius: 0;
+  border: 1px solid color-mix(in srgb, var(--lumina-accent) 10%, var(--lumina-border));
+  border-top: none;
+  border-radius: 0 0 0.375rem 0.375rem;
 }
 
 /* ── sphinx-design badges ── */
