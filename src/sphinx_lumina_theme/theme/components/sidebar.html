@@ -2,7 +2,7 @@
     {# Desktop sidebar #}
     <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
         <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-            {{ toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) }}
+            {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
         </nav>
         {% if theme_show_attribution == "true" %}
             <div class="lumina-sidebar-footer">
@@ -79,7 +79,7 @@
                     </div>
                 {% endif %}
                 <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-                    {{ toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) }}
+                    {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
                 </nav>
                 {% if theme_show_attribution == "true" %}
                     <div class="lumina-sidebar-footer">

@@ -99,3 +99,30 @@ class TestCardIcons:
         grid_card = cards[3]
         svg = grid_card.find("svg", class_="lumina-icon")
         assert svg is not None
+
+
+class TestSidebarIcons:
+    """Tests for icon rendering in sidebar navigation."""
+
+    def test_page_with_icon_has_svg_in_sidebar(self, icons_html):
+        """Page with icon frontmatter should have SVG in its sidebar link.
+
+        On the icons-test page itself, its own sidebar link has href="#"
+        (self-reference). The sidebar filter should still inject the icon.
+        """
+        sidebar = icons_html.find("nav", class_="lumina-sidebar-nav")
+        assert sidebar is not None, "Sidebar nav should exist"
+        # The current page link uses href="#" in the sidebar
+        link = sidebar.find("a", href="#")
+        assert link is not None, "Should find current page link (#) in sidebar"
+        svg = link.find("svg", class_="lumina-sidebar-icon")
+        assert svg is not None, "Sidebar link for icons-test should have an icon SVG"
+
+    def test_page_without_icon_has_no_svg(self, icons_html):
+        """Page without icon frontmatter should not have SVG in sidebar."""
+        sidebar = icons_html.find("nav", class_="lumina-sidebar-nav")
+        assert sidebar is not None
+        link = sidebar.find("a", href=lambda h: h and "getting-started" in h)
+        assert link is not None, "Should find getting-started link in sidebar"
+        svg = link.find("svg", class_="lumina-sidebar-icon")
+        assert svg is None, "Sidebar link without icon metadata should have no icon"
