@@ -26,7 +26,10 @@ def _build_with_options(tmp_path, options=None):
 
     for f in src_dir.iterdir():
         if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+            if f.is_dir():
+                shutil.copytree(f, conf_dir / f.name)
+            else:
+                shutil.copy2(f, conf_dir / f.name)
 
     app = Sphinx(
         srcdir=str(conf_dir),
@@ -132,7 +135,10 @@ def test_build_warns_when_json_set_without_match(tmp_path):
 
     for f in src_dir.iterdir():
         if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+            if f.is_dir():
+                shutil.copytree(f, conf_dir / f.name)
+            else:
+                shutil.copy2(f, conf_dir / f.name)
 
     app = Sphinx(
         srcdir=str(conf_dir),

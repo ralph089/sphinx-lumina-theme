@@ -1,0 +1,58 @@
+{# Section switcher — dropdown at top of sidebar for navigating between doc sections #}
+{% if lumina_sections is defined and lumina_sections %}
+    <div id="lumina-section-switcher"
+         x-data="sectionSwitcher()"
+         @keydown.escape="open = false"
+         class="lumina-section-switcher">
+        <button @click="toggle()"
+                :aria-expanded="open"
+                aria-haspopup="true"
+                aria-label="Switch documentation section"
+                class="lumina-section-switcher-trigger"
+                type="button">
+            {% if lumina_current_section %}
+                <span class="lumina-section-switcher-icon"
+                      style="background: {{ lumina_current_section.color }}15;
+                             color: {{ lumina_current_section.color }}">
+                    {{ lumina_icon(lumina_current_section.icon, size=18) }}
+                </span>
+                <span class="lumina-section-switcher-label">
+                    <span class="lumina-section-switcher-name"
+                          style="color: {{ lumina_current_section.color }}">{{ lumina_current_section.name }}</span>
+                    <span class="lumina-section-switcher-desc">{{ lumina_current_section.description }}</span>
+                </span>
+            {% else %}
+                <span class="lumina-section-switcher-label">
+                    <span class="lumina-section-switcher-name">Browse sections</span>
+                </span>
+            {% endif %}
+            {{ lumina_icon("chevrons-up-down", size=14, css_class="lumina-section-switcher-chevron") }}
+        </button>
+        <div x-show="open"
+             x-cloak
+             @click.away="open = false"
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="lumina-section-switcher-dropdown"
+             role="menu">
+            {% for section in lumina_sections %}
+                <a href="{{ pathto((section.path or section.paths[0]) + '/index') }}"
+                   class="lumina-section-switcher-item{% if lumina_current_section and section.name == lumina_current_section.name %} active{% endif %}"
+                   role="menuitem">
+                    <span class="lumina-section-switcher-icon"
+                          style="background: {{ section.color }}15;
+                                 color: {{ section.color }}">{{ lumina_icon(section.icon, size=16) }}</span>
+                    <span class="lumina-section-switcher-label">
+                        <span class="lumina-section-switcher-name"
+                              style="color: {{ section.color }}">{{ section.name }}</span>
+                        <span class="lumina-section-switcher-desc">{{ section.description }}</span>
+                    </span>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

@@ -67,6 +67,75 @@ def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
     return re.sub(r'<a\b[^>]*href="([^"]*)"[^>]*>', _replace_link, toctree_html)
 
 
+def _section_paths(section):
+    """Return the list of path prefixes for a section.
+
+    Supports both ``"path": "guides"`` (single) and
+    ``"paths": ["getting-started", "guides"]`` (multiple).
+    """
+    paths = section.get("paths") or []
+    single = section.get("path", "")
+    if single and single not in paths:
+        paths = [single] + paths
+    return paths
+
+
+def _detect_section(pagename, sections):
+    """Return the section config dict matching pagename by path prefix."""
+    for section in sections:
+        for prefix in _section_paths(section):
+            if pagename == prefix + "/index" or pagename.startswith(prefix + "/"):
+                return section
+    return None
+
+
+def _section_toctree(app, pagename, section, maxdepth, collapse):
+    """Render toctree HTML for a section's subtree(s).
+
+    Uses Sphinx's internal ``_resolve_toctree`` to resolve only the toctree
+    node(s) from the section hub document(s).  Supports sections with
+    multiple ``paths``, concatenating their toctree HTML.
+
+    Note: ``_resolve_toctree`` is a private API but has been stable across
+    Sphinx 7.x and 8.x.  This project requires ``sphinx>=8.0``.
+    """
+    from sphinx import addnodes
+    from sphinx.environment.adapters.toctree import _resolve_toctree
+
+    builder = app.builder
+    fragments = []
+
+    for path in _section_paths(section):
+        section_root = path + "/index"
+        try:
+            doctree = app.env.get_doctree(section_root)
+        except FileNotFoundError:
+            logger.warning(
+                "doc_sections entry '%s' has no matching document at %s",
+                section.get("name", "?"),
+                section_root,
+            )
+            continue
+
+        for node in doctree.findall(addnodes.toctree):
+            resolved = _resolve_toctree(
+                app.env,
+                pagename,
+                builder,
+                node,
+                prune=True,
+                maxdepth=maxdepth,
+                titles_only=True,
+                collapse=collapse,
+                includehidden=True,
+                tags=builder.tags,
+            )
+            if resolved:
+                fragments.append(builder.render_partial(resolved)["fragment"])
+
+    return "\n".join(fragments)
+
+
 def _add_context(app, pagename, templatename, context, doctree):
     context["lumina_version"] = __version__
     context["has_llms_txt"] = "sphinx_llm.txt" in app.extensions
@@ -120,6 +189,20 @@ def _add_context(app, pagename, templatename, context, doctree):
     context["add_sidebar_icons"] = lambda html: _add_sidebar_icons(
         html, page_icons, pagename, get_icon_svg
     )
+
+    # Doc sections switcher
+    sections = app.builder.theme_options.get("doc_sections", "")
+    if sections:
+        current_section = _detect_section(pagename, sections)
+        context["lumina_sections"] = sections
+        context["lumina_current_section"] = current_section
+        if current_section:
+            maxdepth = int(app.builder.theme_options.get("nav_depth", "3"))
+            section_html = _section_toctree(
+                app, pagename, current_section, maxdepth, collapse=False
+            )
+            if section_html:
+                context["lumina_section_toctree"] = section_html
 
     # Make all external scripts non-render-blocking (defer).
     # Sphinx places the {%- block scripts %} inside <head>, so without defer

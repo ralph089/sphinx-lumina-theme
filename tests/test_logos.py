@@ -37,7 +37,10 @@ def _build_with_logos(tmp_path, options=None, create_logos=True):
 
     for f in src_dir.iterdir():
         if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+            if f.is_dir():
+                shutil.copytree(f, conf_dir / f.name)
+            else:
+                shutil.copy2(f, conf_dir / f.name)
 
     app = Sphinx(
         srcdir=str(conf_dir),
@@ -122,7 +125,10 @@ def test_html_logo_fallback(tmp_path):
 
     for f in src_dir.iterdir():
         if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+            if f.is_dir():
+                shutil.copytree(f, conf_dir / f.name)
+            else:
+                shutil.copy2(f, conf_dir / f.name)
 
     app = Sphinx(
         srcdir=str(conf_dir),

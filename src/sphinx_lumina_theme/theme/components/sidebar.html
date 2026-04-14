@@ -1,9 +1,18 @@
 <div x-data="sidebar()">
     {# Desktop sidebar #}
     <div class="lumina-sidebar-desktop hidden flex-col overflow-y-auto border-r border-[var(--lumina-border)] bg-[var(--lumina-bg)] px-4 py-6 lg:flex">
-        <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-            {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
-        </nav>
+
+        {% include "components/section-switcher.html" %}
+
+        {% if lumina_section_toctree is defined and lumina_section_toctree %}
+            <nav class="lumina-sidebar-nav" aria-label="Section navigation">
+                {{ add_sidebar_icons(lumina_section_toctree) }}
+            </nav>
+        {% else %}
+            <nav class="lumina-sidebar-nav" aria-label="Main navigation">
+                {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
+            </nav>
+        {% endif %}
         {% if theme_show_attribution == "true" %}
             <div class="lumina-sidebar-footer">
                 Built with
@@ -51,6 +60,9 @@
                         @click="close()"
                         class="absolute top-4 right-4 rounded-md p-1 text-[var(--lumina-text-muted)] hover:text-[var(--lumina-text)] cursor-pointer"
                         aria-label="Close navigation">{{ lumina_icon("x", size=20) }}</button>
+
+                {% include "components/section-switcher.html" %}
+
                 {# Flattened nav links for mobile #}
                 {% if theme_nav_links and theme_nav_links != "" %}
                     <div class="mb-4 border-b border-[var(--lumina-border)] pb-4">
@@ -70,9 +82,15 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <nav class="lumina-sidebar-nav" aria-label="Main navigation">
-                    {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
-                </nav>
+                {% if lumina_section_toctree is defined and lumina_section_toctree %}
+                    <nav class="lumina-sidebar-nav" aria-label="Section navigation">
+                        {{ add_sidebar_icons(lumina_section_toctree) }}
+                    </nav>
+                {% else %}
+                    <nav class="lumina-sidebar-nav" aria-label="Main navigation">
+                        {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
+                    </nav>
+                {% endif %}
                 {% if theme_show_attribution == "true" %}
                     <div class="lumina-sidebar-footer">
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"

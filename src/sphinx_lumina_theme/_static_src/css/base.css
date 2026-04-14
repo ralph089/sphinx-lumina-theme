@@ -260,6 +260,122 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
   background: color-mix(in srgb, var(--lumina-accent) 40%, var(--lumina-text-muted));
 }
 
+/* ── Section switcher ── */
+.lumina-section-switcher {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--lumina-border);
+  position: relative;
+}
+
+.lumina-section-switcher-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--lumina-border);
+  border-radius: 0.5rem;
+  background: var(--lumina-bg-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.lumina-section-switcher-trigger:hover {
+  border-color: color-mix(in srgb, var(--lumina-accent) 50%, var(--lumina-border));
+}
+
+.lumina-section-switcher-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 0.375rem;
+  flex-shrink: 0;
+}
+
+.lumina-section-switcher-label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.lumina-section-switcher-name {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-section-switcher-desc {
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  color: var(--lumina-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lumina-section-switcher-chevron {
+  flex-shrink: 0;
+  color: var(--lumina-text-muted);
+}
+
+.lumina-section-switcher-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: 10;
+  margin-top: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--lumina-border);
+  border-radius: 0.5rem;
+  background: var(--lumina-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .lumina-section-switcher-dropdown {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lumina-section-switcher-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4375rem 0.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.1s;
+}
+
+.lumina-section-switcher-item:hover {
+  background: var(--lumina-bg-secondary);
+}
+
+.lumina-section-switcher-item.active {
+  background: var(--lumina-bg-secondary);
+}
+
+.lumina-section-switcher-item .lumina-section-switcher-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.lumina-section-switcher-item .lumina-section-switcher-name {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.lumina-section-switcher-item .lumina-section-switcher-desc {
+  font-size: 0.625rem;
+}
+
 /* ── Sidebar navigation ── */
 .lumina-sidebar-nav ul {
   list-style: none;

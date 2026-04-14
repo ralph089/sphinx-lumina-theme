@@ -93,6 +93,51 @@ html_theme_options = {
 }
 ```
 
+## Doc Sections
+
+Group your documentation into distinct sections, each with its own icon, color, and sidebar navigation. A dropdown at the top of the sidebar lets readers switch between them — useful when your docs serve different audiences (e.g., users vs. developers) or cover separate products.
+
+### Setup
+
+Define your sections in `html_theme_options`:
+
+```{code-block} python
+:caption: conf.py
+html_theme_options = {
+    "doc_sections": [
+        {
+            "paths": ["getting-started", "guides", "extensions", "reference"],
+            "name": "User Docs",
+            "description": "Installation, guides & reference",
+            "icon": "book-open",
+            "color": "#10b981",
+        },
+        {
+            "path": "contributing",
+            "name": "Developer Docs",
+            "description": "Architecture & development",
+            "icon": "code",
+            "color": "#8b5cf6",
+        },
+    ],
+}
+```
+
+Each section has:
+- **`path`** or **`paths`** -- one or more directory prefixes that belong to this section. Use `path` for a single directory (e.g., `"contributing"`), or `paths` for multiple directories grouped under one section.
+- **`name`** -- display name in the switcher dropdown
+- **`description`** -- short tagline shown below the name
+- **`icon`** -- a [Lucide icon](https://lucide.dev/icons/) name (e.g., `"book-open"`, `"code"`)
+- **`color`** -- hex color for the icon badge and section name in the switcher
+
+### How It Works
+
+When a reader visits a page that belongs to a section, the sidebar shows only that section's navigation tree. The dropdown at the top highlights the active section and lets readers jump to any other section's index page.
+
+Pages that don't match any section (like a top-level introduction or changelog) show the full sidebar navigation with a neutral "Browse sections" label in the dropdown.
+
+Section colors are contained to the switcher dropdown — they don't affect the rest of the page's accent color.
+
 ## Version Switcher
 
 Display a dropdown in the header that lets readers switch between documentation versions. The version list loads from a JSON file you host alongside your docs.
