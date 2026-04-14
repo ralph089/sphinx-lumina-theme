@@ -1,5 +1,7 @@
 """Tests for the Lucide icon system."""
 
+import pytest
+from bs4 import BeautifulSoup
 
 from sphinx_lumina_theme._icon_utils import get_icon_svg
 
@@ -50,3 +52,50 @@ class TestGetIconSvg:
         """ViewBox is always 0 0 24 24 regardless of size param."""
         result = get_icon_svg("rocket", size=16)
         assert 'viewBox="0 0 24 24"' in result
+
+
+@pytest.fixture(scope="module")
+def icons_html(build_output):
+    """Return parsed HTML of the icons test page."""
+    html_path = build_output / "icons-test.html"
+    return BeautifulSoup(html_path.read_text(), "html.parser")
+
+
+class TestCardIcons:
+    """Tests for icon rendering on sphinx-design cards."""
+
+    def test_inline_icon_card_has_svg(self, icons_html):
+        """Card with :icon: should contain an SVG with lumina-icon class."""
+        cards = icons_html.find_all("div", class_="sd-card")
+        inline_card = cards[0]
+        svg = inline_card.find("svg", class_="lumina-icon")
+        assert svg is not None, (
+            "Inline icon card should have an SVG with class lumina-icon"
+        )
+
+    def test_inline_icon_wrapper_class(self, icons_html):
+        """Inline icon style should have the sd-card-icon-inline wrapper."""
+        cards = icons_html.find_all("div", class_="sd-card")
+        inline_card = cards[0]
+        wrapper = inline_card.find(class_="sd-card-icon-inline")
+        assert wrapper is not None
+
+    def test_featured_icon_card_has_pill(self, icons_html):
+        """Featured icon style should have the sd-card-icon-featured wrapper."""
+        cards = icons_html.find_all("div", class_="sd-card")
+        featured_card = cards[1]
+        pill = featured_card.find(class_="sd-card-icon-featured")
+        assert pill is not None
+
+    def test_no_icon_card_unchanged(self, icons_html):
+        """Card without :icon: should not have any icon markup."""
+        cards = icons_html.find_all("div", class_="sd-card")
+        plain_card = cards[2]
+        assert plain_card.find("svg", class_="lumina-icon") is None
+
+    def test_grid_item_card_icon(self, icons_html):
+        """grid-item-card with :icon: should render the icon."""
+        cards = icons_html.find_all("div", class_="sd-card")
+        grid_card = cards[3]
+        svg = grid_card.find("svg", class_="lumina-icon")
+        assert svg is not None

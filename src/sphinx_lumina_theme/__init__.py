@@ -136,8 +136,12 @@ def _run_pagefind(app, exception):
 
 def setup(app):
     """Register the Lumina theme with Sphinx."""
+    from ._directives import LuminaCardDirective, LuminaGridItemCardDirective
+
     app.add_html_theme("lumina", str(Path(__file__).parent / "theme"))
     app.add_js_file("lumina.js", loading_method="defer", priority=900)
+    app.add_directive("card", LuminaCardDirective, override=True)
+    app.add_directive("grid-item-card", LuminaGridItemCardDirective, override=True)
     app.connect("html-page-context", _add_context)
     app.connect("build-finished", _run_pagefind)
     return {
