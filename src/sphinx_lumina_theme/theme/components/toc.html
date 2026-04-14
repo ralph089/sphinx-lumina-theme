@@ -1,5 +1,5 @@
 {% if toc %}
-    <div class="lumina-toc-container sticky top-14 hidden h-[calc(100vh-3.5rem)] w-[220px] shrink-0 overflow-y-auto py-6 pr-4 xl:block">
+    <div class="lumina-toc-container sticky top-14 hidden h-[calc(100vh-3.5rem)] w-[220px] shrink-0 py-6 pr-4 xl:block">
         {# Edit on GitHub link #}
         {% if theme_source_repository and theme_source_repository != "" %}
             <a href="{{ theme_source_repository }}/{{ theme_edit_uri }}/{{ theme_source_branch }}/{{ theme_source_directory }}{{ pagename }}{{ page_source_suffix }}"
@@ -17,11 +17,13 @@
             </a>
         {% endif %}
         <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--lumina-text-muted)]">On this page</p>
-        <nav class="lumina-toc-nav"
-             aria-label="Table of contents"
-             x-data="scrollspy()"
-             x-init="init()">
-            {{ toc }}
-        </nav>
+        <div class="lumina-toc-scroll">
+            <nav class="lumina-toc-nav"
+                 aria-label="Table of contents"
+                 x-data="scrollspy()"
+                 x-init="init()">
+                {{ toc }}
+            </nav>
+        </div>
     </div>
 {% endif %}
