@@ -7,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-14T20:14:39+00:00" />
+    <meta property="article:modified_time" content="2026-04-14T20:18:38+00:00" />
     <title>Icon Browser &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=0dad6a2f" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=91793aae" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_js.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -548,9 +548,16 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100"
              x-transition:leave-end="opacity-0"
-             class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 rounded-full bg-[var(--lumina-text)] px-5 py-2.5 text-sm font-medium text-[var(--lumina-bg)] shadow-xl"
+             class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full bg-[var(--lumina-accent)] px-5 py-2.5 text-sm text-white shadow-xl"
              style="pointer-events: none">
-            Copied <code class="font-mono font-semibold" x-text="copiedName"></code>
+            <span>Copied</span>
+            <span class="font-semibold"
+                  x-text="copiedName"
+                  style="font-family: 'JetBrains Mono', monospace;
+                         color: white;
+                         background: none;
+                         border: none;
+                         padding: 0"></span>
         </div>
 
         
