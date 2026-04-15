@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-15T11:05:47+00:00" />
+    <meta property="article:modified_time" content="2026-04-15T12:06:26+00:00" />
     <title>Configuration &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
@@ -28,9 +28,11 @@
     <link rel="prev" title="Installation" href="installation.html" />
 
     
-        <link rel="icon"
-              type="image/svg+xml"
-              href="../_static/favicon.svg">
+        
+            <link rel="icon"
+                  type="image/svg+xml"
+                  href="../_static/favicon.svg">
+        
     
     <link rel="preload"
           as="font"
@@ -741,10 +743,20 @@
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">logo_icon</span></code></p></td>
 <td><p>string</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></td>
-<td><p>Use a <a class="reference external" href="https://lucide.dev/icons/">Lucide icon</a> as the site logo instead of an image. Pass the icon name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;hexagon&quot;</span></code>). Only used when no image logo is configured. See <a class="reference internal" href="../guides/icons.html"><span class="doc">Icons</span></a>.</p></td>
+<td><p>Use a <a class="reference external" href="https://lucide.dev/icons/">Lucide icon</a> as the site logo instead of an image. Pass the icon name (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;hexagon&quot;</span></code>). Only used when no image logo is configured. When set, the browser favicon is automatically derived from the same icon and colored with <code class="docutils literal notranslate"><span class="pre">accent_color</span></code>, unless you also set Sphinx’s <code class="docutils literal notranslate"><span class="pre">html_favicon</span></code>, which takes precedence. See <a class="reference internal" href="../guides/icons.html"><span class="doc">Icons</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">logo_icon_size</span></code></p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;24&quot;</span></code></p></td>
+<td><p>Display size in pixels for <code class="docutils literal notranslate"><span class="pre">logo_icon</span></code>. Lucide icons are pixel-perfect at multiples of 24 (24, 48, 72, …); other sizes appear fuzzy because the 2-unit strokes can’t align to whole device pixels. Stick to 24 unless you deliberately want a larger logo.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Why 24 and not 28?
+Lucide icons are designed on a 24×24 grid with 2-unit-wide strokes. When a Lucide icon is rendered at a size that isn’t a clean multiple of 24, those strokes land on fractional device pixels and the browser anti-aliases them across two columns of pixels — the icon looks subtly fuzzy. Stick to 24, 48, or 72 for a crisp logo.</p>
+</div>
 </section>
 <section id="announcement">
 <h3>Announcement<a class="headerlink" href="#announcement" title="Link to this heading">¶</a></h3>
