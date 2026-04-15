@@ -81,21 +81,32 @@ def _section_paths(section):
 
 
 def _detect_section(pagename, sections):
-    """Return the section config dict matching pagename by path prefix."""
+    """Return the section config dict matching pagename by path prefix.
+
+    If a section has ``"default": True``, it matches any page not claimed
+    by another section's explicit paths.
+    """
+    default = None
     for section in sections:
+        if section.get("default"):
+            default = section
+            continue
         for prefix in _section_paths(section):
-            if pagename == prefix + "/index" or pagename.startswith(prefix + "/"):
+            if (
+                pagename == prefix
+                or pagename == prefix + "/index"
+                or pagename.startswith(prefix + "/")
+            ):
                 return section
-    return None
+    return default
 
 
-def _section_toctree(app, pagename, section, maxdepth, collapse):
+def _section_toctree(app, pagename, section, all_sections, maxdepth, collapse):
     """Render toctree HTML for a section's subtree(s).
 
     Resolves the **root** document's toctree but filters its entries to only
-    include those matching the section's path prefixes.  This preserves the
-    full hierarchy (section headings with nested children) while scoping the
-    sidebar to just the relevant sections.
+    include those matching the section's path prefixes.  For a default section,
+    includes all entries not claimed by any other section.
 
     Note: ``_resolve_toctree`` is a private API but has been stable across
     Sphinx 7.x and 8.x.  This project requires ``sphinx>=8.0``.
@@ -105,8 +116,24 @@ def _section_toctree(app, pagename, section, maxdepth, collapse):
     from sphinx import addnodes
     from sphinx.environment.adapters.toctree import _resolve_toctree
 
-    paths = _section_paths(section)
-    path_set = {p + "/index" for p in paths}
+    is_default = section.get("default", False)
+
+    if is_default:
+        # Default section gets everything NOT claimed by other sections
+        other_paths = set()
+        for s in all_sections:
+            if s.get("default"):
+                continue
+            for p in _section_paths(s):
+                other_paths.add(p + "/index")
+                other_paths.add(p)
+    else:
+        paths = _section_paths(section)
+        path_set = set()
+        for p in paths:
+            path_set.add(p + "/index")
+            path_set.add(p)
+
     builder = app.builder
     root_doc = app.env.config.root_doc
 
@@ -117,18 +144,27 @@ def _section_toctree(app, pagename, section, maxdepth, collapse):
 
     fragments = []
     for node in root_doctree.findall(addnodes.toctree):
-        # Filter entries to only include docs matching this section
-        matching_entries = [
-            (title, docname)
-            for title, docname in node["entries"]
-            if docname in path_set
-        ]
+        if is_default:
+            matching_entries = [
+                (title, docname)
+                for title, docname in node["entries"]
+                if docname not in other_paths
+            ]
+        else:
+            matching_entries = [
+                (title, docname)
+                for title, docname in node["entries"]
+                if docname in path_set
+            ]
         if not matching_entries:
             continue
 
         filtered = copy.deepcopy(node)
         filtered["entries"] = matching_entries
-        filtered["includefiles"] = [f for f in node["includefiles"] if f in path_set]
+        matching_docnames = {dn for _, dn in matching_entries}
+        filtered["includefiles"] = [
+            f for f in node["includefiles"] if f in matching_docnames
+        ]
 
         resolved = _resolve_toctree(
             app.env,
@@ -205,13 +241,22 @@ def _add_context(app, pagename, templatename, context, doctree):
     # Doc sections switcher
     sections = app.builder.theme_options.get("doc_sections", "")
     if sections:
+        # Compute a link target for each section
+        root_doc = app.env.config.root_doc
+        for s in sections:
+            paths = _section_paths(s)
+            if paths:
+                s["_link"] = paths[0] + "/index"
+            else:
+                # Default section with no explicit paths — link to root
+                s["_link"] = root_doc
         current_section = _detect_section(pagename, sections)
         context["lumina_sections"] = sections
         context["lumina_current_section"] = current_section
         if current_section:
             maxdepth = int(app.builder.theme_options.get("nav_depth", "3"))
             section_html = _section_toctree(
-                app, pagename, current_section, maxdepth, collapse=False
+                app, pagename, current_section, sections, maxdepth, collapse=False
             )
             if section_html:
                 context["lumina_section_toctree"] = section_html

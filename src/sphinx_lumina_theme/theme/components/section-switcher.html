@@ -40,7 +40,7 @@
              class="lumina-section-switcher-dropdown"
              role="menu">
             {% for section in lumina_sections %}
-                <a href="{{ pathto((section.path or section.paths[0]) + '/index') }}"
+                <a href="{{ pathto(section._link) }}"
                    class="lumina-section-switcher-item{% if lumina_current_section and section.name == lumina_current_section.name %} active{% endif %}"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"

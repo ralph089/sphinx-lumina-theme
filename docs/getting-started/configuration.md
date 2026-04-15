@@ -328,15 +328,15 @@ html_theme_options = {
     # Doc sections
     "doc_sections": [
         {
-            "paths": ["getting-started", "guides", "extensions", "reference"],
-            "name": "User Docs",
+            "name": "User Documentation",
             "description": "Installation, guides & reference",
             "icon": "book-open",
             "color": "#10b981",
+            "default": True,
         },
         {
             "path": "contributing",
-            "name": "Developer Docs",
+            "name": "Developer Documentation",
             "description": "Architecture & development",
             "icon": "code",
             "color": "#8b5cf6",

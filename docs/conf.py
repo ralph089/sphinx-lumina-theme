@@ -41,11 +41,11 @@ html_theme_options = {
     "announcement": 'A fast, modern Sphinx theme with dark mode, full-text search, and Alpine.js interactivity. <a href="https://github.com/r4sky0/sphinx-lumina-theme">Star on GitHub ★</a>',
     "doc_sections": [
         {
-            "paths": ["getting-started", "guides", "extensions", "reference"],
             "name": "User Documentation",
             "description": "Installation, guides & reference",
             "icon": "book-open",
             "color": "#10b981",
+            "default": True,
         },
         {
             "path": "contributing",
