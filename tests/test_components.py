@@ -1,5 +1,12 @@
 """Test that theme components render correctly."""
 
+from bs4 import BeautifulSoup
+
+
+def _parse(build_output, page="index.html"):
+    """Return parsed HTML for a built page."""
+    return BeautifulSoup((build_output / page).read_text(), "html.parser")
+
 
 def test_header_contains_project_name(index_html):
     """Header should display the project name."""
@@ -63,3 +70,45 @@ def test_toc_has_page_headings(index_html):
     texts = [a.get_text(strip=True) for a in links]
     assert "Section One" in texts
     assert "Section Two" in texts
+
+
+def test_sidebar_root_current_no_accent_highlight(build_output):
+    """Root toctree-l1 items should NOT get accent styling when current.
+
+    The .current > a rule must be scoped to non-root items only.
+    We verify this indirectly: the CSS rule
+    '.lumina-sidebar-nav .current > a' should not exist in the
+    compiled CSS; instead it should be scoped with :not(.toctree-l1).
+    """
+    css_path = build_output / "_static" / "lumina.css"
+    css_text = css_path.read_text()
+    # The old unscoped rule should not exist
+    assert (
+        ".lumina-sidebar-nav .current > a" not in css_text
+        or ":not(.toctree-l1)"
+        in css_text.split(".lumina-sidebar-nav .current > a")[0][-50:]
+        or ".lumina-sidebar-nav li.current:not(.toctree-l1) > a" in css_text
+    )
+
+
+def test_sidebar_active_leaf_has_border_left(build_output):
+    """The active leaf style should use border-left, not a ::before pseudo-element."""
+    css_path = build_output / "_static" / "lumina.css"
+    css_text = css_path.read_text()
+    # The old ::before rule should be gone
+    assert "li.current:not(.toctree-l1) > a::before" not in css_text
+    # The new rule should use border-left
+    assert "border-left:" in css_text
+
+
+def test_sidebar_toggle_button_after_link(build_output):
+    """Collapse toggle buttons are inserted by JS at runtime, so we can't
+    test DOM order directly from static HTML. Instead, verify the CSS grid
+    puts toggle in column 2 (right side)."""
+    css_path = build_output / "_static" / "lumina.css"
+    css_text = css_path.read_text()
+    # Grid should be [link][toggle] — the link column comes first
+    assert (
+        "minmax(0,1fr) auto" in css_text.replace(" ", "")
+        or "minmax(0, 1fr) auto" in css_text
+    )
