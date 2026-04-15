@@ -1,15 +1,12 @@
 """Test the announcement banner."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def _build_with_announcement(tmp_path, announcement="", extra_options=None):
     """Build sample docs with an announcement and return parsed index HTML."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir(parents=True)
     out_dir = tmp_path / "build"
@@ -27,9 +24,7 @@ def _build_with_announcement(tmp_path, announcement="", extra_options=None):
         'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

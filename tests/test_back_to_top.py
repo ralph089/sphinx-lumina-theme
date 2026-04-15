@@ -1,15 +1,12 @@
 """Test the back-to-top button."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def _build_with_options(tmp_path, options=None):
     """Build sample docs with custom options and return parsed index HTML."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -24,9 +21,7 @@ def _build_with_options(tmp_path, options=None):
         'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

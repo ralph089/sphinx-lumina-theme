@@ -39,6 +39,23 @@ html_theme_options = {
     "api_base_url": "https://petstore3.swagger.io/api/v3",
     "wide_layout": "toggle",
     "announcement": 'A fast, modern Sphinx theme with dark mode, full-text search, and Alpine.js interactivity. <a href="https://github.com/r4sky0/sphinx-lumina-theme">Star on GitHub ★</a>',
+    "doc_sections": [
+        {
+            "name": "User Documentation",
+            "description": "Installation, guides & reference",
+            "icon": "book-open",
+            "color": "#10b981",
+            "default": True,
+            "link": "getting-started/index",
+        },
+        {
+            "path": "contributing",
+            "name": "Developer Documentation",
+            "description": "Architecture & development",
+            "icon": "code",
+            "color": "#8b5cf6",
+        },
+    ],
 }
 exclude_patterns = ["_build", "superpowers"]
 templates_path = ["_templates"]

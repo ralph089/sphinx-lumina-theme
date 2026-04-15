@@ -1,9 +1,7 @@
 """Test header nav dropdown rendering."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 import pytest
 
@@ -12,7 +10,6 @@ import pytest
 def dropdown_html(tmp_path_factory):
     """Build sample docs with dropdown nav links and return parsed HTML."""
     tmp_path = tmp_path_factory.mktemp("dropdown")
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -35,9 +32,7 @@ def dropdown_html(tmp_path_factory):
         'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

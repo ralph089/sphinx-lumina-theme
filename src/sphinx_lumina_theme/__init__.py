@@ -1,9 +1,12 @@
 """Sphinx Lumina Theme — a modern documentation theme."""
 
+import copy
 import hashlib
 import re
 from pathlib import Path
 
+from sphinx import addnodes
+from sphinx.environment.adapters.toctree import _resolve_toctree
 from sphinx.util import logging
 
 logger = logging.getLogger(__name__)
@@ -67,6 +70,136 @@ def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
     return re.sub(r'<a\b[^>]*href="([^"]*)"[^>]*>', _replace_link, toctree_html)
 
 
+def _section_paths(section):
+    """Return the list of path prefixes for a section.
+
+    Supports both ``"path": "guides"`` (single) and
+    ``"paths": ["getting-started", "guides"]`` (multiple).
+    """
+    paths = list(section.get("paths") or [])
+    single = section.get("path", "")
+    if single and single not in paths:
+        paths.insert(0, single)
+    return paths
+
+
+def _paths_to_docnames(path_list):
+    """Expand path prefixes to the set of docnames they match in root toctree."""
+    result = set()
+    for p in path_list:
+        result.add(p)
+        result.add(p + "/index")
+    return result
+
+
+def _detect_section(pagename, sections):
+    """Return the section config dict matching pagename by path prefix.
+
+    If a section has ``"default": True``, it matches any page not claimed
+    by another section's explicit paths.
+    """
+    default = None
+    for section in sections:
+        if section.get("default"):
+            default = section
+            continue
+        for prefix in _section_paths(section):
+            if (
+                pagename == prefix
+                or pagename == prefix + "/index"
+                or pagename.startswith(prefix + "/")
+            ):
+                return section
+    return default
+
+
+def _prepare_sections(app, sections):
+    """Pre-compute cached data for doc sections (called once per build).
+
+    Enriches each section dict with ``_link`` (nav target) and stores
+    the root doctree and claimed-paths set on the app for reuse across pages.
+    """
+    root_doc = app.env.config.root_doc
+
+    # Compute link targets and the set of all explicitly claimed docnames
+    claimed = set()
+    for s in sections:
+        # Explicit "link" takes priority, then first path, then root_doc
+        if "link" in s:
+            s["_link"] = s["link"]
+        else:
+            paths = _section_paths(s)
+            if paths:
+                s["_link"] = paths[0] + "/index"
+            else:
+                s["_link"] = root_doc
+        if not s.get("default"):
+            claimed |= _paths_to_docnames(_section_paths(s))
+
+    # Cache the root doctree (constant during write phase)
+    try:
+        app._lumina_root_doctree = app.env.get_doctree(root_doc)
+    except FileNotFoundError:
+        app._lumina_root_doctree = None
+
+    app._lumina_claimed_paths = claimed
+
+
+def _section_toctree(app, pagename, section, maxdepth, collapse):
+    """Render toctree HTML for a section's subtree(s).
+
+    Resolves the **root** document's toctree but filters its entries to only
+    include those matching the section's path prefixes.  For a default section,
+    includes all entries not claimed by any other section.
+
+    Note: ``_resolve_toctree`` is a private API but has been stable across
+    Sphinx 7.x and 8.x.  This project requires ``sphinx>=8.0``.
+    """
+    root_doctree = app._lumina_root_doctree
+    if root_doctree is None:
+        return ""
+
+    is_default = section.get("default", False)
+    if is_default:
+        claimed = app._lumina_claimed_paths
+    else:
+        claimed = _paths_to_docnames(_section_paths(section))
+
+    builder = app.builder
+    fragments = []
+    for node in root_doctree.findall(addnodes.toctree):
+        if is_default:
+            matching = [e for e in node["entries"] if e[1] not in claimed]
+        else:
+            matching = [e for e in node["entries"] if e[1] in claimed]
+        if not matching:
+            continue
+
+        filtered = copy.deepcopy(node)
+        filtered["entries"] = matching
+        matched_docs = {dn for _, dn in matching}
+        filtered["includefiles"] = [
+            f for f in node["includefiles"] if f in matched_docs
+        ]
+
+        resolved = _resolve_toctree(
+            app.env,
+            pagename,
+            builder,
+            filtered,
+            prune=True,
+            maxdepth=maxdepth,
+            titles_only=True,
+            collapse=collapse,
+            includehidden=True,
+            tags=builder.tags,
+        )
+        if resolved:
+            fragments.append(builder.render_partial(resolved)["fragment"])
+
+    return "\n".join(fragments)
+
+
 def _add_context(app, pagename, templatename, context, doctree):
     context["lumina_version"] = __version__
     context["has_llms_txt"] = "sphinx_llm.txt" in app.extensions
@@ -125,6 +258,22 @@ def _add_context(app, pagename, templatename, context, doctree):
     context["add_sidebar_icons"] = lambda html: _add_sidebar_icons(
         html, page_icons, pagename, get_icon_svg
     )
+
+    # Doc sections switcher
+    sections = app.builder.theme_options.get("doc_sections", "")
+    if sections:
+        if not hasattr(app, "_lumina_root_doctree"):
+            _prepare_sections(app, sections)
+        current_section = _detect_section(pagename, sections)
+        context["lumina_sections"] = sections
+        context["lumina_current_section"] = current_section
+        if current_section:
+            maxdepth = int(app.builder.theme_options.get("nav_depth", "3"))
+            section_html = _section_toctree(
+                app, pagename, current_section, maxdepth, collapse=False
+            )
+            if section_html:
+                context["lumina_section_toctree"] = section_html
 
     # Make all external scripts non-render-blocking (defer).
     # Sphinx places the {%- block scripts %} inside <head>, so without defer

@@ -1,16 +1,13 @@
 """Test the landing page template."""
 
-import shutil
-from pathlib import Path
-
 import pytest
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def build_landing(tmp_path):
     """Build sample docs with a landing page and return parsed HTML."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -24,9 +21,7 @@ def build_landing(tmp_path):
         'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

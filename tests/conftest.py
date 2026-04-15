@@ -1,5 +1,6 @@
 """Shared test fixtures for sphinx-lumina-theme tests."""
 
+import shutil
 import socket
 import subprocess
 import time
@@ -8,6 +9,19 @@ from pathlib import Path
 
 import pytest
 from sphinx.application import Sphinx
+
+SAMPLE_DOCS = Path(__file__).parent / "sample_docs"
+
+
+def copy_sample_docs(dest_dir):
+    """Copy sample_docs tree into dest_dir, skipping conf.py."""
+    for item in SAMPLE_DOCS.iterdir():
+        if item.name == "conf.py":
+            continue
+        if item.is_dir():
+            shutil.copytree(item, dest_dir / item.name)
+        else:
+            shutil.copy2(item, dest_dir / item.name)
 
 
 @pytest.fixture(scope="session")

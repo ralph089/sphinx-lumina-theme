@@ -1,7 +1,5 @@
 """Tests for the Lucide icon system."""
 
-from pathlib import Path
-
 import pytest
 from bs4 import BeautifulSoup
 from sphinx.application import Sphinx
@@ -133,9 +131,8 @@ class TestSidebarIcons:
 
 def _build_with_logo_icon(tmp_path):
     """Build sample docs with logo_icon option and return parsed HTML."""
-    import shutil
+    from conftest import copy_sample_docs
 
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -150,9 +147,7 @@ def _build_with_logo_icon(tmp_path):
         'myst_enable_extensions = ["colon_fence"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

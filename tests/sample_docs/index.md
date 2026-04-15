@@ -71,4 +71,5 @@ Content two.
 getting-started
 landing-test
 icons-test
+guides/index
 ```

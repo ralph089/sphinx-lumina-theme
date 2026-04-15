@@ -1,15 +1,12 @@
 """Test separate light/dark logo rendering."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def _build_with_logos(tmp_path, options=None, create_logos=True):
     """Build sample docs with logo options and return parsed index HTML."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -35,9 +32,7 @@ def _build_with_logos(tmp_path, options=None, create_logos=True):
         'html_static_path = ["_static"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),
@@ -99,7 +94,6 @@ def test_only_dark_logo_renders_single_image(tmp_path):
 
 def test_html_logo_fallback(tmp_path):
     """html_logo should work as a fallback when no theme logo options are set."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -120,9 +114,7 @@ def test_html_logo_fallback(tmp_path):
         'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),
