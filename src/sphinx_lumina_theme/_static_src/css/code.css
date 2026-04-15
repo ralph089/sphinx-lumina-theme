@@ -166,7 +166,7 @@ div.highlight {
   background: var(--lumina-bg);
 }
 
-.sd-tab-set > label {
+.sd-tab-set.sd-tab-set > label {
   display: inline-block;
   padding: 0.25rem 0.75rem 0.375rem;
   font-size: 0.75rem;
@@ -180,7 +180,7 @@ div.highlight {
   position: relative;
 }
 
-.sd-tab-set > label:hover {
+html .sd-tab-set > label:hover {
   color: var(--lumina-text);
 }
 
@@ -190,7 +190,7 @@ div.highlight {
   border-radius: 0.25rem 0.25rem 0 0;
 }
 
-.sd-tab-set > input:checked + label {
+.sd-tab-set.sd-tab-set > input:checked + label {
   color: var(--lumina-accent);
   border-bottom-color: var(--lumina-accent);
 }
