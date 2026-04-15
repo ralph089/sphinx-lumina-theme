@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-15T06:35:48+00:00" />
+    <meta property="article:modified_time" content="2026-04-15T06:37:56+00:00" />
     <title>Navigation &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
@@ -53,9 +53,11 @@
     
         <script>
 (function() {
+  
   if (localStorage.getItem('lumina-layout') === 'wide') {
     document.documentElement.setAttribute('data-layout', 'wide');
   }
+  
 })();
         </script>
     
@@ -322,7 +324,7 @@
              class="lumina-section-switcher-dropdown"
              role="menu">
             
-                <a href="../introduction.html"
+                <a href="../getting-started/index.html"
                    class="lumina-section-switcher-item active"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"
@@ -492,7 +494,7 @@
              class="lumina-section-switcher-dropdown"
              role="menu">
             
-                <a href="../introduction.html"
+                <a href="../getting-started/index.html"
                    class="lumina-section-switcher-item active"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"
@@ -770,6 +772,7 @@
             <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;book-open&quot;</span><span class="p">,</span>
             <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#10b981&quot;</span><span class="p">,</span>
             <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="s2">&quot;getting-started/index&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="p">{</span>
             <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;contributing&quot;</span><span class="p">,</span>
@@ -791,6 +794,7 @@
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">color</span></code></strong> (required) – hex color for the icon badge and section name in the switcher</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">path</span></code></strong> or <strong><code class="docutils literal notranslate"><span class="pre">paths</span></code></strong> – directory prefixes that belong to this section. Use <code class="docutils literal notranslate"><span class="pre">path</span></code> for a single directory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;contributing&quot;</span></code>), or <code class="docutils literal notranslate"><span class="pre">paths</span></code> for multiple directories grouped under one section.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">default</span></code></strong> – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> on one section to make it the catch-all. Any page not claimed by another section’s explicit paths automatically belongs to the default section.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">link</span></code></strong> – page to navigate to when clicking this section in the dropdown (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;getting-started/index&quot;</span></code>). Defaults to the first entry in <code class="docutils literal notranslate"><span class="pre">path</span></code>/<code class="docutils literal notranslate"><span class="pre">paths</span></code>.</p></li>
 </ul>
 </section>
 <section id="how-it-works">
