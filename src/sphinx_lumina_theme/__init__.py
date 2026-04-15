@@ -70,8 +70,13 @@ def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
 def _add_context(app, pagename, templatename, context, doctree):
     context["lumina_version"] = __version__
     context["has_llms_txt"] = "sphinx_llm.txt" in app.extensions
-    wide_val = app.builder.theme_options.get("wide_layout", "false")
-    context["lumina_wide_layout"] = wide_val is True or str(wide_val).lower() == "true"
+    wide_val = str(app.builder.theme_options.get("wide_layout", "false")).lower()
+    if wide_val in ("toggle", "always"):
+        context["lumina_wide_layout"] = True
+        context["lumina_wide_layout_mode"] = wide_val
+    else:
+        context["lumina_wide_layout"] = False
+        context["lumina_wide_layout_mode"] = "off"
 
     # Separate light/dark logos
     light_logo = app.builder.theme_options.get("light_logo", "")
