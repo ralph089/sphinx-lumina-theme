@@ -1,5 +1,12 @@
 # Releases
 
+## v1.31.3 (2026-04-15)
+
+### Bug Fixes
+
+- Polish doc sections switcher ([#68](https://github.com/r4sky0/sphinx-lumina-theme/pull/68),
+  [`e11ad3d`](https://github.com/r4sky0/sphinx-lumina-theme/commit/e11ad3d31e28c40f22556a6937b6a99069773e35))
+
 ## v1.31.2 (2026-04-15)
 
 ### Bug Fixes
