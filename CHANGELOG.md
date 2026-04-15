@@ -2,6 +2,15 @@
 
 <!-- releases -->
 
+## v1.33.0 (2026-04-15)
+
+### Features
+
+- Polish lists, tables & typography elements
+  ([#71](https://github.com/r4sky0/sphinx-lumina-theme/pull/71),
+  [`9535d4f`](https://github.com/r4sky0/sphinx-lumina-theme/commit/9535d4f6e63ea53d1b3cd1056a1099ee04a2b558))
+
+
 ## v1.32.0 (2026-04-15)
 
 ### Features
