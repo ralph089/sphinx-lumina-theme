@@ -1,15 +1,12 @@
 """Test theme configuration options."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def build_with_options(tmp_path, options):
     """Build sample docs with custom theme options."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -24,12 +21,7 @@ def build_with_options(tmp_path, options):
         f'exclude_patterns = ["_build"]\n'
     )
 
-    for f in src_dir.iterdir():
-        if f.name != "conf.py":
-            if f.is_dir():
-                shutil.copytree(f, conf_dir / f.name)
-            else:
-                shutil.copy2(f, conf_dir / f.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),

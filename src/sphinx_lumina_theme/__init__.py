@@ -1,9 +1,12 @@
 """Sphinx Lumina Theme — a modern documentation theme."""
 
+import copy
 import hashlib
 import re
 from pathlib import Path
 
+from sphinx import addnodes
+from sphinx.environment.adapters.toctree import _resolve_toctree
 from sphinx.util import logging
 
 logger = logging.getLogger(__name__)
@@ -73,11 +76,20 @@ def _section_paths(section):
     Supports both ``"path": "guides"`` (single) and
     ``"paths": ["getting-started", "guides"]`` (multiple).
     """
-    paths = section.get("paths") or []
+    paths = list(section.get("paths") or [])
     single = section.get("path", "")
     if single and single not in paths:
-        paths = [single] + paths
+        paths.insert(0, single)
     return paths
+
+
+def _paths_to_docnames(path_list):
+    """Expand path prefixes to the set of docnames they match in root toctree."""
+    result = set()
+    for p in path_list:
+        result.add(p)
+        result.add(p + "/index")
+    return result
 
 
 def _detect_section(pagename, sections):
@@ -101,7 +113,35 @@ def _detect_section(pagename, sections):
     return default
 
 
-def _section_toctree(app, pagename, section, all_sections, maxdepth, collapse):
+def _prepare_sections(app, sections):
+    """Pre-compute cached data for doc sections (called once per build).
+
+    Enriches each section dict with ``_link`` (nav target) and stores
+    the root doctree and claimed-paths set on the app for reuse across pages.
+    """
+    root_doc = app.env.config.root_doc
+
+    # Compute link targets and the set of all explicitly claimed docnames
+    claimed = set()
+    for s in sections:
+        paths = _section_paths(s)
+        if paths:
+            s["_link"] = paths[0] + "/index"
+        else:
+            s["_link"] = root_doc
+        if not s.get("default"):
+            claimed |= _paths_to_docnames(paths)
+
+    # Cache the root doctree (constant during write phase)
+    try:
+        app._lumina_root_doctree = app.env.get_doctree(root_doc)
+    except FileNotFoundError:
+        app._lumina_root_doctree = None
+
+    app._lumina_claimed_paths = claimed
+
+
+def _section_toctree(app, pagename, section, maxdepth, collapse):
     """Render toctree HTML for a section's subtree(s).
 
     Resolves the **root** document's toctree but filters its entries to only
@@ -111,59 +151,31 @@ def _section_toctree(app, pagename, section, all_sections, maxdepth, collapse):
     Note: ``_resolve_toctree`` is a private API but has been stable across
     Sphinx 7.x and 8.x.  This project requires ``sphinx>=8.0``.
     """
-    import copy
-
-    from sphinx import addnodes
-    from sphinx.environment.adapters.toctree import _resolve_toctree
-
-    is_default = section.get("default", False)
-
-    if is_default:
-        # Default section gets everything NOT claimed by other sections
-        other_paths = set()
-        for s in all_sections:
-            if s.get("default"):
-                continue
-            for p in _section_paths(s):
-                other_paths.add(p + "/index")
-                other_paths.add(p)
-    else:
-        paths = _section_paths(section)
-        path_set = set()
-        for p in paths:
-            path_set.add(p + "/index")
-            path_set.add(p)
-
-    builder = app.builder
-    root_doc = app.env.config.root_doc
-
-    try:
-        root_doctree = app.env.get_doctree(root_doc)
-    except FileNotFoundError:
+    root_doctree = app._lumina_root_doctree
+    if root_doctree is None:
         return ""
 
+    is_default = section.get("default", False)
+    if is_default:
+        claimed = app._lumina_claimed_paths
+    else:
+        claimed = _paths_to_docnames(_section_paths(section))
+
+    builder = app.builder
     fragments = []
     for node in root_doctree.findall(addnodes.toctree):
         if is_default:
-            matching_entries = [
-                (title, docname)
-                for title, docname in node["entries"]
-                if docname not in other_paths
-            ]
+            matching = [e for e in node["entries"] if e[1] not in claimed]
         else:
-            matching_entries = [
-                (title, docname)
-                for title, docname in node["entries"]
-                if docname in path_set
-            ]
-        if not matching_entries:
+            matching = [e for e in node["entries"] if e[1] in claimed]
+        if not matching:
             continue
 
         filtered = copy.deepcopy(node)
-        filtered["entries"] = matching_entries
-        matching_docnames = {dn for _, dn in matching_entries}
+        filtered["entries"] = matching
+        matched_docs = {dn for _, dn in matching}
         filtered["includefiles"] = [
-            f for f in node["includefiles"] if f in matching_docnames
+            f for f in node["includefiles"] if f in matched_docs
         ]
 
         resolved = _resolve_toctree(
@@ -241,22 +253,15 @@ def _add_context(app, pagename, templatename, context, doctree):
     # Doc sections switcher
     sections = app.builder.theme_options.get("doc_sections", "")
     if sections:
-        # Compute a link target for each section
-        root_doc = app.env.config.root_doc
-        for s in sections:
-            paths = _section_paths(s)
-            if paths:
-                s["_link"] = paths[0] + "/index"
-            else:
-                # Default section with no explicit paths — link to root
-                s["_link"] = root_doc
+        if not hasattr(app, "_lumina_root_doctree"):
+            _prepare_sections(app, sections)
         current_section = _detect_section(pagename, sections)
         context["lumina_sections"] = sections
         context["lumina_current_section"] = current_section
         if current_section:
             maxdepth = int(app.builder.theme_options.get("nav_depth", "3"))
             section_html = _section_toctree(
-                app, pagename, current_section, sections, maxdepth, collapse=False
+                app, pagename, current_section, maxdepth, collapse=False
             )
             if section_html:
                 context["lumina_section_toctree"] = section_html

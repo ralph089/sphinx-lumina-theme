@@ -1,8 +1,8 @@
 {# Section switcher — dropdown at top of sidebar for navigating between doc sections #}
 {% if lumina_sections is defined and lumina_sections %}
     <div id="lumina-section-switcher"
-         x-data="sectionSwitcher()"
-         @keydown.escape="open = false"
+         x-data="navDropdown()"
+         @keydown="handleKeydown($event)"
          class="lumina-section-switcher">
         <button @click="toggle()"
                 :aria-expanded="open"
@@ -41,7 +41,7 @@
              role="menu">
             {% for section in lumina_sections %}
                 <a href="{{ pathto(section._link) }}"
-                   class="lumina-section-switcher-item{% if lumina_current_section and section.name == lumina_current_section.name %} active{% endif %}"
+                   class="lumina-section-switcher-item{% if lumina_current_section and section._link == lumina_current_section._link %} active{% endif %}"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"
                           style="background: {{ section.color }}15;

@@ -1,15 +1,12 @@
 """Test the doc sections switcher."""
 
-import shutil
-from pathlib import Path
-
 from bs4 import BeautifulSoup
+from conftest import copy_sample_docs
 from sphinx.application import Sphinx
 
 
 def _build_sections(tmp_path, options=None, extra_opts=None):
     """Build sample docs with doc_sections and return output path."""
-    src_dir = Path(__file__).parent / "sample_docs"
     conf_dir = tmp_path / "conf"
     conf_dir.mkdir()
     out_dir = tmp_path / "build"
@@ -37,14 +34,7 @@ def _build_sections(tmp_path, options=None, extra_opts=None):
         'exclude_patterns = ["_build"]\n'
     )
 
-    # Copy all sample docs including subdirectories
-    for item in src_dir.iterdir():
-        if item.name == "conf.py":
-            continue
-        if item.is_dir():
-            shutil.copytree(item, conf_dir / item.name)
-        else:
-            shutil.copy2(item, conf_dir / item.name)
+    copy_sample_docs(conf_dir)
 
     app = Sphinx(
         srcdir=str(conf_dir),
