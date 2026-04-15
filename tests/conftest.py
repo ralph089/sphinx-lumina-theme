@@ -43,7 +43,27 @@ def wide_build_output(tmp_path_factory):
         doctreedir=str(doctree_dir),
         buildername="html",
         freshenv=True,
-        confoverrides={"html_theme_options.wide_layout": "true"},
+        confoverrides={"html_theme_options.wide_layout": "toggle"},
+    )
+    app.build()
+    return out_dir
+
+
+@pytest.fixture(scope="session")
+def always_wide_build_output(tmp_path_factory):
+    """Build sample docs with wide_layout set to always."""
+    src_dir = Path(__file__).parent / "sample_docs"
+    out_dir = tmp_path_factory.mktemp("always_wide_build")
+    doctree_dir = out_dir / ".doctrees"
+
+    app = Sphinx(
+        srcdir=str(src_dir),
+        confdir=str(src_dir),
+        outdir=str(out_dir),
+        doctreedir=str(doctree_dir),
+        buildername="html",
+        freshenv=True,
+        confoverrides={"html_theme_options.wide_layout": "always"},
     )
     app.build()
     return out_dir

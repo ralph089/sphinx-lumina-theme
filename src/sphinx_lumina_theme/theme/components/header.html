@@ -176,7 +176,7 @@
                     {{ lumina_icon_inner("monitor") }}
                 </svg>
             </button>
-            {% if lumina_wide_layout %}
+            {% if lumina_wide_layout_mode == "toggle" %}
                 {# Layout width toggle — only visible on wide screens #}
                 <button x-data="layoutToggle()"
                         @click="toggle()"

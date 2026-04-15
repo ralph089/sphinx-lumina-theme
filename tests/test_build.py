@@ -51,3 +51,21 @@ def test_default_layout_no_wide_features(index_html):
     # No layout toggle button
     toggle = index_html.find("button", attrs={"x-data": "layoutToggle()"})
     assert toggle is None, "Layout toggle should not be present in default build"
+
+
+def test_always_wide_has_fouc_script(always_wide_build_output):
+    """Always-wide build should unconditionally set data-layout in FOUC script."""
+    html = (always_wide_build_output / "index.html").read_text()
+    assert "data-layout" in html
+    # Should NOT check localStorage — it's always wide
+    assert "lumina-layout" not in html
+
+
+def test_always_wide_no_toggle_button(always_wide_build_output):
+    """Always-wide build should not include the layout toggle button."""
+    from bs4 import BeautifulSoup
+
+    html = (always_wide_build_output / "getting-started.html").read_text()
+    soup = BeautifulSoup(html, "html.parser")
+    toggle = soup.find("button", attrs={"x-data": "layoutToggle()"})
+    assert toggle is None, "Layout toggle should not be present in always-wide build"

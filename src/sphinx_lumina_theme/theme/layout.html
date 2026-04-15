@@ -35,9 +35,13 @@
     {% if lumina_wide_layout %}
         <script>
 (function() {
+  {% if lumina_wide_layout_mode == "always" %}
+  document.documentElement.setAttribute('data-layout', 'wide');
+  {% else %}
   if (localStorage.getItem('lumina-layout') === 'wide') {
     document.documentElement.setAttribute('data-layout', 'wide');
   }
+  {% endif %}
 })();
         </script>
     {% endif %}
