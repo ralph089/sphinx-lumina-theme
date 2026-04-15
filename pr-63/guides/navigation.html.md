@@ -98,15 +98,15 @@ Define your sections in `html_theme_options`:
 html_theme_options = {
     "doc_sections": [
         {
-            "paths": ["getting-started", "guides", "extensions", "reference"],
-            "name": "User Docs",
+            "name": "User Documentation",
             "description": "Installation, guides & reference",
             "icon": "book-open",
             "color": "#10b981",
+            "default": True,
         },
         {
             "path": "contributing",
-            "name": "Developer Docs",
+            "name": "Developer Documentation",
             "description": "Architecture & development",
             "icon": "code",
             "color": "#8b5cf6",
@@ -117,17 +117,18 @@ html_theme_options = {
 
 Each section has:
 
-- **`path`** or **`paths`** – one or more directory prefixes that belong to this section. Use `path` for a single directory (e.g., `"contributing"`), or `paths` for multiple directories grouped under one section.
-- **`name`** – display name in the switcher dropdown
-- **`description`** – short tagline shown below the name
-- **`icon`** – a [Lucide icon](https://lucide.dev/icons/) name (e.g., `"book-open"`, `"code"`)
-- **`color`** – hex color for the icon badge and section name in the switcher
+- **`name`** (required) – display name in the switcher dropdown
+- **`description`** (required) – short tagline shown below the name
+- **`icon`** (required) – a [Lucide icon](https://lucide.dev/icons/) name (e.g., `"book-open"`, `"code"`)
+- **`color`** (required) – hex color for the icon badge and section name in the switcher
+- **`path`** or **`paths`** – directory prefixes that belong to this section. Use `path` for a single directory (e.g., `"contributing"`), or `paths` for multiple directories grouped under one section.
+- **`default`** – set to `True` on one section to make it the catch-all. Any page not claimed by another section’s explicit paths automatically belongs to the default section.
 
 ### How It Works
 
 When a reader visits a page that belongs to a section, the sidebar shows only that section’s navigation tree. The dropdown at the top highlights the active section and lets readers jump to any other section’s index page.
 
-Pages that don’t match any section (like a top-level introduction or changelog) show the full sidebar navigation with a neutral “Browse sections” label in the dropdown.
+One section can be marked as `"default": True`. That section automatically includes every page not explicitly assigned to another section — you don’t need to list every directory. This is the simplest way to split docs into two groups like “User Documentation” (everything) and “Developer Documentation” (just `contributing/`).
 
 Section colors are contained to the switcher dropdown — they don’t affect the rest of the page’s accent color.
 

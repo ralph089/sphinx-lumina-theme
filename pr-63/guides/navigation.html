@@ -7,11 +7,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta property="article:modified_time" content="2026-04-15T06:12:49+00:00" />
+    <meta property="article:modified_time" content="2026-04-15T06:20:24+00:00" />
     <title>Navigation &#8212; Sphinx Lumina Theme  documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css?v=5349f25f" />
-    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=3dac3ef5" />
+    <link rel="stylesheet" type="text/css" href="../_static/lumina.css?v=bfde4efe" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_js.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -322,7 +322,7 @@
              class="lumina-section-switcher-dropdown"
              role="menu">
             
-                <a href="../getting-started/index.html"
+                <a href="../index.html"
                    class="lumina-section-switcher-item active"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"
@@ -355,6 +355,7 @@
         
             <nav class="lumina-sidebar-nav" aria-label="Section navigation">
                 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting-started/configuration.html">Configuration</a></li>
@@ -400,6 +401,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../reference/icons.html">Icon Browser</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
 </ul>
 
             </nav>
@@ -419,7 +421,7 @@
                         <path d="M16 10L24 27H16" fill="currentColor" opacity="0.3" />
                     </svg>
                 Lumina</a>
-                <span class="lumina-sidebar-footer-version">v1.28.0</span>
+                <span class="lumina-sidebar-footer-version">v1.28.1</span>
             </div>
         
     </div>
@@ -490,7 +492,7 @@
              class="lumina-section-switcher-dropdown"
              role="menu">
             
-                <a href="../getting-started/index.html"
+                <a href="../index.html"
                    class="lumina-section-switcher-item active"
                    role="menuitem">
                     <span class="lumina-section-switcher-icon"
@@ -525,6 +527,7 @@
                 
                     <nav class="lumina-sidebar-nav" aria-label="Section navigation">
                         <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting-started/configuration.html">Configuration</a></li>
@@ -570,6 +573,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../reference/icons.html">Icon Browser</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../releases.html">Releases</a></li>
 </ul>
 
                     </nav>
@@ -579,7 +583,7 @@
                         <a href="https://github.com/r4sky0/sphinx-lumina-theme"
                            target="_blank"
                            rel="noopener">Lumina</a>
-                        <span class="lumina-sidebar-footer-version">v1.28.0</span>
+                        <span class="lumina-sidebar-footer-version">v1.28.1</span>
                     </div>
                 
             </div>
@@ -761,15 +765,15 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme_options</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;doc_sections&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">&quot;paths&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;getting-started&quot;</span><span class="p">,</span> <span class="s2">&quot;guides&quot;</span><span class="p">,</span> <span class="s2">&quot;extensions&quot;</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;User Docs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;User Documentation&quot;</span><span class="p">,</span>
             <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Installation, guides &amp; reference&quot;</span><span class="p">,</span>
             <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;book-open&quot;</span><span class="p">,</span>
             <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#10b981&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="p">{</span>
             <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;contributing&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Developer Docs&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Developer Documentation&quot;</span><span class="p">,</span>
             <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Architecture &amp; development&quot;</span><span class="p">,</span>
             <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span>
             <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#8b5cf6&quot;</span><span class="p">,</span>
@@ -781,17 +785,18 @@
 </div>
 <p>Each section has:</p>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">path</span></code></strong> or <strong><code class="docutils literal notranslate"><span class="pre">paths</span></code></strong> – one or more directory prefixes that belong to this section. Use <code class="docutils literal notranslate"><span class="pre">path</span></code> for a single directory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;contributing&quot;</span></code>), or <code class="docutils literal notranslate"><span class="pre">paths</span></code> for multiple directories grouped under one section.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">name</span></code></strong> – display name in the switcher dropdown</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">description</span></code></strong> – short tagline shown below the name</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">icon</span></code></strong> – a <a class="reference external" href="https://lucide.dev/icons/">Lucide icon</a> name (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;book-open&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;code&quot;</span></code>)</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">color</span></code></strong> – hex color for the icon badge and section name in the switcher</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">name</span></code></strong> (required) – display name in the switcher dropdown</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">description</span></code></strong> (required) – short tagline shown below the name</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">icon</span></code></strong> (required) – a <a class="reference external" href="https://lucide.dev/icons/">Lucide icon</a> name (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;book-open&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;code&quot;</span></code>)</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">color</span></code></strong> (required) – hex color for the icon badge and section name in the switcher</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">path</span></code></strong> or <strong><code class="docutils literal notranslate"><span class="pre">paths</span></code></strong> – directory prefixes that belong to this section. Use <code class="docutils literal notranslate"><span class="pre">path</span></code> for a single directory (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;contributing&quot;</span></code>), or <code class="docutils literal notranslate"><span class="pre">paths</span></code> for multiple directories grouped under one section.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">default</span></code></strong> – set to <code class="docutils literal notranslate"><span class="pre">True</span></code> on one section to make it the catch-all. Any page not claimed by another section’s explicit paths automatically belongs to the default section.</p></li>
 </ul>
 </section>
 <section id="how-it-works">
 <h3>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h3>
 <p>When a reader visits a page that belongs to a section, the sidebar shows only that section’s navigation tree. The dropdown at the top highlights the active section and lets readers jump to any other section’s index page.</p>
-<p>Pages that don’t match any section (like a top-level introduction or changelog) show the full sidebar navigation with a neutral “Browse sections” label in the dropdown.</p>
+<p>One section can be marked as <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;:</span> <span class="pre">True</span></code>. That section automatically includes every page not explicitly assigned to another section — you don’t need to list every directory. This is the simplest way to split docs into two groups like “User Documentation” (everything) and “Developer Documentation” (just <code class="docutils literal notranslate"><span class="pre">contributing/</span></code>).</p>
 <p>Section colors are contained to the switcher dropdown — they don’t affect the rest of the page’s accent color.</p>
 </section>
 </section>
