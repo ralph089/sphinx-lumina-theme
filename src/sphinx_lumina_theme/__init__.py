@@ -34,6 +34,18 @@ def _build_page_icons(app):
     return icons
 
 
+def _resolve_href_to_pagename(href, pagename):
+    """Best-effort mapping from a toctree link href back to a Sphinx pagename."""
+    if href == "#" or href == "":
+        return pagename
+    target = re.sub(r"\.html$", "", href)
+    target = re.sub(r"/$", "/index", target)
+    if not target.startswith("/") and "/" in pagename:
+        base = pagename.rsplit("/", 1)[0]
+        target = base + "/" + target
+    return target
+
+
 def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
     """Post-process toctree HTML to inject icon SVGs into sidebar links."""
     if not page_icons:
@@ -42,21 +54,12 @@ def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
     def _replace_link(match):
         full_match = match.group(0)
         href = match.group(1)
-        # Self-reference links (current page) use href="#"
         if href == "#" or href == "":
             icon_name = page_icons.get(pagename, "")
         else:
-            # Resolve href to pagename: strip .html, handle relative paths
-            target = re.sub(r"\.html$", "", href)
-            target = re.sub(r"/$", "/index", target)
-            # Handle relative URLs by resolving against current page
-            if not target.startswith("/") and "/" in pagename:
-                base = pagename.rsplit("/", 1)[0]
-                target = base + "/" + target
-            # Also try without path prefix for top-level pages
+            target = _resolve_href_to_pagename(href, pagename)
             icon_name = page_icons.get(target, "")
             if not icon_name:
-                # Try stripping leading segments
                 simple = target.rsplit("/", 1)[-1] if "/" in target else target
                 icon_name = page_icons.get(simple, "")
         if not icon_name:
@@ -64,10 +67,55 @@ def _add_sidebar_icons(toctree_html, page_icons, pagename, get_icon_fn):
         svg = get_icon_fn(icon_name, size=16, css_class="lumina-sidebar-icon")
         if not svg:
             return full_match
-        # Insert SVG right after the opening <a ...> tag
         return full_match + str(svg)
 
     return re.sub(r'<a\b[^>]*href="([^"]*)"[^>]*>', _replace_link, toctree_html)
+
+
+# Matches an opening <li ...> followed by a direct child <a href="...">.
+# Splitting the match into three groups lets us rewrite just the <li> tag
+# while preserving any whitespace that Sphinx emits between it and the <a>.
+_LI_WITH_ANCHOR_RE = re.compile(
+    r'(?P<open><li(?P<attrs>[^>]*)>)(?P<gap>\s*)(?P<anchor><a\b[^>]*href="(?P<href>[^"]*)"[^>]*>)',
+    re.IGNORECASE,
+)
+
+
+def _mark_collapsed_entries(toctree_html, collapsed_docs, pagename):
+    """Tag toctree ``<li>`` elements whose page opts into starting collapsed.
+
+    For any ``<li>`` whose first child ``<a>`` resolves to a pagename in
+    ``collapsed_docs``, append ``data-nav-collapsed="true"`` to the ``<li>``
+    attributes.  The client-side ``sidebarNav`` Alpine component reads this
+    attribute on init and starts that branch in the collapsed state
+    (unless it contains the current page, in which case it is auto-expanded).
+    """
+    if not collapsed_docs:
+        return toctree_html
+
+    def _replace(match):
+        attrs = match.group("attrs")
+        if "data-nav-collapsed" in attrs:
+            return match.group(0)
+        target = _resolve_href_to_pagename(match.group("href"), pagename)
+        if target not in collapsed_docs:
+            simple = target.rsplit("/", 1)[-1] if "/" in target else target
+            if simple not in collapsed_docs:
+                return match.group(0)
+        new_open = f'<li{attrs} data-nav-collapsed="true">'
+        return new_open + match.group("gap") + match.group("anchor")
+
+    return _LI_WITH_ANCHOR_RE.sub(_replace, toctree_html)
+
+
+def _build_collapsed_docs(app):
+    """Build the set of pagenames with ``nav_collapsed`` metadata set."""
+    collapsed = set()
+    for pagename, meta in app.env.metadata.items():
+        raw = meta.get("nav_collapsed", "")
+        if str(raw).strip().lower() in ("true", "1", "yes"):
+            collapsed.add(pagename)
+    return collapsed
 
 
 def _section_paths(section):
@@ -255,9 +303,14 @@ def _add_context(app, pagename, templatename, context, doctree):
     context["lumina_icon_inner"] = get_icon_inner
 
     page_icons = _build_page_icons(app)
-    context["add_sidebar_icons"] = lambda html: _add_sidebar_icons(
-        html, page_icons, pagename, get_icon_svg
-    )
+    collapsed_docs = _build_collapsed_docs(app)
+
+    def _post_process_sidebar(html):
+        html = _add_sidebar_icons(html, page_icons, pagename, get_icon_svg)
+        html = _mark_collapsed_entries(html, collapsed_docs, pagename)
+        return html
+
+    context["add_sidebar_icons"] = _post_process_sidebar
 
     # Doc sections switcher
     sections = app.builder.theme_options.get("doc_sections", "")

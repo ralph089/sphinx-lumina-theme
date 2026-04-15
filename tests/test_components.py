@@ -35,6 +35,27 @@ def test_sidebar_has_aria_label(index_html):
     assert nav is not None, "Missing aria-label on sidebar nav"
 
 
+def test_sidebar_nav_has_alpine_hook(index_html):
+    """Sidebar nav should be bound to the sidebarNav Alpine component."""
+    sidebar = index_html.find(id="lumina-sidebar")
+    nav = sidebar.find("nav", attrs={"x-data": "sidebarNav()"})
+    assert nav is not None, "Sidebar nav is missing x-data='sidebarNav()'"
+
+
+def test_sidebar_marks_nav_collapsed_metadata(index_html):
+    """Pages with ``nav_collapsed: true`` metadata should get the
+    ``data-nav-collapsed`` attribute on their toctree <li>."""
+    sidebar = index_html.find(id="lumina-sidebar")
+    nav = sidebar.find("nav", class_="lumina-sidebar-nav")
+    # guides/index.md in sample_docs has nav_collapsed: true
+    collapsed_li = nav.find("li", attrs={"data-nav-collapsed": "true"})
+    assert collapsed_li is not None, (
+        "Expected a toctree <li> tagged data-nav-collapsed=true for guides/index"
+    )
+    link = collapsed_li.find("a")
+    assert link is not None and "Guides" in link.get_text()
+
+
 def test_toc_has_page_headings(index_html):
     """Right TOC should contain links to page sections."""
     toc = index_html.find(id="lumina-toc")
