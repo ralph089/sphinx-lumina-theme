@@ -472,7 +472,7 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
   border-top: none;
 }
 
-.lumina-sidebar-nav > ul > li > ul {
+.lumina-sidebar-nav li > ul {
   border-left: 1px solid var(--lumina-border);
   margin-left: 0.75rem;
   padding-left: 0.5rem;
@@ -481,8 +481,72 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
   transition: border-color 0.15s;
 }
 
-.lumina-sidebar-nav .current > ul {
+.lumina-sidebar-nav li.current > ul {
   border-left-color: color-mix(in srgb, var(--lumina-accent) 50%, var(--lumina-border));
+}
+
+/* Collapsible branches — hide nested list when the parent is collapsed */
+.lumina-sidebar-nav li.has-children.is-collapsed > ul {
+  display: none;
+}
+
+/* Chevron toggle button injected by the sidebarNav Alpine component */
+.lumina-sidebar-nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  margin: 0.375rem 0.125rem 0.375rem 0;
+  background: transparent;
+  border: 0;
+  color: var(--lumina-text-muted);
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: transform 0.15s ease, color 0.15s, background-color 0.15s;
+  flex-shrink: 0;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.lumina-sidebar-nav-toggle:hover {
+  color: var(--lumina-text);
+  background-color: var(--lumina-bg-secondary);
+}
+
+.lumina-sidebar-nav-toggle:focus-visible {
+  outline: 2px solid var(--lumina-accent);
+  outline-offset: 1px;
+}
+
+.lumina-sidebar-nav-toggle svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Rotate chevron down when the branch is expanded */
+.lumina-sidebar-nav li.has-children:not(.is-collapsed) > .lumina-sidebar-nav-toggle {
+  transform: rotate(90deg);
+}
+
+/* Lay out branch li as [toggle][link] on one row, with the nested ul
+   spanning the full width underneath. */
+.lumina-sidebar-nav li.has-children {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+}
+
+.lumina-sidebar-nav li.has-children > a {
+  grid-row: 1;
+  grid-column: 2;
+  min-width: 0;
+}
+
+.lumina-sidebar-nav li.has-children > ul {
+  grid-row: 2;
+  grid-column: 1 / -1;
 }
 
 /* Sidebar icons */
@@ -504,12 +568,12 @@ a:hover > .lumina-logo .lumina-logo-facet-r { opacity: 0.2; }
   color: var(--lumina-accent);
 }
 
-/* Active leaf link — accent bar on current child page */
-.lumina-sidebar-nav .toctree-l2.current > a {
+/* Active leaf link — accent bar on current child page at any depth */
+.lumina-sidebar-nav li.current:not(.toctree-l1) > a {
   position: relative;
 }
 
-.lumina-sidebar-nav .toctree-l2.current > a::before {
+.lumina-sidebar-nav li.current:not(.toctree-l1) > a::before {
   content: "";
   position: absolute;
   left: -0.5rem;

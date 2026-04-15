@@ -6,7 +6,7 @@ pygments_style = { default = "default", dark = "monokai" }
 [options]
 logo_only = "false"
 nav_links = ""
-nav_depth = "3"
+nav_depth = "4"
 show_toc = "true"
 show_breadcrumbs = "true"
 show_prev_next = "true"

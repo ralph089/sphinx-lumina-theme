@@ -5,11 +5,15 @@
         {% include "components/section-switcher.html" %}
 
         {% if lumina_section_toctree is defined and lumina_section_toctree %}
-            <nav class="lumina-sidebar-nav" aria-label="Section navigation">
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Section navigation"
+                 x-data="sidebarNav()">
                 {{ add_sidebar_icons(lumina_section_toctree) }}
             </nav>
         {% else %}
-            <nav class="lumina-sidebar-nav" aria-label="Main navigation">
+            <nav class="lumina-sidebar-nav"
+                 aria-label="Main navigation"
+                 x-data="sidebarNav()">
                 {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
             </nav>
         {% endif %}
@@ -83,11 +87,15 @@
                     </div>
                 {% endif %}
                 {% if lumina_section_toctree is defined and lumina_section_toctree %}
-                    <nav class="lumina-sidebar-nav" aria-label="Section navigation">
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Section navigation"
+                         x-data="sidebarNav()">
                         {{ add_sidebar_icons(lumina_section_toctree) }}
                     </nav>
                 {% else %}
-                    <nav class="lumina-sidebar-nav" aria-label="Main navigation">
+                    <nav class="lumina-sidebar-nav"
+                         aria-label="Main navigation"
+                         x-data="sidebarNav()">
                         {{ add_sidebar_icons(toctree(maxdepth=theme_nav_depth|int, collapse=False, titles_only=True, includehidden=True) ) }}
                     </nav>
                 {% endif %}
