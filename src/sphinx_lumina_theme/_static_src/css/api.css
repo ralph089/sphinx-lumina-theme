@@ -109,6 +109,11 @@ dl.py > dd > p:last-child {
    Scoped to API domain ancestors so standalone field lists
    use the grid layout from typography.css instead. */
 :is(dl.py, dl.http, dl.js) dl.field-list {
+  display: block;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
   margin: 0.5rem 0 0;
 }
 
